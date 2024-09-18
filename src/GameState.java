@@ -22,7 +22,6 @@ class GameState {
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
         this.currRoom = this.dungeon.getEntry();
-        visited.add(currRoom);
     }
 
     public Room getAdventurersCurrentRoom() {

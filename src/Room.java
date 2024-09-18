@@ -21,7 +21,21 @@ public class Room {
     }
 
     String describe() {
-        return name + "\n" + desc; 
+        if (!GameState.instance().hasBeenVisited(this)) {
+            String description = name + "\n" + desc;
+
+            for (Exit exit : this.exits.values()) {
+                description += "\n" + exit.describe();
+            }
+
+            GameState.instance().visit(this);
+
+            return description;
+
+        } 
+        else {
+            return name;
+        }
     }
 
     public void addExit(Exit exit) {

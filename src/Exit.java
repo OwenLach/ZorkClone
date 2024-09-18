@@ -13,7 +13,7 @@ public class Exit {
     }
 
     String describe() {
-        return "You can go " + dir + " to " + dest.getName() + " from " + src.getName();
+        return "You can go " + dir + " to " + dest.getName();
     }
 
     public String getDir() {
