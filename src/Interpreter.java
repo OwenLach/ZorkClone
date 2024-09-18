@@ -39,72 +39,32 @@ class Interpreter {
     public static void main(String args[]) {
 
         Dungeon dungeon = Interpreter.buildSampleDungeon();
-
         GameState.instance().initialize(dungeon);
         System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());    
         
-        String dir = "e";
-        System.out.println("going " + dir);
-        Command command = new Command(dir);
-        System.out.println(command.execute());
-
-        dir = "w";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-        
-        dir = "e";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-
-        dir = "w";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-        
-        dir = "s";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-
-        dir = "e";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-
-        dir = "e";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-
-        dir = "w";
-        System.out.println("going " + dir);
-        command = new Command(dir);
-        System.out.println(command.execute());
-        /*
         Scanner scnr = new Scanner(System.in);
-        char inputChar = ' '; 
+        String input;
 
-        while(inputChar != 'q') {
-            System.out.println("Enter input character (q to quit): ");
-            String input = scnr.nextLine();
+        do {
+            System.out.println();
+            System.out.print("Enter directional character (q to quit) > ");
+            input = scnr.nextLine();
 
-            if(!input.isEmpty()) {
-                inputChar = input.charAt(0);        
-
-                if (inputChar == 'q') {
-                    System.out.println("quitting"); 
-                    continue;
-                }
-                System.out.println("you entered " + inputChar);
-            }
-            else {
+            if (input.equals("q")) {
                 continue;
             }
-        } 
-        */
-    }
 
+            Command commandRes = CommandFactory.instance().parse(input);
+            if (commandRes == null) { 
+                System.out.println("not a valid command."); 
+                continue; 
+            } else {
+                //System.out.println("going " + input);
+                System.out.println();
+                System.out.println(commandRes.execute());
+            } 
+        } while (!input.equals("q"));
+
+    }
 
 }

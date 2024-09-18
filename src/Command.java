@@ -15,7 +15,7 @@ class Command {
            return GameState.instance().getAdventurersCurrentRoom().describe();
         }
         else {
-            return "cant go that way";
+            return "cannot go " + dir;
         }
     }
 }
