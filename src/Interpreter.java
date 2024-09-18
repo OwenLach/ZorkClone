@@ -41,47 +41,47 @@ class Interpreter {
         Dungeon dungeon = Interpreter.buildSampleDungeon();
 
         GameState.instance().initialize(dungeon);
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
-
-        System.out.println("going east");
-        GameState.instance().setAdventurersCurrentRoom(
-                    GameState.instance().getAdventurersCurrentRoom().leaveBy("e")
-                    );
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
+        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());    
         
-        System.out.println("going west");
-        GameState.instance().setAdventurersCurrentRoom(
-                    GameState.instance().getAdventurersCurrentRoom().leaveBy("w")
-                    );
-       
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe()); 
+        String dir = "e";
+        System.out.println("going " + dir);
+        Command command = new Command(dir);
+        System.out.println(command.execute());
 
-        System.out.println("going east");
-        GameState.instance().setAdventurersCurrentRoom(
-                    GameState.instance().getAdventurersCurrentRoom().leaveBy("e")
-                    );
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
+        dir = "w";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
         
-        System.out.println("going west");
-        GameState.instance().setAdventurersCurrentRoom(
-                    GameState.instance().getAdventurersCurrentRoom().leaveBy("w")
-                    );
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe()); 
+        dir = "e";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
 
-        System.out.println("going south");
-        GameState.instance().setAdventurersCurrentRoom(
-                    GameState.instance().getAdventurersCurrentRoom().leaveBy("s")
-                    );
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
+        dir = "w";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
         
-        System.out.println("going east");
-        GameState.instance().setAdventurersCurrentRoom(
-                        GameState.instance().getAdventurersCurrentRoom().leaveBy("e")
-                    );
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
+        dir = "s";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
 
+        dir = "e";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
 
-        
+        dir = "e";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
+
+        dir = "w";
+        System.out.println("going " + dir);
+        command = new Command(dir);
+        System.out.println(command.execute());
         /*
         Scanner scnr = new Scanner(System.in);
         char inputChar = ' '; 
