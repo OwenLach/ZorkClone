@@ -5,33 +5,37 @@ class Interpreter {
     
     private static Dungeon buildSampleDungeon() {
         Room entryRoom = new Room("Entry Room");
-        entryRoom.setDesc("This is a sample description of the Entry Room");
+        entryRoom.setDesc("This is the entry to the castle. Massive pillars are on your sides and an open gate is to your front. ");
 
-        Room room2 = new Room("Room 2");
-        room2.setDesc("This is a sample description of Room 2");
+        Room tavern = new Room("Tavern");
+        tavern.setDesc("A crowded room full of drunk people. It's extremely loud and smells like ale and body odor.");
         
-        Room room3 = new Room("Room 3");
-        room3.setDesc("This is a sample description of Room 3");
+        Room barracks = new Room("Barracks");
+        barracks.setDesc("This room is filled with knight equipment. Swords, sheilds, and axes lline the walls.");
 
-        Room room4 = new Room("Room 4");
-        room4.setDesc("This is a sample description of Room 4");
+        Room throneRoom = new Room("Throne Room");
+        throneRoom.setDesc("A massive throne stands before you. A crown seated on it. No one is in sight.");
 
-        Room room5 = new Room("Room 5");
-        room5.setDesc("This is a sample description of Room 5");
+        Room frontYard = new Room("Front Yard");
+        frontYard.setDesc("A beautiul garden with lush flowers and bushes. It seems quite livley to the north.");
 
-        entryRoom.addExit(new Exit("n", entryRoom, room2));
-        entryRoom.addExit(new Exit("e", entryRoom, room5));
-        entryRoom.addExit(new Exit("s", entryRoom, room3));
+        entryRoom.addExit(new Exit("s", entryRoom, frontYard));
+        entryRoom.addExit(new Exit("n", entryRoom, tavern));
 
-        room3.addExit(new Exit("e", room3, room4));
+        frontYard.addExit(new Exit("n", frontYard, entryRoom));
 
-        room5.addExit(new Exit("w", room5, entryRoom));
+        tavern.addExit(new Exit("e", tavern, barracks));
+
+        barracks.addExit(new Exit("s", barracks, throneRoom));
         
+        throneRoom.addExit(new Exit("n", throneRoom, barracks));
+        throneRoom.addExit(new Exit("w", throneRoom, entryRoom));
+
         Dungeon sampleDungeon = new Dungeon(entryRoom, "Sample Dungeon");
-        sampleDungeon.add(room2);
-        sampleDungeon.add(room3);
-        sampleDungeon.add(room4);
-        sampleDungeon.add(room5);
+        sampleDungeon.add(frontYard);
+        sampleDungeon.add(tavern);
+        sampleDungeon.add(barracks);
+        sampleDungeon.add(throneRoom);
 
         return sampleDungeon;
     }
