@@ -63,7 +63,6 @@ class Interpreter {
                 System.out.println("not a valid command."); 
                 continue; 
             } else {
-                //System.out.println("going " + input);
                 System.out.println();
                 System.out.println(commandRes.execute());
             } 

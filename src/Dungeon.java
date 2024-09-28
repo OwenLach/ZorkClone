@@ -4,12 +4,12 @@ import java.util.*;
 public class Dungeon {
    
     private String title = "";
-    private Room entry;  // ask about
+    private Room entry; 
     private Hashtable<String, Room> rooms = new Hashtable<String, Room>();
     
     public Dungeon(Room entry, String title) {
         this.title = title;
-        this.entry = entry; // ask about 
+        this.entry = entry;
         this.add(entry);
     }
 
