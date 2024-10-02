@@ -3,9 +3,9 @@ import java.util.*;
 
 public class Room {
 
-    private String name; 
+    private String name = null; 
     private String desc = ""; 
-    private Hashtable<String, Exit> exits; 
+    private Hashtable<String, Exit> exits = null; 
     
     public Room(String name){
         this.name = name;
@@ -50,4 +50,7 @@ public class Room {
             return null;
         }
     }
+
+    public class NoRoomException extends Exception { }
+    
  }

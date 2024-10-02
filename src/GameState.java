@@ -6,7 +6,7 @@ class GameState {
     private static GameState instance = null;
     private Dungeon dungeon = null;
     private Room currRoom = null; 
-    private HashSet<Room> visited; 
+    private HashSet<Room> visited = null; 
 
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -43,4 +43,6 @@ class GameState {
     boolean hasBeenVisited(Room room) {
         return visited.contains(room);
     }
+
+    public class IllegalSaveFormatException extends Exception { }
 }

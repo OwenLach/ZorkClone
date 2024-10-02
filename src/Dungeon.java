@@ -4,7 +4,7 @@ import java.util.*;
 public class Dungeon {
    
     private String title = "";
-    private Room entry; 
+    private Room entry = null; 
     private Hashtable<String, Room> rooms = new Hashtable<String, Room>();
     
     public Dungeon(Room entry, String title) {
@@ -28,4 +28,6 @@ public class Dungeon {
     public Room getRoom(String roomname) {
         return this.rooms.get(roomname);
     }
+
+    public class IllegalDungeonFormatException extends Exception { }
 }

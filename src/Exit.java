@@ -2,9 +2,9 @@
 
 public class Exit {
 
-    private String dir; 
-    private Room src;
-    private Room dest;
+    private String dir = null; 
+    private Room src = null;
+    private Room dest = null;
 
     public Exit(String dir, Room src, Room dest) {
         this.dir = dir;
@@ -27,4 +27,7 @@ public class Exit {
     public Room getDest() {
         return this.dest;
     }
+
+    public class NoExitException extends Exception { }
+    
 }
