@@ -11,6 +11,22 @@ public class Room {
         this.name = name;
         exits = new Hashtable<>();
     }
+
+    public Room(Scanner scnr) throws NoRoomException {
+        exits = new Hashtable<>();
+        this.name = scnr.nextLine(); 
+
+        if (this.name.equals("===")) {
+            throw new NoRoomException();
+        }
+
+        String descPart = scnr.nextLine();
+        
+        while(!descPart.equals("---")) {
+            this.desc += descPart;
+            descPart = scnr.nextLine();
+        }
+    }
     
     public String getName() {
         return this.name;
