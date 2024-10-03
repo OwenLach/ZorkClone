@@ -15,10 +15,23 @@ public class Dungeon {
         this.add(entry);
     }
 
-    public Dungeon (String filename) throws Exception {
-        Scanner scnr = new Scanner(new File(filename));
-        this.title = scnr.nextLine();
-        System.out.println("sample dungeon's title is: " + this.title);
+    public Dungeon (String filename) throws IllegalDungeonFormatException  {
+        try {
+            Scanner scnr = new Scanner(new File(filename));
+            this.title = scnr.nextLine();
+            System.out.println("sample dungeon's title is: " + this.title);
+            String version = scnr.nextLine();
+            System.out.println("Version: " + version);
+
+            if (!version.equals("Zork II")) {
+                throw new IllegalDungeonFormatException();
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+
     }
     public Room getEntry() { 
         return this.entry;  
