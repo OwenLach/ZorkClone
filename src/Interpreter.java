@@ -41,7 +41,14 @@ class Interpreter {
     }
 
     public static void main(String args[]) {
+        try {
+            Dungeon testDungeon = new Dungeon("../files/simple.zork");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        /*
         Dungeon dungeon = Interpreter.buildSampleDungeon();
         GameState.instance().initialize(dungeon);
         System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());    
@@ -67,7 +74,6 @@ class Interpreter {
                 System.out.println(commandRes.execute());
             } 
         } while (!input.equals("q"));
-
+        */
     }
-
 }

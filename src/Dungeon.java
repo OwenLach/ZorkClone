@@ -1,5 +1,7 @@
 
 import java.util.*;
+import java.io.File;
+
 
 public class Dungeon {
    
@@ -13,6 +15,11 @@ public class Dungeon {
         this.add(entry);
     }
 
+    public Dungeon (String filename) throws Exception {
+        Scanner scnr = new Scanner(new File(filename));
+        this.title = scnr.nextLine();
+        System.out.println("sample dungeon's title is: " + this.title);
+    }
     public Room getEntry() { 
         return this.entry;  
     }
