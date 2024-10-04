@@ -1,4 +1,5 @@
 
+import java.util.Scanner;
 
 class Command {
 
@@ -10,9 +11,19 @@ class Command {
 
     String execute() {
         GameState GS = GameState.instance(); 
+        Scanner scnr = new Scanner(System.in);
 
         if (commandStr.equals("save")) {
-            GS.store("asdfljsaf.sav");
+            String filename = "";
+
+            do {
+                System.out.println("Enter save file name: ");
+                filename = scnr.nextLine();     
+            } while (filename.equals(""));
+
+            System.out.println("save file will be : " + filename + ".sav"); 
+            GS.store(filename + ".sav");
+
             return "saved game";
         }
         else {

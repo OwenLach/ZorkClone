@@ -50,9 +50,32 @@ class GameState {
     }
 
     void store(String saveName) {
+
         try {
             PrintWriter pw = new PrintWriter(new File(saveName));
             pw.println("Zork II save data");
+            String path; 
+
+            try {
+                File file = new File(this.dungeon.getFilename());
+                path = file.getAbsolutePath();
+                System.out.println("Full path : " + path);
+                pw.println("Dungeon file: " + path);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            pw.println("Room states:");
+            
+            for (Room room : visited) {
+                pw.println(room.getName());
+                pw.println("beenHere=true");
+                pw.println("---");
+
+            }
+
+            pw.println("===");
+            pw.println("Current room: " + this.getAdventurersCurrentRoom().getName());
             
             pw.flush();
             pw.close();

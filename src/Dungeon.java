@@ -92,5 +92,7 @@ public class Dungeon {
         return this.rooms.get(roomname);
     }
 
+    public String getFilename() { return this.filename; }
+
     public class IllegalDungeonFormatException extends Exception { }
 }
