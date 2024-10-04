@@ -16,7 +16,9 @@ class CommandFactory {
     }
 
     Command parse(String commandString) {
-        HashSet<String> validCommands= new HashSet<>(List.of("n", "e", "s", "w", "u", "d"));
+        HashSet<String> validCommands= new HashSet<>(
+                List.of("n", "e", "s", "w", "u", "d", "save")
+                );
 
         if (!validCommands.contains(commandString)) { return null; }
         else { return new Command(commandString); }

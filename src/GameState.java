@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.io.*;
 
 class GameState {
 
@@ -36,12 +37,32 @@ class GameState {
         return this.dungeon;
     }
 
+    public void setDungeon(Dungeon d) {
+
+    }
+
     void visit(Room room) {
         visited.add(room);
     }
 
     boolean hasBeenVisited(Room room) {
         return visited.contains(room);
+    }
+
+    void store(String saveName) {
+        try {
+            PrintWriter pw = new PrintWriter(new File(saveName));
+            pw.println("Zork II save data");
+            
+            pw.flush();
+            pw.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void restore(String filename){
     }
 
     public class IllegalSaveFormatException extends Exception { }

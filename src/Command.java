@@ -2,20 +2,29 @@
 
 class Command {
 
-    private String dir;
+    private String commandStr;
 
-    Command(String dir) {
-        this.dir = dir;
+    Command(String command) {
+        this.commandStr = command;
     }
 
     String execute() {
-        Room currRoom = GameState.instance().getAdventurersCurrentRoom();
-        if (currRoom.leaveBy(this.dir) != null) {
-           GameState.instance().setAdventurersCurrentRoom(currRoom.leaveBy(this.dir));
-           return GameState.instance().getAdventurersCurrentRoom().describe();
+        GameState GS = GameState.instance(); 
+
+        if (commandStr.equals("save")) {
+            GS.store("asdfljsaf.sav");
+            return "saved game";
         }
         else {
-            return "cannot go " + dir;
+            Room currRoom = GS.getAdventurersCurrentRoom();
+            if (currRoom.leaveBy(this.commandStr) != null) {
+               GS.setAdventurersCurrentRoom(currRoom.leaveBy(this.commandStr));
+               return GS.getAdventurersCurrentRoom().describe();
+            }
+            else {
+                return "cannot go " + commandStr;
+            }
         }
+        
     }
 }

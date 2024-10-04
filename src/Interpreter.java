@@ -40,9 +40,9 @@ class Interpreter {
         return sampleDungeon;
     }
 
-    // "Usage: Interpreter zorkFile.zork|saveFile.sav."
     public static void main(String args[]) {
-        
+        //GameState.instance().store("../files/test.sav"); 
+
         if (args.length == 0) {
             System.out.println("Usage: Interpreter zorkFile.zork|saveFile.sav.");
             return;
