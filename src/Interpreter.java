@@ -40,11 +40,18 @@ class Interpreter {
         return sampleDungeon;
     }
 
+    // "Usage: Interpreter zorkFile.zork|saveFile.sav."
     public static void main(String args[]) {
+        
+        if (args.length == 0) {
+            System.out.println("Usage: Interpreter zorkFile.zork|saveFile.sav.");
+            return;
+        }
+
         Dungeon testDungeon;
 
         try {
-            testDungeon = new Dungeon("../files/simple.zork");
+            testDungeon = new Dungeon(args[0]);
         }
         catch (Exception e) {
             e.printStackTrace();
