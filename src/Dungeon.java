@@ -46,18 +46,10 @@ public class Dungeon {
 
                 }
             } catch (Room.NoRoomException e) {
-                System.out.println("no more rooms to hydrate");
+                // System.out.println("no more rooms to hydrate");
             }
-
-           /*
-            for (Room room : rooms.values()) {
-                System.out.println(room.describe());
-                System.out.println();
-            }
-            */
             
             GS.initialize(this);
-            
             scnr.nextLine(); // throwing out "Exits: " line
 
             try {
@@ -68,12 +60,14 @@ public class Dungeon {
             catch (Exit.NoExitException e) {
             }
 
+            /*
             System.out.println("finished hydrating exits\n***************");
             for (Room room : rooms.values()) {
                 System.out.println(room.describe());
                 System.out.println();
             }
             System.out.println("***************");
+            */
         } 
 
         catch (Exception e) {

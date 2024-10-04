@@ -41,16 +41,17 @@ class Interpreter {
     }
 
     public static void main(String args[]) {
+        Dungeon testDungeon;
+
         try {
-            Dungeon testDungeon = new Dungeon("../files/simple.zork");
+            testDungeon = new Dungeon("../files/simple.zork");
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        /*
-        Dungeon dungeon = Interpreter.buildSampleDungeon();
-        GameState.instance().initialize(dungeon);
+        //Dungeon dungeon = Interpreter.buildSampleDungeon();
+        //GameState.instance().initialize(dungeon);
         System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());    
         
         Scanner scnr = new Scanner(System.in);
@@ -74,6 +75,5 @@ class Interpreter {
                 System.out.println(commandRes.execute());
             } 
         } while (!input.equals("q"));
-        */
     }
 }

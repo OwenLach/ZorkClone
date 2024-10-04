@@ -23,7 +23,7 @@ public class Room {
         String descPart = scnr.nextLine();
         
         while(!descPart.equals("---")) {
-            this.desc += descPart;
+            this.desc += (descPart + " \n");
             descPart = scnr.nextLine();
         }
     }
