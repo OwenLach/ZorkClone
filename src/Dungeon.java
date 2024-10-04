@@ -18,7 +18,8 @@ public class Dungeon {
 
     public Dungeon (String filename) throws IllegalDungeonFormatException  {
         this.filename = filename;
-
+        GameState GS = GameState.instance();
+            
         try {
             Scanner scnr = new Scanner(new File(this.filename)); 
             this.title = scnr.nextLine();
@@ -35,19 +36,46 @@ public class Dungeon {
 
             try {
                 while (true) {
-                    this.add(new Room(scnr));
+                    Room newRoom = new Room(scnr);
+
+                    if (this.rooms.isEmpty()) {
+                        this.entry = newRoom;
+                    }
+
+                    this.add(newRoom);
+
                 }
             } catch (Room.NoRoomException e) {
                 System.out.println("no more rooms to hydrate");
             }
 
-            /*
+           /*
             for (Room room : rooms.values()) {
                 System.out.println(room.describe());
                 System.out.println();
             }
             */
+            
+            GS.initialize(this);
+            
+            scnr.nextLine(); // throwing out "Exits: " line
+
+            try {
+                while (true) {
+                   new Exit(scnr);
+                }
+            } 
+            catch (Exit.NoExitException e) {
+            }
+
+            System.out.println("finished hydrating exits\n***************");
+            for (Room room : rooms.values()) {
+                System.out.println(room.describe());
+                System.out.println();
+            }
+            System.out.println("***************");
         } 
+
         catch (Exception e) {
             e.printStackTrace();
         }
