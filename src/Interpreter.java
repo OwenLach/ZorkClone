@@ -27,19 +27,6 @@ class Interpreter {
             return;
         }
 
-        /*    
-            Dungeon testDungeon;
-
-            try {
-                testDungeon = new Dungeon(args[0]);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            //Dungeon dungeon = Interpreter.buildSampleDungeon();
-            //GameState.instance().initialize(dungeon);
-        */
         System.out.println("Dungeon: " + GS.getDungeon().getTitle());
         System.out.println("-------------------------------------");
         System.out.println(GS.getAdventurersCurrentRoom().describe());    
