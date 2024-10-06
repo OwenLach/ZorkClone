@@ -21,9 +21,11 @@ public class Dungeon {
         GameState GS = GameState.instance();
             
         try {
-            Scanner scnr = new Scanner(new File(this.filename)); 
+            System.out.println("about to try to open: " + this.filename);
+            File file = new File("../files/" + this.filename);
+            Scanner scnr = new Scanner(file); 
             this.title = scnr.nextLine();
-            System.out.println("sample dungeon's title is: " + this.title);
+            System.out.println("Dungeon: " + this.title);
             String version = scnr.nextLine();
             System.out.println("Version: " + version);
 

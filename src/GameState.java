@@ -38,7 +38,7 @@ class GameState {
     }
 
     public void setDungeon(Dungeon d) {
-
+        this.dungeon = d;
     }
 
     void visit(Room room) {
@@ -55,7 +55,8 @@ class GameState {
             PrintWriter pw = new PrintWriter(new File(saveName));
             pw.println("Zork II save data");
             String path; 
-
+            
+            // get dungeon zork file's full path and store in save file
             try {
                 File file = new File(this.dungeon.getFilename());
                 path = file.getAbsolutePath();
@@ -65,8 +66,8 @@ class GameState {
             catch (Exception e) {
                 e.printStackTrace();
             }
+
             pw.println("Room states:");
-            
             for (Room room : visited) {
                 pw.println(room.getName());
                 pw.println("beenHere=true");
@@ -86,6 +87,42 @@ class GameState {
     }
 
     void restore(String filename){
+        
+        try {
+            //open save file w/ scanner
+            File file = new File(filename);
+            Scanner scnr = new Scanner(file);
+            System.out.println("opened file: " + filename);
+
+            scnr.nextLine(); // throw out "zork II save data" line
+                            
+            File dungeonFile = new File(scnr.nextLine());
+
+            System.out.println("restoring saved data from: " + dungeonFile.getName());
+
+            this.setDungeon(new Dungeon(dungeonFile.getName()));
+            
+            System.out.println(scnr.nextLine()); //throw out "room states:" line
+            System.out.println("Visited Rooms: ");
+             
+            while (true) {
+                String roomName = scnr.nextLine();
+                
+                if (roomName.equals("===")) { break; }
+
+                System.out.println("   "  + roomName);
+
+                scnr.nextLine();
+                scnr.nextLine();
+            }
+
+            System.out.println(scnr.nextLine());
+            
+
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public class IllegalSaveFormatException extends Exception { }
