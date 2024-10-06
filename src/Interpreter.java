@@ -12,8 +12,6 @@ class Interpreter {
         }
         
         if (args[0].indexOf(".zork") != -1) {
-            System.out.println("making new dungeon from zork file");
-
             try {
                GS.setDungeon(new Dungeon(args[0]));
             }
@@ -22,12 +20,11 @@ class Interpreter {
             }
         }
         else if (args[0].indexOf(".sav") != -1) {
-           System.out.println("making new file from sav file");
-
             GS.restore(args[0]);
         }
         else { 
-            System.out.println("Enter valid file type"); 
+            System.out.println("Enter valid file type");
+            return;
         }
 
         /*    
@@ -43,7 +40,8 @@ class Interpreter {
             //Dungeon dungeon = Interpreter.buildSampleDungeon();
             //GameState.instance().initialize(dungeon);
         */
-        System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());    
+        System.out.println("-------------------------------------");
+        System.out.println(GS.getAdventurersCurrentRoom().describe());    
         
         Scanner scnr = new Scanner(System.in);
         String input;

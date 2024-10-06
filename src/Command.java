@@ -21,10 +21,9 @@ class Command {
                 filename = scnr.nextLine();     
             } while (filename.equals(""));
 
-            System.out.println("save file will be : " + filename + ".sav"); 
             GS.store(filename + ".sav");
 
-            return "saved game";
+            return "\ngame saved successfully";
         }
         else {
             Room currRoom = GS.getAdventurersCurrentRoom();

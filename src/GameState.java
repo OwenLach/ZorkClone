@@ -60,7 +60,6 @@ class GameState {
             try {
                 File file = new File(this.dungeon.getFilename());
                 path = file.getAbsolutePath();
-                System.out.println("Full path : " + path);
                 pw.println("Dungeon file: " + path);
             }
             catch (Exception e) {
@@ -92,36 +91,34 @@ class GameState {
             //open save file w/ scanner
             File file = new File(filename);
             Scanner scnr = new Scanner(file);
-            System.out.println("opened file: " + filename);
 
             scnr.nextLine(); // throw out "zork II save data" line
                             
             File dungeonFile = new File(scnr.nextLine());
-
-            System.out.println("restoring saved data from: " + dungeonFile.getName());
-
             this.setDungeon(new Dungeon(dungeonFile.getName()));
+        
+            scnr.nextLine(); //throw out "room states:" line
             
-            System.out.println(scnr.nextLine()); //throw out "room states:" line
-            System.out.println("Visited Rooms: ");
-             
             while (true) {
                 String roomName = scnr.nextLine();
-                
                 if (roomName.equals("===")) { break; }
+                
+                Room visitedRoom = this.dungeon.getRoom(roomName);
+                this.visit(visitedRoom);
 
-                System.out.println("   "  + roomName);
-
-                scnr.nextLine();
-                scnr.nextLine();
+                scnr.nextLine(); // thow out "beenHere=true"
+                scnr.nextLine(); // throw out "---":
             }
 
-            System.out.println(scnr.nextLine());
-            
+
+            String currentRoom = scnr.nextLine();
+            currentRoom = currentRoom.substring(currentRoom.indexOf(":") + 2);
+            this.setAdventurersCurrentRoom(this.getDungeon().getRoom(currentRoom)); 
 
         } 
         catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
     }
 

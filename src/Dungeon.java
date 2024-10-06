@@ -21,7 +21,6 @@ public class Dungeon {
         GameState GS = GameState.instance();
             
         try {
-            System.out.println("about to try to open: " + this.filename);
             File file = new File("../files/" + this.filename);
             Scanner scnr = new Scanner(file); 
             this.title = scnr.nextLine();
@@ -48,7 +47,6 @@ public class Dungeon {
 
                 }
             } catch (Room.NoRoomException e) {
-                // System.out.println("no more rooms to hydrate");
             }
             
             GS.initialize(this);
@@ -62,20 +60,11 @@ public class Dungeon {
             catch (Exit.NoExitException e) {
             }
 
-            /*
-            System.out.println("finished hydrating exits\n***************");
-            for (Room room : rooms.values()) {
-                System.out.println(room.describe());
-                System.out.println();
-            }
-            System.out.println("***************");
-            */
         } 
-
         catch (Exception e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
-    
     }
 
     public Room getEntry() { 
