@@ -40,6 +40,7 @@ class Interpreter {
             //Dungeon dungeon = Interpreter.buildSampleDungeon();
             //GameState.instance().initialize(dungeon);
         */
+        System.out.println("Dungeon: " + GS.getDungeon().getTitle());
         System.out.println("-------------------------------------");
         System.out.println(GS.getAdventurersCurrentRoom().describe());    
         
