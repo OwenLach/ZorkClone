@@ -24,7 +24,7 @@ public class Dungeon {
             File file = new File("../files/" + this.filename);
             Scanner scnr = new Scanner(file); 
             this.title = scnr.nextLine();
-            scnr.nextLine(); // skip version
+            String version =  scnr.nextLine();
 
             if (!version.equals("Zork II")) {
                 throw new IllegalDungeonFormatException();
