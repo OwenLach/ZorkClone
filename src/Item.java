@@ -1,11 +1,11 @@
-
+import java.util.*;
 
 public class Item {
 
-    private String primaryName; 
-    private int weight;
-    private HashTable<String,String> messages;
-    private HashSet<String> aliases;
+    private String primaryName = ""; 
+    private int weight = 0;
+    private Hashtable<String,String> messages = new Hashtable<String, String>();
+    private HashSet<String> aliases = new HashSet<String>();
 
     public Item(Scanner scnr) {
     }
