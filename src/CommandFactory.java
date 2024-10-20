@@ -16,12 +16,28 @@ class CommandFactory {
     }
 
     Command parse(String commandString) {
-        HashSet<String> validCommands= new HashSet<>(
+        HashSet<String> allValidCommands= new HashSet<>(
                 List.of("n", "e", "s", "w", "u", "d", "save")
                 );
 
-        if (!validCommands.contains(commandString)) { return null; }
-        else { return new Command(commandString); }
+        HashSet<String> movementCommands= new HashSet<>(
+                List.of("n", "e", "s", "w", "u", "d")
+                );
+        
+        String saveComand = "save";
+
+        if (!allValidCommands.contains(commandString)) {
+                return new UnknownCommand(commandString); 
+        }
+        else { 
+            if (movementCommands.contains(commandString)) { 
+                return new MovementCommand(commandString);
+            }
+            else {
+                return new SaveCommand();
+            }
+
+        }
     }
     
 }

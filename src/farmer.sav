@@ -1,0 +1,14 @@
+Zork II save data
+Dungeon file: /home/students/olach/cpsc240/zorkProject/src/farmer.zork
+Room states:
+Rotunda
+beenHere=true
+---
+Basement
+beenHere=true
+---
+Room 044
+beenHere=true
+---
+===
+Current room: Room 044

@@ -1,8 +1,15 @@
 
 import java.util.Scanner;
 
-class Command {
+abstract class Command {
+    abstract String execute();
+}
 
+
+
+
+
+    /*
     private String commandStr;
 
     Command(String command) {
@@ -37,4 +44,4 @@ class Command {
         }
         
     }
-}
+    */

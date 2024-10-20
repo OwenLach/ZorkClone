@@ -36,7 +36,7 @@ class Interpreter {
 
         do {
             System.out.println();
-            System.out.print("Enter directional character (q to quit) > ");
+            System.out.print("Enter a command (q to quit) > ");
             input = scnr.nextLine();
 
             if (input.equals("q")) {
@@ -44,13 +44,8 @@ class Interpreter {
             }
 
             Command commandRes = CommandFactory.instance().parse(input);
-            if (commandRes == null) { 
-                System.out.println("not a valid command."); 
-                continue; 
-            } else {
-                System.out.println();
-                System.out.println(commandRes.execute());
-            } 
+            System.out.println(commandRes.execute()); 
+
         } while (!input.equals("q"));
     }
 }
