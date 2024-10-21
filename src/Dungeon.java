@@ -34,30 +34,24 @@ public class Dungeon {
             }
 
             scnr.nextLine(); // skip "===" delimter
+        // -----------------------------------------------------------------------
+            // Initialize dungeon
+            GS.initialize(this);
             
-            // ---------- Hydrate Item objects ------------------
-            System.out.println(scnr.nextLine()); // skip "Items:" delimiter 
+        // ------------------- Hydrate Item objects -----------------------------
+            scnr.nextLine(); // skip "Items:" delimiter 
 
             try {
-            System.out.println("\n*********************");
                 while(true) {
                     Item item = new Item(scnr);
-                    //System.out.println("Adding item: " + item.getPrimaryName());
                     this.add(item);
                 }
             }
             catch (NoItemException e) {
-                System.out.println("\n*********************");
-                System.out.println("From Dungeon.java, finished hydrating item objects");
-                
-                //for (Item item : this.items.values()) {
-                 //   System.out.println("Items primary name: " + item.getPrimaryName());
-                //}
-
-
             }
 
-            // ---------- Hydrate all room object -------------------
+        // -------------------- Hydrate Room Objects  -------------------------
+
             scnr.nextLine(); //skip "Rooms: " line
                              
             try {
@@ -73,13 +67,16 @@ public class Dungeon {
                 }
             } catch (Room.NoRoomException e) {
             }
-            
-            // Initialize dungeon
-            GS.initialize(this);
-            scnr.nextLine(); // throwing out "Exits: " line
-            
+        // --------------------------------------------------------------------
 
-            // ------------- Hydrate all exit objects -------------------
+            // set current room in GameState to this.entry 
+            // after all room objects have been made
+            GS.setAdventurersCurrentRoom(this.entry);
+           
+        // -------------------- Hydrate all exit objects ---------------------
+
+            scnr.nextLine(); // throwing out "Exits: " line
+
             try {
                 while (true) {
                    new Exit(scnr);
@@ -93,6 +90,7 @@ public class Dungeon {
             System.err.println(e.getMessage());
             System.exit(1);
         }
+        // ------------------------------------------------------------------
     }
 
     public Room getEntry() { 

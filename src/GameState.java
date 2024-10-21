@@ -26,7 +26,7 @@ class GameState {
 
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
-        this.currRoom = this.dungeon.getEntry();
+        //this.currRoom = this.dungeon.getEntry();
     }
 
     public Room getAdventurersCurrentRoom() {
@@ -52,6 +52,35 @@ class GameState {
     boolean hasBeenVisited(Room room) {
         return visited.contains(room);
     }
+
+    ArrayList<Item> getInventory() { return this.inventory; }
+
+    void addToInventory(Item item) {}
+
+    void removeFromInventory(Item item) {}
+
+    Item getItemInVicinityNamed(String name) { return null; }
+
+    Item getItemFromInventoryNamed(String name) { return null; }
+
+    HashSet<Item> getItemsInRoom(Room room) {
+        return this.allRoomContents.get(room);
+    }
+
+    void addItemToRoom(Item item, Room room) {
+        // room has nothing in it yet
+        if (allRoomContents.get(room) == null) {
+            HashSet<Item> itemsSet = new HashSet<Item>();
+            itemsSet.add(item);
+            allRoomContents.put(room, itemsSet); 
+        }
+        // other wise, add item to already existing hashset
+        else {
+            allRoomContents.get(room).add(item);
+        }
+    }
+
+    void removeItemFromRoom(Item item, Room room) {}
 
     void store(String saveName) {
 

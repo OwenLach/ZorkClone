@@ -11,33 +11,27 @@ public class Item {
     private HashSet<String> aliases = new HashSet<String>();
 
     public Item(Scanner scnr) throws NoItemException{
-       
+        // get list of item names,   ex: StarWarsToy,Yoda 
         String itemNames = scnr.nextLine();
+
         if (itemNames.equals("===")){
             throw new NoItemException();
         }
-    
+        
+        // splits the names by the comma     
+        // ex: would split StarWarsToy and Yoda
         String[] splitNames = itemNames.split(",");
-         // item name is set to primary name
+
+        // item name is set to primary name which is the first name
         this.primaryName = splitNames[0];
-        System.out.println(this.primaryName);
-        //loop through other aliases
+        
+        //loop through other aliases and add them to alias hashset
         for(int i = 1; i < splitNames.length; i++) {
             this.aliases.add(splitNames[i]);
         }
         
-        for (String alias : aliases) {
-            System.out.println("    also known as " + alias);
-        }
-        //System.out.println("Item Name is " + itemName);
-
-        //			String itemName = scan.nextLine(); // scans next line in file 
-        //			itemName.equals(this.primaryName); // sets line to item name
-        //			System.out.println(itemName); // prints out item name
-        //			
         String itemWeight = scnr.nextLine();
         this.weight = Integer.parseInt(itemWeight);
-        //System.out.println("item weight is " + this.weight);
 
         String itemAction;
         boolean possibleAction = false; //used to verify if item is able to enact action
@@ -52,15 +46,19 @@ public class Item {
             if (splitAction.length == 2) { 
                 // set's what's before ":" as action name
                 String action = splitAction[0];
+
                 // what's after ":" as action response
                 String response = splitAction[1]; 
+
                 //adds the action and action response to hashtable
                 messages.put(action, response); 
+
                 // temp for testing
                 //System.out.println("Action is " + action + " the ability " + response); 
             }
         }
-        if(!possibleAction) { //checks to see if item has no action
+        //checks to see if item has no action
+        if(!possibleAction) { 
             //System.out.println("this is a boring item"); //temp for testing
         }
 	}
@@ -78,7 +76,7 @@ public class Item {
 	}
 
 	public String toString() {
-		return "Item " + primaryName + "'s weight is" + weight;
+		return "Item: " + primaryName + "'s weight is " + weight;
 	}
 
 	public int getWeight() {
@@ -86,23 +84,25 @@ public class Item {
 	}
 
 
-	public static void main(String args[]) throws Exception {
-      Item item = null;
-      try {
-         Scanner scnr = new Scanner(new FileReader("../files/items.zork"));
-         // line below needs to go in Dungeon.java
-         System.out.println("Skipping line: " + scnr.nextLine()); 
-         while (scnr.hasNextLine()) {
-             System.out.println("Making new item object");
-             item = new Item(scnr);
-             System.out.println();
-         }
-         scnr.close(); // Close the scanner to avoid resource leaks
-        
-      } catch (Exception e) {
-          System.out.println("last object cancelled, done making item objects");
-      }
-        
-   }
+	//public static void main(String args[]) throws Exception {
+        /*
+             Item item = null;
+             try {
+             Scanner scnr = new Scanner(new FileReader("../files/items.zork"));
+             // line below needs to go in Dungeon.java
+             System.out.println("Skipping line: " + scnr.nextLine()); 
+             while (scnr.hasNextLine()) {
+                 System.out.println("Making new item object");
+                 item = new Item(scnr);
+                 System.out.println();
+             }
+             scnr.close(); // Close the scanner to avoid resource leaks
+            
+          } catch (Exception e) {
+              System.out.println("last object cancelled, done making item objects");
+          }
+            
+       }
+     */
 }
 

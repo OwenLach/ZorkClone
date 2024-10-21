@@ -13,19 +13,44 @@ public class Room {
     }
 
     public Room(Scanner scnr) throws NoRoomException {
+        GameState GS = GameState.instance();
         exits = new Hashtable<>();
         this.name = scnr.nextLine(); 
 
         if (this.name.equals("===")) {
             throw new NoRoomException();
         }
-    
-        String descPart = scnr.nextLine();
         
-        while(!descPart.equals("---")) {
-            this.desc += (descPart + " \n");
-            descPart = scnr.nextLine();
+        String lineAfterRoomName = scnr.nextLine();
+        if (lineAfterRoomName.contains("Contents:")){
+            //get all items that the room has  
+            String contentsString = lineAfterRoomName.split(" ")[1];
+            //split items into array by ","
+            String[] splitContentsString = contentsString.split(",");
+            
+            for (String s : splitContentsString) {
+                // get item from the items hashtable in Dunegon class
+                Item item = GS.getDungeon().getItem(s);
+                // add item to the GameState "allRoomContents" Hashtable
+                this.add(item);
+                //GS.addItemToRoom(item, this);
+            }
+
+            System.out.println(this.name + " contains: ");
+            for (Item item : GS.getItemsInRoom(this)) {
+               System.out.println("       " + item); 
+            }
+
+            System.out.println();
         }
+        else {
+            String descPart = lineAfterRoomName;           
+            while(!descPart.equals("---")) {
+                this.desc += (descPart + " \n");
+                descPart = scnr.nextLine();
+            }
+        }
+       
     }
     
     public String getName() {
@@ -68,20 +93,21 @@ public class Room {
     }
 
 
-    /*
     HashSet<Item> getContents() {
+        return null;
     }
 
     Item getItemNamed(String name) {
+        return null;
     }
 
     void add(Item item) {
-        
+        GameState.instance().addItemToRoom(item, this);       
     }
 
     void remove(Item item){
+        GameState.instance().removeItemFromRoom(item, this);       
     }
-    */
 
     public class NoRoomException extends Exception { }
     
