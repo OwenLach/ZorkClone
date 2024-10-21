@@ -12,49 +12,57 @@ public class Item {
 
     public Item(Scanner scnr) throws NoItemException{
        
-		//String firstLine = scnr.nextLine(); // skips "Items:"
+        String itemNames = scnr.nextLine();
+        if (itemNames.equals("===")){
+            throw new NoItemException();
+        }
+    
+        String[] splitNames = itemNames.split(",");
+         // item name is set to primary name
+        this.primaryName = splitNames[0];
+        System.out.println(this.primaryName);
+        //loop through other aliases
+        for(int i = 1; i < splitNames.length; i++) {
+            this.aliases.add(splitNames[i]);
+        }
+        
+        for (String alias : aliases) {
+            System.out.println("    also known as " + alias);
+        }
+        //System.out.println("Item Name is " + itemName);
 
-		//while(scnr.hasNextLine()) {
-			String itemName = scnr.nextLine();
-			if (itemName.equals("===")){
-                throw new NoItemException();
+        //			String itemName = scan.nextLine(); // scans next line in file 
+        //			itemName.equals(this.primaryName); // sets line to item name
+        //			System.out.println(itemName); // prints out item name
+        //			
+        String itemWeight = scnr.nextLine();
+        this.weight = Integer.parseInt(itemWeight);
+        //System.out.println("item weight is " + this.weight);
+
+        String itemAction;
+        boolean possibleAction = false; //used to verify if item is able to enact action
+        while(scnr.hasNextLine() && !(itemAction = scnr.nextLine().trim()).equals("---"))
+        {
+            possibleAction = true;
+            String[] splitAction = itemAction.split(":");
+
+            // checks to se if when line is split at ":" there is only 1
+            // ":" verifying there is only two halves, the key(left) and
+            // value(right) 
+            if (splitAction.length == 2) { 
+                // set's what's before ":" as action name
+                String action = splitAction[0];
+                // what's after ":" as action response
+                String response = splitAction[1]; 
+                //adds the action and action response to hashtable
+                messages.put(action, response); 
+                // temp for testing
+                //System.out.println("Action is " + action + " the ability " + response); 
             }
-
-			this.primaryName = itemName; // item name is set to primary name
-			System.out.println("Item Name is " + itemName);
-
-			//			String itemName = scan.nextLine(); // scans next line in file 
-			//			itemName.equals(this.primaryName); // sets line to item name
-			//			System.out.println(itemName); // prints out item name
-			//			
-			String itemWeight = scnr.nextLine();
-			this.weight = Integer.parseInt(itemWeight);
-			System.out.println("item weight is " + this.weight);
-
-			String itemAction;
-			boolean possibleAction = false; //used to verify if item is able to enact action
-			while(scnr.hasNextLine() && !(itemAction = scnr.nextLine().trim()).equals("---")) {
-				possibleAction = true;
-				String[] splitAction = itemAction.split(":");
-
-                // checks to se if when line is split at ":" there is only 1
-                // ":" verifying there is only two halves, the key(left) and
-                // value(right) 
-				if (splitAction.length == 2) { 
-                    // set's what's before ":" as action name
-					String action = splitAction[0];
-                    // what's after ":" as action response
-					String response = splitAction[1]; 
-                    //adds the action and action response to hashtable
-					messages.put(action, response); 
-                    // temp for testing
-					System.out.println("Action is " + action + " the ability " + response); 
-				}
-			}
-			if(!possibleAction) { //checks to see if item has no action
-				System.out.println("this is a boring item"); //temp for testing
-			}
-		//}
+        }
+        if(!possibleAction) { //checks to see if item has no action
+            //System.out.println("this is a boring item"); //temp for testing
+        }
 	}
 
 	public boolean goesBy(String name) {

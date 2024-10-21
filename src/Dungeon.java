@@ -9,7 +9,7 @@ public class Dungeon {
     private String filename = "";
     private Room entry = null; 
     private Hashtable<String, Room> rooms = new Hashtable<String, Room>();
-
+    private Hashtable<String, Item> items = new Hashtable<String, Item>();
 
     public Dungeon(Room entry, String title) {
         this.title = title;
@@ -29,15 +29,37 @@ public class Dungeon {
             this.title = scnr.nextLine();
             String version =  scnr.nextLine();
 
-            if (!version.equals("Zork II")) {
+            if (!version.equals("Zork III")) {
                 throw new IllegalDungeonFormatException();
             }
 
             scnr.nextLine(); // skip "===" delimter
-            scnr.nextLine(); //skip "Rooms: " line
             
+            // ---------- Hydrate Item objects ------------------
+            System.out.println(scnr.nextLine()); // skip "Items:" delimiter 
+
+            try {
+            System.out.println("\n*********************");
+                while(true) {
+                    Item item = new Item(scnr);
+                    //System.out.println("Adding item: " + item.getPrimaryName());
+                    this.add(item);
+                }
+            }
+            catch (NoItemException e) {
+                System.out.println("\n*********************");
+                System.out.println("From Dungeon.java, finished hydrating item objects");
+                
+                //for (Item item : this.items.values()) {
+                 //   System.out.println("Items primary name: " + item.getPrimaryName());
+                //}
+
+
+            }
 
             // ---------- Hydrate all room object -------------------
+            scnr.nextLine(); //skip "Rooms: " line
+                             
             try {
                 while (true) {
                     Room newRoom = new Room(scnr);
@@ -90,6 +112,14 @@ public class Dungeon {
     }
 
     public String getFilename() { return this.filename; }
+
+    public Item getItem(String itemName) {
+        return this.items.get(itemName);
+    }
+
+    public void add(Item item) {
+        this.items.put(item.getPrimaryName(), item);
+    }
 
     public class IllegalDungeonFormatException extends Exception { }
 }

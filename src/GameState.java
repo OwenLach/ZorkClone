@@ -8,6 +8,8 @@ class GameState {
     private Dungeon dungeon = null;
     private Room currRoom = null; 
     private HashSet<Room> visited = null; 
+    private ArrayList<Item> inventory = null; 
+    private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
 
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -18,6 +20,8 @@ class GameState {
 
     private GameState() {
         visited = new HashSet<>();
+        inventory = new ArrayList<Item>();
+        allRoomContents = new Hashtable<Room, HashSet<Item>>();
     }
 
     public void initialize(Dungeon dungeon) {
