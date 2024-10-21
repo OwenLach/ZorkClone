@@ -4,13 +4,11 @@ import java.util.Scanner;
 import java.io.FileReader;
 
 public class Item {
-
     
     private String primaryName = ""; 
     private int weight ;
     private Hashtable<String,String> messages = new Hashtable<String, String>();
     private HashSet<String> aliases = new HashSet<String>();
-
 
     public Item(Scanner scnr) throws NoItemException{
        
@@ -39,11 +37,18 @@ public class Item {
 				possibleAction = true;
 				String[] splitAction = itemAction.split(":");
 
-				if (splitAction.length ==2) { //checks to see if when line is split at ":" there is only 1 ":" verifying there is only two halves the key(left) and value(right)
-					String action = splitAction[0]; //sets what's before ":" as action name
-					String response = splitAction[1]; //what's after ":" as action response
-					messages.put(action, response); //adds the action and action response to hashtable
-					System.out.println("Action is " + action + " the ability " + response); //temp for texting
+                // checks to se if when line is split at ":" there is only 1
+                // ":" verifying there is only two halves, the key(left) and
+                // value(right) 
+				if (splitAction.length ==2) { 
+                    // set's what's before ":" as action name
+					String action = splitAction[0];
+                    // what's after ":" as action response
+					String response = splitAction[1]; 
+                    //adds the action and action response to hashtable
+					messages.put(action, response); 
+                    // temp for testing
+					System.out.println("Action is " + action + " the ability " + response); 
 				}
 			}
 			if(!possibleAction) { //checks to see if item has no action
@@ -60,7 +65,8 @@ public class Item {
 		return this.primaryName;
 	}
 	public String getMessageForVerb(String verb) {
-		return messages.getOrDefault(verb, ""); // returns the contents of the key that is called 
+        // returns the contents of the key that is called
+		return messages.getOrDefault(verb, "");
 	}
 
 	public String toString() {
