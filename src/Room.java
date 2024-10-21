@@ -19,7 +19,7 @@ public class Room {
         if (this.name.equals("===")) {
             throw new NoRoomException();
         }
-
+    
         String descPart = scnr.nextLine();
         
         while(!descPart.equals("---")) {
@@ -66,6 +66,21 @@ public class Room {
             return null;
         }
     }
+
+
+    /*
+    HashSet<Item> getContents() {
+    }
+
+    Item getItemNamed(String name) {
+    }
+
+    void add(Item item) {
+    }
+
+    void remove(Item item){
+    }
+    */
 
     public class NoRoomException extends Exception { }
     

@@ -12,13 +12,13 @@ public class Item {
 
     public Item(Scanner scnr) throws NoItemException{
        
-		String firstLine = scnr.nextLine(); // skips "Items:"
+		//String firstLine = scnr.nextLine(); // skips "Items:"
 
-		while(scnr.hasNextLine()) {
+		//while(scnr.hasNextLine()) {
 			String itemName = scnr.nextLine();
 			if (itemName.equals("===")){
-            throw new NoItemException();
-         }
+                throw new NoItemException();
+            }
 
 			this.primaryName = itemName; // item name is set to primary name
 			System.out.println("Item Name is " + itemName);
@@ -40,7 +40,7 @@ public class Item {
                 // checks to se if when line is split at ":" there is only 1
                 // ":" verifying there is only two halves, the key(left) and
                 // value(right) 
-				if (splitAction.length ==2) { 
+				if (splitAction.length == 2) { 
                     // set's what's before ":" as action name
 					String action = splitAction[0];
                     // what's after ":" as action response
@@ -54,7 +54,7 @@ public class Item {
 			if(!possibleAction) { //checks to see if item has no action
 				System.out.println("this is a boring item"); //temp for testing
 			}
-		}
+		//}
 	}
 
 	public boolean goesBy(String name) {
@@ -79,13 +79,22 @@ public class Item {
 
 
 	public static void main(String args[]) throws Exception {
+      Item item = null;
       try {
-         Scanner scan = new Scanner(new FileReader("../files/items.zork"));
-         Item item = new Item(scan);
-         scan.close(); // Close the scanner to avoid resource leaks
+         Scanner scnr = new Scanner(new FileReader("../files/items.zork"));
+         // line below needs to go in Dungeon.java
+         System.out.println("Skipping line: " + scnr.nextLine()); 
+         while (scnr.hasNextLine()) {
+             System.out.println("Making new item object");
+             item = new Item(scnr);
+             System.out.println();
+         }
+         scnr.close(); // Close the scanner to avoid resource leaks
+        
       } catch (Exception e) {
+          System.out.println("last object cancelled, done making item objects");
       }
-
+        
    }
 }
 
