@@ -12,6 +12,7 @@ public class Item {
 
     public Item(Scanner scnr) throws NoItemException{
         // get list of item names,   ex: StarWarsToy,Yoda 
+        //
         String itemNames = scnr.nextLine();
 
         if (itemNames.equals("===")){

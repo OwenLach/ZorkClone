@@ -53,15 +53,29 @@ class GameState {
         return visited.contains(room);
     }
 
-    ArrayList<Item> getInventory() { return this.inventory; }
+    ArrayList<Item> getInventory() { 
+        return this.inventory;
+    }
 
-    void addToInventory(Item item) {}
+    void addToInventory(Item item) {
+        this.inventory.add(item);
+    }
 
-    void removeFromInventory(Item item) {}
+    void removeFromInventory(Item item) {
+        this.inventory.remove(item);
+    }
 
-    Item getItemInVicinityNamed(String name) { return null; }
+    Item getItemInVicinityNamed(String name) { 
+        // look through player inventroy and room items
+        // throw noItemException if not valid
+        return null;
+    }
 
-    Item getItemFromInventoryNamed(String name) { return null; }
+    Item getItemFromInventoryNamed(String name) { 
+        // only look through player inventory
+        // throw noItemException if not valid
+        return null; 
+    }
 
     HashSet<Item> getItemsInRoom(Room room) {
         return this.allRoomContents.get(room);
