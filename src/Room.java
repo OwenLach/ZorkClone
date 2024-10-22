@@ -22,7 +22,7 @@ public class Room {
         }
         
         String lineAfterRoomName = scnr.nextLine();
-        if (lineAfterRoomName.contains("Contents:")){
+        if (lineAfterRoomName.contains("Contents:")) {
             //get all items that the room has  
             String contentsString = lineAfterRoomName.split(" ")[1];
             //split items into array by ","
@@ -30,18 +30,16 @@ public class Room {
             
             for (String s : splitContentsString) {
                 // get item from the items hashtable in Dunegon class
-                Item item = GS.getDungeon().getItem(s);
+                Item item = this.getItemNamed(s);
                 // add item to the GameState "allRoomContents" Hashtable
                 this.add(item);
-                //GS.addItemToRoom(item, this);
             }
-
-            System.out.println(this.name + " contains: ");
-            for (Item item : GS.getItemsInRoom(this)) {
-               System.out.println("       " + item); 
+            
+            String descPart = scnr.nextLine();
+            while(!descPart.equals("---")) {
+                this.desc += (descPart + " \n");
+                descPart = scnr.nextLine();
             }
-
-            System.out.println();
         }
         else {
             String descPart = lineAfterRoomName;           
@@ -63,11 +61,21 @@ public class Room {
 
     String describe() {
         if (!GameState.instance().hasBeenVisited(this)) {
+
             String description = name + "\n" + desc;
 
+            if (this.getContents() != null) {
+                for(Item item : this.getContents()) {
+                   description += "\nThere is a " + item.getPrimaryName() + " here.";
+                }
+            }
+
+            description += "\nExits:";
             for (Exit exit : this.exits.values()) {
                 description += "\n" + exit.describe();
             }
+
+            
 
             GameState.instance().visit(this);
 
@@ -94,11 +102,11 @@ public class Room {
 
 
     HashSet<Item> getContents() {
-        return null;
+        return GameState.instance().getItemsInRoom(this);
     }
 
     Item getItemNamed(String name) {
-        return null;
+        return GameState.instance().getDungeon().getItem(name);
     }
 
     void add(Item item) {

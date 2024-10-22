@@ -13,6 +13,7 @@ class MovementCommand extends Command {
         Room currRoom = GS.getAdventurersCurrentRoom();
         if (currRoom.leaveBy(this.dir) != null) {
            GS.setAdventurersCurrentRoom(currRoom.leaveBy(this.dir));
+
            return "\n" + GS.getAdventurersCurrentRoom().describe();
         }
         else {

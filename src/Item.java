@@ -83,26 +83,5 @@ public class Item {
 		return weight;
 	}
 
-
-	//public static void main(String args[]) throws Exception {
-        /*
-             Item item = null;
-             try {
-             Scanner scnr = new Scanner(new FileReader("../files/items.zork"));
-             // line below needs to go in Dungeon.java
-             System.out.println("Skipping line: " + scnr.nextLine()); 
-             while (scnr.hasNextLine()) {
-                 System.out.println("Making new item object");
-                 item = new Item(scnr);
-                 System.out.println();
-             }
-             scnr.close(); // Close the scanner to avoid resource leaks
-            
-          } catch (Exception e) {
-              System.out.println("last object cancelled, done making item objects");
-          }
-            
-       }
-     */
 }
 
