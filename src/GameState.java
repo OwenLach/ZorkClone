@@ -65,16 +65,32 @@ class GameState {
         this.inventory.remove(item);
     }
 
-    Item getItemInVicinityNamed(String name) { 
+    Item getItemInVicinityNamed(String name) throws NoItemException { 
         // look through player inventroy and room items
         // throw noItemException if not valid
+        for (Item item : inventory) { //checks items in inventory
+    	    if (allRoomContents.containsKey(item) && inventory.contains(name)) {
+    	    	//if Item is in room or in inventory or other solution (if (allRoomContents.containsKey(item.getPrimaryName()) && inventory.contains(name)))?
+    			return item;
+    	    }else{
+    			throw new NoItemException();
+    		}
+    	}
         return null;
     }
 
-    Item getItemFromInventoryNamed(String name) { 
+    Item getItemFromInventoryNamed(String name) throws NoItemException {
+        
+        for(Item item : inventory){
+           if (inventory.contains(name)){
+              return item;
+           }else{
+              throw new NoItemException();
+           }
+        }
+        return null;
         // only look through player inventory
         // throw noItemException if not valid
-        return null; 
     }
 
     HashSet<Item> getItemsInRoom(Room room) {
@@ -94,7 +110,23 @@ class GameState {
         }
     }
 
-    void removeItemFromRoom(Item item, Room room) {}
+    void removeItemFromRoom(Item item, Room room) {
+
+       //if(allRoomContents.get(room) != null) {
+    	//	allRoomContents.get(room).remove(item);
+
+    	if (allRoomContents.get(room) != null) {
+            boolean removeItem = allRoomContents.get(room).remove(item);
+
+            if (removeItem) {
+            	allRoomContents.get(room).remove(item);
+            } else {
+                System.out.println("Item " + item.getPrimaryName() + " not found in the room.");
+            }
+        } else {
+            System.out.println("Room has no items.");
+        }
+    }
 
     void store(String saveName) {
 
