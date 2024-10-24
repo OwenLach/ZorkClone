@@ -26,7 +26,6 @@ class GameState {
 
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
-        //this.currRoom = this.dungeon.getEntry();
     }
 
     public Room getAdventurersCurrentRoom() {
@@ -66,29 +65,69 @@ class GameState {
     }
 
     Item getItemInVicinityNamed(String name) throws NoItemException { 
-        // look through player inventroy and room items
-        // throw noItemException if not valid
-        for (Item item : inventory) { //checks items in inventory
-    	    if (allRoomContents.containsKey(item) && inventory.contains(name)) {
-    	    	//if Item is in room or in inventory or other solution (if (allRoomContents.containsKey(item.getPrimaryName()) && inventory.contains(name)))?
-    			return item;
-    	    }else{
-    			throw new NoItemException();
-    		}
-    	}
-        return null;
+
+        try {
+            Item returnItem = this.getItemFromInventoryNamed(name);
+            System.out.println("found item in inventory");
+            return returnItem;
+        }
+        catch(NoItemException e) {
+            System.out.println("Could not get item: " + name + 
+                                " from inventory, searching room");
+            
+            for (Item item : allRoomContents.get(this.currRoom)) {
+                if (item.getPrimaryName() == name || item.goesBy(name)) {
+                    return item;
+                }
+            }
+            
+            System.out.println("Item not found in room either");
+            throw new NoItemException();
+        }
+
+        
+        /*
+            // look through player inventroy and room items
+            // throw noItemException if not valid
+            for (Item item : inventory) { //checks items in inventory
+                if (allRoomContents.containsKey(item) && inventory.contains(name)) {
+                    //if Item is in room or in inventory or other solution 
+                    //(if (allRoomContents.containsKey(item.getPrimaryName()) 
+                    //&& inventory.contains(name)))?
+                    return item;
+                }else{
+                    throw new NoItemException();
+                }
+            }
+            return null;
+        */
     }
 
     Item getItemFromInventoryNamed(String name) throws NoItemException {
         
-        for(Item item : inventory){
-           if (inventory.contains(name)){
-              return item;
-           }else{
-              throw new NoItemException();
+        for (Item item : this.inventory) {
+           if (item.getPrimaryName() == name || item.goesBy(name)) {
+               return item;
            }
+
         }
-        return null;
+
+
+       throw new NoItemException();
+        //inventory = <apple, orange, banana>
+        /* 
+            for(Item item : inventory){
+            // item is currently apple
+            // name = banana
+               if (inventory.contains(name)){
+                  return item;
+               }else{
+                  throw new NoItemException();
+               }
+            }
+            return null;
+        */
+        
         // only look through player inventory
         // throw noItemException if not valid
     }
@@ -132,7 +171,7 @@ class GameState {
 
         try {
             PrintWriter pw = new PrintWriter(new File(saveName));
-            pw.println("Zork II save data");
+            pw.println("Zork III save data");
             String path; 
             
             // get dungeon zork file's full path and store in save file
@@ -144,18 +183,35 @@ class GameState {
             catch (Exception e) {
                 e.printStackTrace();
             }
-
+             
             pw.println("Room states:");
             for (Room room : visited) {
-                pw.println(room.getName());
+                pw.println(room.getName() + ":");
                 pw.println("beenHere=true");
+                
+                HashSet<Item> roomContents = this.allRoomContents.get(room);
+                if (roomContents != null && !roomContents.isEmpty()) {
+                    pw.print("Contents: ");
+
+                    // if works, remove last comma
+                    for (Item item : roomContents) {
+                        pw.print(item.getPrimaryName() + ",");
+                    }
+                    pw.println();
+                }
+
                 pw.println("---");
 
             }
 
             pw.println("===");
+            pw.println("Adventurer:");
             pw.println("Current room: " + this.getAdventurersCurrentRoom().getName());
-            
+            pw.print("Inventory: ");
+            for (Item item : this.inventory) {
+                pw.print(item.getPrimaryName() + ",");
+            }
+            pw.println(); 
             pw.flush();
             pw.close();
         }
