@@ -60,8 +60,6 @@ public class Room {
     }
 
     String describe() {
-
-
         if (!GameState.instance().hasBeenVisited(this)) {
 
             String description = name + "\n" + desc;
