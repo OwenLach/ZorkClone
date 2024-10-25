@@ -106,7 +106,7 @@ class GameState {
     Item getItemFromInventoryNamed(String name) throws NoItemException {
         
         for (Item item : this.inventory) {
-           if (item.getPrimaryName() == name || item.goesBy(name)) {
+           if (item.getPrimaryName().equals(name) || item.goesBy(name)) {
                return item;
            }
 
@@ -152,7 +152,6 @@ class GameState {
     void removeItemFromRoom(Item item, Room room) {
     
         this.allRoomContents.get(room).remove(item);
-        System.out.println("Removed: " + item.getPrimaryName() + " from " + room.getName());
     }
 
     void store(String saveName) {
