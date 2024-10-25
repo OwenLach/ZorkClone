@@ -129,6 +129,7 @@ public class Room {
 
     Item getItemNamed(String name) {
         return GameState.instance().getDungeon().getItem(name);
+        
     }
 
     void add(Item item) {

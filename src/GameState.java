@@ -56,6 +56,16 @@ class GameState {
         return this.inventory;
     }
 
+    int getInventoryWeight() {
+        int weight = 0;
+
+        for (Item item : this.inventory) {
+           weight += item.getWeight(); 
+        }
+
+        return weight;
+    }
+
     void addToInventory(Item item) {
         this.inventory.add(item);
     }
@@ -150,9 +160,7 @@ class GameState {
     }
 
     void removeItemFromRoom(Item item, Room room) {
-    
         this.allRoomContents.get(room).remove(item);
-        System.out.println("Removed: " + item.getPrimaryName() + " from " + room.getName());
     }
 
     void store(String saveName) {
