@@ -227,7 +227,7 @@ class GameState {
             File file = new File(filename);
             Scanner scnr = new Scanner(file);
 
-            scnr.nextLine(); // throw out "zork II save data" line
+            scnr.nextLine(); // throw out "zork III save data" line
                             
             File dungeonFile = new File(scnr.nextLine());
             this.setDungeon(new Dungeon(dungeonFile.getName()));
@@ -237,18 +237,61 @@ class GameState {
             while (true) {
                 String roomName = scnr.nextLine();
                 if (roomName.equals("===")) { break; }
+                roomName = roomName.substring(0, roomName.length() - 1);
+                System.out.println("Room name is - " + roomName);
+
+                //if (roomName.equals("===")) { break; }
                 
                 Room visitedRoom = this.dungeon.getRoom(roomName);
                 this.visit(visitedRoom);
 
                 scnr.nextLine(); // thow out "beenHere=true"
-                scnr.nextLine(); // throw out "---":
+                
+                String contents = scnr.nextLine();
+            
+                if (contents.contains("Contents:")) {
+                    contents = contents.substring(contents.indexOf(":") + 2);
+                    // split contetns into arary
+                    //System.out.println("Contents of " + visitedRoom.getName() + " are: " + contents);
+                    String[] contentsArray = contents.split(",");
+                    
+                    for (String item : contentsArray) {
+                         Item currItem = this.dungeon.getItem(item);
+                         // remove when done
+                         //System.out.println("adding " + item + " to " + visitedRoom.getName());
+                         this.addItemToRoom(currItem, visitedRoom);
+                         
+                    }
+                    //System.out.println("finshed hydrating room");
+                    scnr.nextLine(); // throw out "---":
+                }
+                else{
+                    //System.out.println("Room had no contents");
+                    //System.out.println("throwing out " + contents);
+                }
+                
             }
 
+            scnr.nextLine(); // throw out "Adventurer: "
 
             String currentRoom = scnr.nextLine();
             currentRoom = currentRoom.substring(currentRoom.indexOf(":") + 2);
             this.setAdventurersCurrentRoom(this.getDungeon().getRoom(currentRoom)); 
+
+            String[] inventoryStr = scnr.nextLine().split(" "); 
+            
+            if (inventoryStr.length == 1) {
+                //System.out.println("Empty Inventory");
+            }
+            else {
+                for (String string : inventoryStr[1].split(",")) {
+                    Item item = this.dungeon.getItem(string);
+                    // delete later
+                    //System.out.println("adding " + item.getPrimaryName() + " to inventury");
+                    this.addToInventory(item);
+                }
+            }
+
 
         } 
         catch (Exception e) {
