@@ -22,7 +22,7 @@ class TakeCommand extends Command {
             }
             for (Item i : roomContents) {
                 if (i.getWeight() + GS.getInventoryWeight() > 40) {
-                    return returnDesc + "\nWeight limit reached, can't take " + i.getPrimaryName();
+                    return returnDesc + "\nWeight limit reached, your load is too heavy.";
                 }
                 GS.addToInventory(i);
                 returnDesc += "-" + i.getPrimaryName() + " taken\n";
@@ -32,7 +32,7 @@ class TakeCommand extends Command {
                 GS.removeItemFromRoom(i, currentRoom);
             }
             
-            returnDesc += "\nAll Items taken";
+            returnDesc += "\nAll items taken";
             return returnDesc;
         }
 
@@ -42,7 +42,7 @@ class TakeCommand extends Command {
             for (Item item : currInventory) {
                 if (item != null) {
                     if (item.getPrimaryName().equals(itemName) || item.goesBy(itemName)) {
-                        return itemName + " is already in inventory";
+                        return "You already have the " + itemName;
                     }
                 }
             }
@@ -55,19 +55,19 @@ class TakeCommand extends Command {
                 if (item != null) {
                     if (item.getPrimaryName().equals(itemName) || item.goesBy(itemName)) {
                         if (GS.getInventoryWeight() + item.getWeight() > 40) {
-                           return "\nWeight limit reached, can't take " + item.getPrimaryName();
+                           return "\nWeight limit reached, your load is too heavy.";
                         }
                         else {
                             GS.addToInventory(item);
                             GS.removeItemFromRoom(item, currentRoom);
-                            return "Added " + itemName + " to inventory";
+                            return itemName + " taken";
                         }
                     }
                 }
             }
         }
         
-        return "Can't add " + itemName + " to inventory";
+        return "There is no " + itemName + " here.";
         /*
             //checks if the room even has the item
             if (!currentRoom.getContents().contains(item)) {

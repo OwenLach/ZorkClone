@@ -25,19 +25,19 @@ class DropCommand extends Command {
             for (Item i : new ArrayList<>(inv)) {
                 GS.removeFromInventory(i);
                 addToRoom.add(i);
-                System.out.println("Dropped " + i.getPrimaryName());
+                System.out.println("-Dropped " + i.getPrimaryName());
             }
             for (Item i : addToRoom) {
                 GS.addItemToRoom(i, currentRoom);
             }
-            return "";
+            return "\nAll items dropped";
         }
 
         //checks if item is inv
         try {
             item = GS.getItemFromInventoryNamed(itemName);
         } catch (NoItemException e) {
-           return "You don't have a " + itemName;
+           return "You don't have a(n) " + itemName;
         }
 
         //drops item from inv & adds it to room
