@@ -64,7 +64,7 @@ public class Room {
 
             String description = name + "\n" + desc;
 
-            if (this.getContents() != null) {
+            if (this.getContents() != null && !this.getContents().isEmpty()) {
                 for(Item item : this.getContents()) {
                    description += "\nThere is a " + item.getPrimaryName() + " here.";
                 }
@@ -75,11 +75,10 @@ public class Room {
                 description += "\n" + exit.describe();
             }
             
-            this.setDesc(description);
             
             GameState.instance().visit(this);
 
-            return this.desc;
+            return description;
 
         } 
         else {
@@ -88,11 +87,13 @@ public class Room {
     }
     
     String lookAtRoom() {
-        String description = name + "\n" + desc;
-
+        String description = "\n"; 
+        description += this.name + "\n";
+        description += this.desc;
+        
         if (this.getContents() != null) {
-            for(Item item : this.getContents()) {
-               description += "\nThere is a " + item.getPrimaryName() + " here.";
+            for (Item item : this.getContents()) {
+                description += "There is a " + item.getPrimaryName() + "\n";
             }
         }
 
@@ -101,8 +102,8 @@ public class Room {
             description += "\n" + exit.describe();
         }
         
-        this.setDesc(description);
-        return this.desc;
+        return description;
+
 
 
     }

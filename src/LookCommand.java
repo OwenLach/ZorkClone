@@ -1,9 +1,11 @@
+import java.util.HashSet;
 
-class LookCommand {
-    
+class LookCommand extends Command {
+        
     String execute() {
-        // GameState.instance.getAdventurersCurrentRoom().describe()
-        return null;
+
+        return GameState.instance().getAdventurersCurrentRoom().lookAtRoom();
+
     }
 
 }

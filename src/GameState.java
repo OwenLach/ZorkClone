@@ -150,25 +150,9 @@ class GameState {
     }
 
     void removeItemFromRoom(Item item, Room room) {
-
+    
         this.allRoomContents.get(room).remove(item);
-
-       //if(allRoomContents.get(room) != null) {
-    	//	allRoomContents.get(room).remove(item);
-        /*
-    	if (allRoomContents.get(room) != null) {
-            boolean removeItem = allRoomContents.get(room).remove(item);
-
-            if (removeItem) {
-            	allRoomContents.get(room).remove(item);
-            } else {
-                System.out.println("Item " + item.getPrimaryName() + " not found in the room.");
-            }
-        } else {
-            System.out.println("Room has no items.");
-        }
-    }
-    */
+        System.out.println("Removed: " + item.getPrimaryName() + " from " + room.getName());
     }
 
     void store(String saveName) {
