@@ -152,7 +152,7 @@ class GameState {
     void removeItemFromRoom(Item item, Room room) {
     
         this.allRoomContents.get(room).remove(item);
-    
+        System.out.println("Removed: " + item.getPrimaryName() + " from " + room.getName());
     }
 
     void store(String saveName) {
