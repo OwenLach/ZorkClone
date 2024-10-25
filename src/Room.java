@@ -60,6 +60,8 @@ public class Room {
     }
 
     String describe() {
+
+
         if (!GameState.instance().hasBeenVisited(this)) {
 
             String description = name + "\n" + desc;
@@ -88,7 +90,23 @@ public class Room {
     }
     
     String lookAtRoom() {
+        String description = name + "\n" + desc;
+
+        if (this.getContents() != null) {
+            for(Item item : this.getContents()) {
+               description += "\nThere is a " + item.getPrimaryName() + " here.";
+            }
+        }
+
+        description += "\nExits:";
+        for (Exit exit : this.exits.values()) {
+            description += "\n" + exit.describe();
+        }
+        
+        this.setDesc(description);
         return this.desc;
+
+
     }
 
 
