@@ -74,18 +74,23 @@ public class Room {
             for (Exit exit : this.exits.values()) {
                 description += "\n" + exit.describe();
             }
-
             
-
+            this.setDesc(description);
+            
             GameState.instance().visit(this);
 
-            return description;
+            return this.desc;
 
         } 
         else {
             return name;
         }
     }
+    
+    String lookAtRoom() {
+        return this.desc;
+    }
+
 
     public void addExit(Exit exit) {
         exits.put(exit.getDir(), exit);
