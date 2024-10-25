@@ -8,15 +8,15 @@ class InventoryCommand extends Command {
 
          if (inv.isEmpty()) {
              return "You are empty-handed.";
-         } else {
-             StringBuilder items = new StringBuilder();
-
-
-             for (Item item : inv) {
-                items.append(item.getPrimaryName()).append("\n");   
-             }
-
-         return "You are carrying: \n" + items.toString();
          }
+         
+         System.out.println("You are carrying: ");
+
+         for (Item item : inv) {
+             System.out.println("  A " + item.getPrimaryName());
+         }
+
+        return "";
+     
      }
 }

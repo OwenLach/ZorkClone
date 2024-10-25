@@ -116,7 +116,7 @@ class GameState {
     Item getItemFromInventoryNamed(String name) throws NoItemException {
         
         for (Item item : this.inventory) {
-           if (item.getPrimaryName() == name || item.goesBy(name)) {
+           if (item.getPrimaryName().equals(name) || item.goesBy(name)) {
                return item;
            }
 

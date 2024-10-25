@@ -1,4 +1,5 @@
-
+import java.util.HashSet;
+import java.util.ArrayList;
 
 class DropCommand extends Command {
     
@@ -9,28 +10,40 @@ class DropCommand extends Command {
     }
 
     String execute() {
-        
-        Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
+        GameState GS = GameState.instance();
+        Room currentRoom = GS.getAdventurersCurrentRoom();
         Item item;
+        
+        ArrayList<Item> inv = GS.getInventory();
+        HashSet<Item> addToRoom = new HashSet<Item>();
+        //checks if all items are being dropped
+        if (itemName.equals("all")) {
 
-        try {
-            item = GameState.instance().getItemFromInventoryNamed(itemName);
-        } catch (NoItemException e) {
-           return "EXCEPTION: You don't have a " + itemName;
+            if (inv == null || inv.isEmpty()) {
+                return "There is nothing to drop.";
+            }
+            for (Item i : new ArrayList<>(inv)) {
+                GS.removeFromInventory(i);
+                addToRoom.add(i);
+                System.out.println("Dropped " + i.getPrimaryName());
+            }
+            for (Item i : addToRoom) {
+                GS.addItemToRoom(i, currentRoom);
+            }
+            return "";
         }
 
-
-        //checks if item is in inv
-        if (!GameState.instance().getInventory().contains(item)) {
-            return "You don't have a " + itemName;
+        //checks if item is inv
+        try {
+            item = GS.getItemFromInventoryNamed(itemName);
+        } catch (NoItemException e) {
+           return "You don't have a " + itemName;
+        }
 
         //drops item from inv & adds it to room
-        } else {
-            GameState.instance().removeFromInventory(item);
-            GameState.instance().addItemToRoom(item, currentRoom);
-            return "Dropped " + itemName;
-        }
-        
+        GS.removeFromInventory(item);
+        GS.addItemToRoom(item, currentRoom);
+        return "Dropped " + itemName;
     
     }
 
