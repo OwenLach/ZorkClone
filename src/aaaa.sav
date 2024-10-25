@@ -1,0 +1,13 @@
+Zork III save data
+Dungeon file: /home/students/olach/cpsc240/zorkProject/src/farmerIII.zork
+Room states:
+Rotunda:
+beenHere=true
+---
+Rotunda balcony:
+beenHere=true
+---
+===
+Adventurer:
+Current room: Rotunda
+Inventory: chainsaw,magicWand,

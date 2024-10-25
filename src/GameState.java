@@ -234,10 +234,7 @@ class GameState {
                 String roomName = scnr.nextLine();
                 if (roomName.equals("===")) { break; }
                 roomName = roomName.substring(0, roomName.length() - 1);
-                System.out.println("Room name is - " + roomName);
 
-                //if (roomName.equals("===")) { break; }
-                
                 Room visitedRoom = this.dungeon.getRoom(roomName);
                 this.visit(visitedRoom);
 
@@ -282,8 +279,6 @@ class GameState {
             else {
                 for (String string : inventoryStr[1].split(",")) {
                     Item item = this.dungeon.getItem(string);
-                    // delete later
-                    //System.out.println("adding " + item.getPrimaryName() + " to inventury");
                     this.addToInventory(item);
                 }
             }
