@@ -217,7 +217,7 @@ class GameState {
     }
 
     void restore(String filename){
-        
+        Hashtable<Room, HashSet<Item>> updateRooms = new Hashtable<Room, HashSet<Item>>(); 
         try {
             //open save file w/ scanner
             File file = new File(filename);
@@ -237,6 +237,8 @@ class GameState {
 
                 Room visitedRoom = this.dungeon.getRoom(roomName);
                 this.visit(visitedRoom);
+                
+                updateRooms.put(visitedRoom, new HashSet<Item>());
 
                 scnr.nextLine(); // thow out "beenHere=true"
                 
@@ -252,7 +254,8 @@ class GameState {
                          Item currItem = this.dungeon.getItem(item);
                          // remove when done
                          //System.out.println("adding " + item + " to " + visitedRoom.getName());
-                         this.addItemToRoom(currItem, visitedRoom);
+                         updateRooms.get(visitedRoom).add(currItem);
+                         //this.addItemToRoom(currItem, visitedRoom);
                          
                     }
                     //System.out.println("finshed hydrating room");
@@ -274,7 +277,6 @@ class GameState {
             String[] inventoryStr = scnr.nextLine().split(" "); 
             
             if (inventoryStr.length == 1) {
-                //System.out.println("Empty Inventory");
             }
             else {
                 for (String string : inventoryStr[1].split(",")) {
@@ -282,12 +284,35 @@ class GameState {
                     this.addToInventory(item);
                 }
             }
+            /*
+                for (Map.Entry<Room, HashSet<Item>> roomContentsPair : allRoomContents.entrySet()) {
+                    System.out.println("Contents of " + roomContentsPair.getKey().getName());
+                    for (Item i : roomContentsPair.getValue()){
+                        System.out.print(i.getPrimaryName() + ",");
+                    }
+                    System.out.println();
+                }
+            */
 
+            for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
+                this.clearRoom(roomContentsPair.getKey()); //clears the room
+                System.out.println("Cleared room " +  roomContentsPair.getKey().getName());
+                for (Item i : roomContentsPair.getValue()){
+                    this.addItemToRoom(i, roomContentsPair.getKey()); 
+                    System.out.println("Added " + i.getPrimaryName() + " to " + roomContentsPair.getKey().getName());
+                }
+            }
 
         } 
         catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
+        }
+    }
+
+    void clearRoom(Room room) {
+        if (this.allRoomContents.get(room) != null && !this.allRoomContents.get(room).isEmpty()) {
+            this.allRoomContents.get(room).clear();
         }
     }
 
