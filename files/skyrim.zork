@@ -1,0 +1,171 @@
+Bleak Falls Barrow
+Zork III
+===
+Items:
+AncientNordicSword,sword
+10
+swing:The eroded blade swings through the air.
+---
+Mead
+5
+drink:Your nord blood resists the mead's effects. Mostly.
+smash:You destroy the bottle of mead in a drunken rage. Or a sober one? Why did you do that?
+---
+PotionOfHealing
+3
+drink:You feel revitalized!
+---
+SoulGem,gem
+5
+capture:You capture a poor creature's soul.
+recharge:You recharge your weapon's enchantment with the soul gem.
+---
+ElderScroll
+5
+read:You attempt to read the Elder Scroll, but fear of forever going blind prevents you.
+---
+ScrollOfFireball,scroll
+5
+cast:A fireball erupts, illuminating the chamber!
+study:You find yourself more knowledgeable with this magic.
+---
+PotionOfInvisibility
+5
+drink:You become completely invisible! But only for so long.
+---
+DwarvenBow,bow
+1
+nock:You nock a trusty dwarven arrow on your bowstring, ready to fire.
+shoot:You draw the string and fire an arrow, hearing a faint twang.
+---
+IronHelmet
+10
+wear:You don the iconic Skyrim iron helmet, complete with two horns.
+---
+IronArmor
+20
+wear:You don the classic Skyrim armorset, complete with the chestpiece, legwear, and gauntlets.
+---
+SweetRoll
+1
+smell:The sweet smell of the dessert boosts your morale.
+eat:You take a bite. Sweet, yummy, and definitely not stolen.
+---
+FrostbiteSpiderVenom
+5
+apply:You apply the venom to your weapon, doing poison damage now!
+drink:You fool! You poison yourself.
+---
+NecklaceOfMinorSneaking
+5
+wear:You feel more stealthy.
+---
+AmuletOfTalos
+5
+wear:Talos' might fills your veins, your shouts' cooldowns are lower!
+---
+===
+Rooms:
+Entryway
+You stand at the entrance of Bleak Falls Barrow, with moss-covered stones surrounding you. A chilly wind howls through the entrance.
+---
+Ancient Hall
+Contents: AncientNordicSword,AmuletOfTalos
+The hall is dimly lit by flickering torches. Statues of long-forgotten warriors line the walls, their eyes seeming to follow you.
+---
+Guardroom
+Contents: IronHelmet,IronArmor,DwarvenBow
+You find yourself in a small chamber with old armor hanging on the walls. A heavy door leads further into the barrow.
+---
+Sacrificial Chamber
+Contents: PotionOfInvisibility,PotionOfHealing,SoulGem
+An eerie silence pervades this chamber, where a stone altar lies at its center. Old blood stains the floor, hinting at dark rituals.
+---
+Spider's Den
+Contents: FrostbiteSpiderVenom,NecklaceOfMinorSneaking
+The smell of decay is thick in the air. Cobwebs drape across the corners, and you can hear the faint skittering of creatures lurking nearby.
+---
+Hall of Trials
+This expansive room has several platforms leading to an elevated walkway. A large statue stands guard over the trials that once took place here.
+---
+The Tomb
+Contents: ElderScroll,SweetRoll
+You stand in a cold, dark tomb, with a massive sarcophagus at the center. The air feels heavy, and the temperature drops significantly.
+---
+Cavern of Echoes
+An expansive cavern where echoes bounce off the walls. The sound of dripping water fills the air, creating an unsettling atmosphere.
+---
+Treasure Vault
+Contents: ScrollOfFireball,Mead
+You enter a glittering room filled with gold and treasures beyond imagination. The walls are lined with ancient runes, shimmering with magic.
+---
+Final Resting Place
+You find yourself in a final resting place, surrounded by skeletons in tattered armor. The atmosphere is oppressive, and a sense of dread fills the air.
+---
+===
+Exits:
+Entryway
+d
+Ancient Hall
+---
+Ancient Hall
+u
+Entryway
+---
+Ancient Hall
+e
+Guardroom
+---
+Guardroom
+w
+Ancient Hall
+---
+Guardroom
+s
+Sacrificial Chamber
+---
+Sacrificial Chamber
+n
+Guardroom
+---
+Sacrificial Chamber
+e
+Spider's Den
+---
+Spider's Den
+w
+Sacrificial Chamber
+---
+Spider's Den
+n
+Hall of Trials
+---
+Hall of Trials
+s
+Spider's Den
+---
+Hall of Trials
+e
+Cavern of Echoes
+---
+Cavern of Echoes
+w
+Hall of Trials
+---
+Cavern of Echoes
+s
+Treasure Vault
+---
+Treasure Vault
+n
+Cavern of Echoes
+---
+Treasure Vault
+e
+Final Resting Place
+---
+The Tomb
+s
+Final Resting Place
+---
+===
