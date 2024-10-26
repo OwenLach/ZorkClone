@@ -11,6 +11,7 @@ class GameState {
     private ArrayList<Item> inventory = null; 
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
 
+    
     public static GameState instance() {
         if (GameState.instance == null) {
             GameState.instance = new GameState();
@@ -75,43 +76,23 @@ class GameState {
     }
 
     Item getItemInVicinityNamed(String name) throws NoItemException { 
-
         try {
             Item returnItem = this.getItemFromInventoryNamed(name);
-            System.out.println("found item in inventory");
             return returnItem;
         }
         catch(NoItemException e) {
-            System.out.println("Could not get item: " + name + 
-                                " from inventory, searching room");
-            
-            for (Item item : allRoomContents.get(this.currRoom)) {
-                if (item.getPrimaryName() == name || item.goesBy(name)) {
-                    return item;
+            if (allRoomContents.get(this.currRoom) != null) { 
+                for (Item item : allRoomContents.get(this.currRoom)) {
+                    if (item != null) {
+                        if (item.getPrimaryName() == name || item.goesBy(name)) {
+                            return item;
+                        }
+                    }
                 }
             }
-            
-            System.out.println("Item not found in room either");
             throw new NoItemException();
         }
-
-        
-        /*
-            // look through player inventroy and room items
-            // throw noItemException if not valid
-            for (Item item : inventory) { //checks items in inventory
-                if (allRoomContents.containsKey(item) && inventory.contains(name)) {
-                    //if Item is in room or in inventory or other solution 
-                    //(if (allRoomContents.containsKey(item.getPrimaryName()) 
-                    //&& inventory.contains(name)))?
-                    return item;
-                }else{
-                    throw new NoItemException();
-                }
-            }
-            return null;
-        */
-    }
+   }
 
     Item getItemFromInventoryNamed(String name) throws NoItemException {
         
@@ -122,24 +103,7 @@ class GameState {
 
         }
 
-
        throw new NoItemException();
-        //inventory = <apple, orange, banana>
-        /* 
-            for(Item item : inventory){
-            // item is currently apple
-            // name = banana
-               if (inventory.contains(name)){
-                  return item;
-               }else{
-                  throw new NoItemException();
-               }
-            }
-            return null;
-        */
-        
-        // only look through player inventory
-        // throw noItemException if not valid
     }
 
     HashSet<Item> getItemsInRoom(Room room) {
@@ -217,7 +181,7 @@ class GameState {
     }
 
     void restore(String filename){
-        
+        Hashtable<Room, HashSet<Item>> updateRooms = new Hashtable<Room, HashSet<Item>>(); 
         try {
             //open save file w/ scanner
             File file = new File(filename);
@@ -237,6 +201,8 @@ class GameState {
 
                 Room visitedRoom = this.dungeon.getRoom(roomName);
                 this.visit(visitedRoom);
+                
+                updateRooms.put(visitedRoom, new HashSet<Item>());
 
                 scnr.nextLine(); // thow out "beenHere=true"
                 
@@ -244,25 +210,15 @@ class GameState {
             
                 if (contents.contains("Contents:")) {
                     contents = contents.substring(contents.indexOf(":") + 2);
-                    // split contetns into arary
-                    //System.out.println("Contents of " + visitedRoom.getName() + " are: " + contents);
                     String[] contentsArray = contents.split(",");
                     
                     for (String item : contentsArray) {
                          Item currItem = this.dungeon.getItem(item);
-                         // remove when done
-                         //System.out.println("adding " + item + " to " + visitedRoom.getName());
-                         this.addItemToRoom(currItem, visitedRoom);
-                         
+                         updateRooms.get(visitedRoom).add(currItem);
                     }
-                    //System.out.println("finshed hydrating room");
+
                     scnr.nextLine(); // throw out "---":
                 }
-                else{
-                    //System.out.println("Room had no contents");
-                    //System.out.println("throwing out " + contents);
-                }
-                
             }
 
             scnr.nextLine(); // throw out "Adventurer: "
@@ -274,7 +230,6 @@ class GameState {
             String[] inventoryStr = scnr.nextLine().split(" "); 
             
             if (inventoryStr.length == 1) {
-                //System.out.println("Empty Inventory");
             }
             else {
                 for (String string : inventoryStr[1].split(",")) {
@@ -282,12 +237,33 @@ class GameState {
                     this.addToInventory(item);
                 }
             }
+            /*
+                for (Map.Entry<Room, HashSet<Item>> roomContentsPair : allRoomContents.entrySet()) {
+                    System.out.println("Contents of " + roomContentsPair.getKey().getName());
+                    for (Item i : roomContentsPair.getValue()){
+                        System.out.print(i.getPrimaryName() + ",");
+                    }
+                    System.out.println();
+                }
+            */
 
+            for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
+                this.clearRoom(roomContentsPair.getKey()); //clears the room
+                for (Item i : roomContentsPair.getValue()){
+                    this.addItemToRoom(i, roomContentsPair.getKey()); 
+                }
+            }
 
         } 
         catch (Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
+        }
+    }
+
+    void clearRoom(Room room) {
+        if (this.allRoomContents.get(room) != null && !this.allRoomContents.get(room).isEmpty()) {
+            this.allRoomContents.get(room).clear();
         }
     }
 

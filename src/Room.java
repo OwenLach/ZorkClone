@@ -103,11 +103,7 @@ public class Room {
         }
         
         return description;
-
-
-
     }
-
 
     public void addExit(Exit exit) {
         exits.put(exit.getDir(), exit);
@@ -122,14 +118,12 @@ public class Room {
         }
     }
 
-
     HashSet<Item> getContents() {
         return GameState.instance().getItemsInRoom(this);
     }
 
     Item getItemNamed(String name) {
         return GameState.instance().getDungeon().getItem(name);
-        
     }
 
     void add(Item item) {

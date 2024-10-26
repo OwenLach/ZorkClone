@@ -115,6 +115,18 @@ public class Dungeon {
         return this.items.get(itemName);
     }
 
+    public HashSet<Item> getAllItems() {
+        HashSet<Item> allItems = new HashSet<Item>();
+
+        for(Item item : this.items.values()) {
+            if (item != null) {
+                allItems.add(item);
+            }
+        }
+
+        return allItems;
+    }
+
     public void add(Item item) {
         this.items.put(item.getPrimaryName(), item);
     }

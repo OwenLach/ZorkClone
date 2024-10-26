@@ -20,20 +20,23 @@ class TakeCommand extends Command {
             if (roomContents == null || roomContents.isEmpty()) {
                 return "There is nothing to take.";
             }
+            
             for (Item i : roomContents) {
                 if (i.getWeight() + GS.getInventoryWeight() > 40) {
-                    return returnDesc + "\nWeight limit reached, your load is too heavy.";
+                    returnDesc += "\nWeight limit reached, can't take " + i.getPrimaryName();
+                    break;
                 }
+
                 GS.addToInventory(i);
-                returnDesc += "-" + i.getPrimaryName() + " taken\n";
                 removeFromRoom.add(i);
+                returnDesc += "-" + i.getPrimaryName() + " taken\n";
             }
+
             for (Item i : removeFromRoom) {
                 GS.removeItemFromRoom(i, currentRoom);
             }
             
-            returnDesc += "\nAll items taken";
-            return returnDesc;
+           return returnDesc;
         }
 
         // check if player already has in inventory
@@ -67,17 +70,7 @@ class TakeCommand extends Command {
             }
         }
         
-        return "There is no " + itemName + " here.";
-        /*
-            //checks if the room even has the item
-            if (!currentRoom.getContents().contains(item)) {
-                return "There is no " + itemName + " here.";
-            }
-            //adds the item to the inventory & removes it from the room.
-            GS.addToInventory(item);
-            GS.removeItemFromRoom(item, currentRoom);
-            return itemName + " taken.";
-        */ 
-    }
+        return "Can't add " + itemName + " to inventory";
+   }
 
 }
