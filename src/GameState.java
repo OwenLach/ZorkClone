@@ -11,6 +11,7 @@ class GameState {
     private ArrayList<Item> inventory = null; 
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
 
+    
     public static GameState instance() {
         if (GameState.instance == null) {
             GameState.instance = new GameState();
@@ -78,20 +79,18 @@ class GameState {
 
         try {
             Item returnItem = this.getItemFromInventoryNamed(name);
-            System.out.println("found item in inventory");
             return returnItem;
         }
         catch(NoItemException e) {
-            System.out.println("Could not get item: " + name + 
-                                " from inventory, searching room");
-            
-            for (Item item : allRoomContents.get(this.currRoom)) {
-                if (item.getPrimaryName() == name || item.goesBy(name)) {
-                    return item;
+            if (allRoomContents.get(this.currRoom) != null) { 
+                for (Item item : allRoomContents.get(this.currRoom)) {
+                    if (item != null) {
+                        if (item.getPrimaryName() == name || item.goesBy(name)) {
+                            return item;
+                        }
+                    }
                 }
             }
-            
-            System.out.println("Item not found in room either");
             throw new NoItemException();
         }
 

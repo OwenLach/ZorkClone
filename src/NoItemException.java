@@ -1,3 +1,1 @@
-public class NoItemException extends Exception{
-
-  }
+public class NoItemException extends Exception {}

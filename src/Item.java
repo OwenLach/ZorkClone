@@ -75,6 +75,18 @@ public class Item {
         // returns the contents of the key that is called
 		return messages.getOrDefault(verb, "");
 	}
+    
+    public HashSet<String> getAllItemActions() {
+        HashSet<String> actions = new HashSet<String>();
+
+        for (String action : this.messages.keySet()) {
+            if (action != null) {
+                actions.add(action);
+            }
+        }
+
+        return actions;
+    }
 
 	public String toString() {
 		return "Item: " + primaryName + "'s weight is " + weight;
