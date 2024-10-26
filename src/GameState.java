@@ -76,7 +76,6 @@ class GameState {
     }
 
     Item getItemInVicinityNamed(String name) throws NoItemException { 
-
         try {
             Item returnItem = this.getItemFromInventoryNamed(name);
             return returnItem;
@@ -93,24 +92,7 @@ class GameState {
             }
             throw new NoItemException();
         }
-
-        
-        /*
-            // look through player inventroy and room items
-            // throw noItemException if not valid
-            for (Item item : inventory) { //checks items in inventory
-                if (allRoomContents.containsKey(item) && inventory.contains(name)) {
-                    //if Item is in room or in inventory or other solution 
-                    //(if (allRoomContents.containsKey(item.getPrimaryName()) 
-                    //&& inventory.contains(name)))?
-                    return item;
-                }else{
-                    throw new NoItemException();
-                }
-            }
-            return null;
-        */
-    }
+   }
 
     Item getItemFromInventoryNamed(String name) throws NoItemException {
         
@@ -121,24 +103,7 @@ class GameState {
 
         }
 
-
        throw new NoItemException();
-        //inventory = <apple, orange, banana>
-        /* 
-            for(Item item : inventory){
-            // item is currently apple
-            // name = banana
-               if (inventory.contains(name)){
-                  return item;
-               }else{
-                  throw new NoItemException();
-               }
-            }
-            return null;
-        */
-        
-        // only look through player inventory
-        // throw noItemException if not valid
     }
 
     HashSet<Item> getItemsInRoom(Room room) {
@@ -245,26 +210,15 @@ class GameState {
             
                 if (contents.contains("Contents:")) {
                     contents = contents.substring(contents.indexOf(":") + 2);
-                    // split contetns into arary
-                    //System.out.println("Contents of " + visitedRoom.getName() + " are: " + contents);
                     String[] contentsArray = contents.split(",");
                     
                     for (String item : contentsArray) {
                          Item currItem = this.dungeon.getItem(item);
-                         // remove when done
-                         //System.out.println("adding " + item + " to " + visitedRoom.getName());
                          updateRooms.get(visitedRoom).add(currItem);
-                         //this.addItemToRoom(currItem, visitedRoom);
-                         
                     }
-                    //System.out.println("finshed hydrating room");
+
                     scnr.nextLine(); // throw out "---":
                 }
-                else{
-                    //System.out.println("Room had no contents");
-                    //System.out.println("throwing out " + contents);
-                }
-                
             }
 
             scnr.nextLine(); // throw out "Adventurer: "
@@ -295,10 +249,8 @@ class GameState {
 
             for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
                 this.clearRoom(roomContentsPair.getKey()); //clears the room
-                System.out.println("Cleared room " +  roomContentsPair.getKey().getName());
                 for (Item i : roomContentsPair.getValue()){
                     this.addItemToRoom(i, roomContentsPair.getKey()); 
-                    System.out.println("Added " + i.getPrimaryName() + " to " + roomContentsPair.getKey().getName());
                 }
             }
 

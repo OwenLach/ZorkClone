@@ -65,6 +65,9 @@ class CommandFactory {
         else if (command.equals("i")) {
            return new InventoryCommand();
         }
+        else if (command.equals("save")) {
+            return new SaveCommand();
+        }
         else {
             for (String action : itemActions.keySet()) {
                 if ((commandParts[0].equals(action) && 

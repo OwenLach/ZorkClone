@@ -5,7 +5,6 @@ class InventoryCommand extends Command {
      String execute() {
          ArrayList<Item> inv = GameState.instance().getInventory();
 
-
          if (inv.isEmpty()) {
              return "You are empty-handed.";
          }

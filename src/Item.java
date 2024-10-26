@@ -11,22 +11,16 @@ public class Item {
     private HashSet<String> aliases = new HashSet<String>();
 
     public Item(Scanner scnr) throws NoItemException{
-        // get list of item names,   ex: StarWarsToy,Yoda 
-        //
+
         String itemNames = scnr.nextLine();
 
         if (itemNames.equals("===")){
             throw new NoItemException();
         }
         
-        // splits the names by the comma     
-        // ex: would split StarWarsToy and Yoda
         String[] splitNames = itemNames.split(",");
-
-        // item name is set to primary name which is the first name
         this.primaryName = splitNames[0];
         
-        //loop through other aliases and add them to alias hashset
         for(int i = 1; i < splitNames.length; i++) {
             this.aliases.add(splitNames[i]);
         }
@@ -53,14 +47,10 @@ public class Item {
 
                 //adds the action and action response to hashtable
                 messages.put(action, response); 
-
-                // temp for testing
-                //System.out.println("Action is " + action + " the ability " + response); 
             }
         }
         //checks to see if item has no action
         if(!possibleAction) { 
-            //System.out.println("this is a boring item"); //temp for testing
         }
 	}
 
@@ -72,7 +62,6 @@ public class Item {
 		return this.primaryName;
 	}
 	public String getMessageForVerb(String verb) {
-        // returns the contents of the key that is called
 		return messages.getOrDefault(verb, "");
 	}
     
