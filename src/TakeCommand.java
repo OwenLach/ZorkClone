@@ -36,7 +36,7 @@ class TakeCommand extends Command {
                 GS.removeItemFromRoom(i, currentRoom);
             }
             
-            return returnDesc;
+           return returnDesc;
         }
 
         // check if player already has in inventory
@@ -45,7 +45,7 @@ class TakeCommand extends Command {
             for (Item item : currInventory) {
                 if (item != null) {
                     if (item.getPrimaryName().equals(itemName) || item.goesBy(itemName)) {
-                        return itemName + " is already in inventory";
+                        return "You already have the " + itemName;
                     }
                 }
             }
@@ -58,12 +58,12 @@ class TakeCommand extends Command {
                 if (item != null) {
                     if (item.getPrimaryName().equals(itemName) || item.goesBy(itemName)) {
                         if (GS.getInventoryWeight() + item.getWeight() > 40) {
-                           return "\nWeight limit reached, can't take " + item.getPrimaryName();
+                           return "\nWeight limit reached, your load is too heavy.";
                         }
                         else {
                             GS.addToInventory(item);
                             GS.removeItemFromRoom(item, currentRoom);
-                            return "Added " + itemName + " to inventory";
+                            return itemName + " taken";
                         }
                     }
                 }
@@ -71,6 +71,6 @@ class TakeCommand extends Command {
         }
         
         return "Can't add " + itemName + " to inventory";
-    }
+   }
 
 }

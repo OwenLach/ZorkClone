@@ -41,31 +41,33 @@ class CommandFactory {
             
             //checks if the command is either take or drop & sends the item name to
             //the respective command class
-            else if (command.equals("take")) {
-                
-                if (commandParts.length > 1) {
-                    String itemName = commandParts[1];
-                    return new TakeCommand(itemName);
-                } else {
-                    System.out.println("Take what?");
-                    return null;
-                    //throw new NoItemException();
-                }
-                //throw exception eventuallyyyyyyyyyyyy
+            try {
+                if (command.equals("take")) {
+                    
+                    if (commandParts.length > 1) {
+                        String itemName = commandParts[1];
+                        return new TakeCommand(itemName);
+                    } else {
+                        throw new NoItemException();
+                    }
+                    //throw exception eventuallyyyyyyyyyyyy
 
-            } else if (command.equals("drop")) {
-                
-                if (commandParts.length > 1) {
-                    String itemName = commandParts[1];
-                    return new DropCommand(itemName);
-                } else {
-                    System.out.println("Drop what?");
-                    return null;
-                    //throw new NoItemException();
+                } else if (command.equals("drop")) {
+                    
+                    if (commandParts.length > 1) {
+                        String itemName = commandParts[1];
+                        return new DropCommand(itemName);
+                    } else {
+                        throw new NoItemException();
+                    }
                 }
+            } catch (NoItemException e) {
+                System.out.println(command + " what?");
+                return null;
+            }
 
             //return the simpler commands without arguments
-           } else if (command.equals("look")) {
+           } if (command.equals("look")) {
                return new LookCommand();
            } else if (command.equals("i")) {
                return new InventoryCommand();
@@ -73,7 +75,5 @@ class CommandFactory {
                return new SaveCommand();
            }
                
-        }
-    }
-    
+        }   
 }

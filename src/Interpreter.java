@@ -42,9 +42,12 @@ class Interpreter {
             if (input.equals("q")) {
                 continue;
             }
-
+            
+            //checks if command is null for certain commands 
             Command commandRes = CommandFactory.instance().parse(input);
-            System.out.println(commandRes.execute()); 
+            if (commandRes != null) {
+                System.out.println(commandRes.execute());
+            } 
 
         } while (!input.equals("q"));
     }

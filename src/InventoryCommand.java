@@ -13,7 +13,7 @@ class InventoryCommand extends Command {
          System.out.println("You are carrying: ");
 
          for (Item item : inv) {
-             System.out.println("  A " + item.getPrimaryName());
+             System.out.println("-" + item.getPrimaryName());
          }
 
         return "";
