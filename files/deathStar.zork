@@ -4,12 +4,12 @@ Zork III
 Items:
 Lightsaber,blue
 5
-ignite:It hums with an ethereal glow.
+ignite:It hums with an ethereal blue glow.
 swing:You feel a rush of energy as you slice through the air.
 ---
 Sithsaber,red
 5
-ignite:It tears into fruition with a menacing glow.
+ignite:It tears into fruition with a menacing red glow.
 swing:The lightsaber rips through the air, filling you with power.
 ---
 StormtrooperHelmet,helmet

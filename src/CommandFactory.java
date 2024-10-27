@@ -18,15 +18,10 @@ class CommandFactory {
     Command parse(String commandString) {
         String[] commandParts = commandString.split(" "); 
         String command = commandParts[0];
-        
-        Hashtable<String, Item> itemActions = new Hashtable<String, Item>();
-        for (Item item : GameState.instance().getDungeon().getAllItems()) {
-            for (String action : item.getAllItemActions()) {
-                itemActions.put(action, item);
-            }
-        }
-    
-        HashSet<String> movementCommands= new HashSet<>(List.of("n", "e", "s", "w", "u", "d"));
+       
+        HashSet<String> movementCommands= new HashSet<>(
+                List.of("n", "e", "s", "w", "u", "d") 
+            );
 
         if (movementCommands.contains(command)) { 
             return new MovementCommand(command);
@@ -69,24 +64,17 @@ class CommandFactory {
             return new SaveCommand();
         }
         else {
-            for (String action : itemActions.keySet()) {
-                if ((commandParts[0].equals(action) && 
-                    (commandParts[1].equals(itemActions.get(action).getPrimaryName()) ||
-                    itemActions.get(action).goesBy(commandParts[1]))))
-                {
-                    try {
-                        Item item = GameState.instance().getItemInVicinityNamed(itemActions.get(action).getPrimaryName()); 
-                        return new ItemSpecificCommand(itemActions.get(action), action);
-                    }
-                    catch (NoItemException e) {
-                        return new UnknownCommand("\"" + commandString + "\"");
-                    }
-                }
-            }
+            try {
+                String verb = commandParts[0].toLowerCase();
+                String itemName = commandParts[1];
 
-            return new UnknownCommand(commandString);
+                Item item = GameState.instance().getItemInVicinityNamed(itemName);
+                return new ItemSpecificCommand(item, verb);
+            }
+            catch(NoItemException e) {
+                return new UnknownCommand(commandString);
+            }
         }
 
     }
-
 }

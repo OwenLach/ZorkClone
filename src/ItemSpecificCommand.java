@@ -1,15 +1,15 @@
 class ItemSpecificCommand extends Command {
 
     private Item item = null;
-    private String action = "";
+    private String verb = "";
 
-    ItemSpecificCommand (Item item, String action) {
+    ItemSpecificCommand (Item item, String verb) {
         this.item = item;
-        this.action = action;
+        this.verb = verb;
     }
 
     String execute() {
-        return this.item.getMessageForVerb(action);
+        return this.item.getMessageForVerb(verb);
     }
 
 }

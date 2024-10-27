@@ -84,7 +84,7 @@ class GameState {
             if (allRoomContents.get(this.currRoom) != null) { 
                 for (Item item : allRoomContents.get(this.currRoom)) {
                     if (item != null) {
-                        if (item.getPrimaryName() == name || item.goesBy(name)) {
+                        if (item.getPrimaryName().equals(name) || item.goesBy(name)) {
                             return item;
                         }
                     }
