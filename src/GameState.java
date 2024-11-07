@@ -10,7 +10,8 @@ class GameState {
     private HashSet<Room> visited = null; 
     private ArrayList<Item> inventory = null; 
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
-
+    // private Hashtable<Room, NPC> npcRoomPair = null;
+    // private boolean Verbose = true;
     
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -25,6 +26,24 @@ class GameState {
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
     }
 
+    /*
+     public void setVerboseMode(boolean isVerbose) {
+        this.Verbose = isVerbose;
+     }
+
+    public boolean isVerboseMode() {
+        return this.Verbose;
+    }
+
+    public NPC getNPCFromROom(Room room) {
+    }
+
+    public Item getItemFromNPCInventory() throw NoItemException {
+    }
+
+    */
+
+
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
     }
@@ -35,6 +54,7 @@ class GameState {
 
     public void setAdventurersCurrentRoom(Room room) {
         this.currRoom = room;
+        // visit the curernt room in case teleport event
     }
 
     public Dungeon getDungeon() {
@@ -126,6 +146,10 @@ class GameState {
     void removeItemFromRoom(Item item, Room room) {
         this.allRoomContents.get(room).remove(item);
     }
+
+    // void addNPCToRoomMethod() {
+        // this.npcRoomPair.put(Room, NPC);
+    // }
 
     void store(String saveName) {
 

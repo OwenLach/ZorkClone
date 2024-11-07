@@ -16,6 +16,8 @@ class CommandFactory {
     }
 
     Command parse(String commandString) {
+        // check for new commands : Score,Health,Speak,Trade
+        // if (command.equals("trade") {return new TradeCommand() }
         String[] commandParts = commandString.split(" "); 
         String command = commandParts[0];
        
@@ -63,6 +65,7 @@ class CommandFactory {
         else if (command.equals("save")) {
             return new SaveCommand();
         }
+        //add extra check for verbose mode
         else {
             try {
                 String verb = commandParts[0].toLowerCase();

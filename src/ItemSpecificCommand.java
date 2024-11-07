@@ -10,6 +10,8 @@ class ItemSpecificCommand extends Command {
 
     String execute() {
         return this.item.getMessageForVerb(verb);
+        //Event e = EventFactory.instance().parse(this.item, this.verb);
+        //e.execute()
     }
 
 }

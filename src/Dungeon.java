@@ -67,12 +67,25 @@ public class Dungeon {
                 }
             } catch (Room.NoRoomException e) {
             }
-        // --------------------------------------------------------------------
 
             // set current room in GameState to this.entry 
             // after all room objects have been made
             GS.setAdventurersCurrentRoom(this.entry);
            
+        /*
+         ----------------------Hydrate NPC Objects----------------------------
+            scnr.nextLine(); //skip "NPCS: " line
+                          
+            try {
+                while (true) {
+                    NPC npc = NPCFactory.instance().parse(scnr);
+                }
+            } catch (NONPCException e) {
+                System.out.pritnln("No more NPCS");
+            }
+
+       */
+
         // -------------------- Hydrate all exit objects ---------------------
 
             scnr.nextLine(); // throwing out "Exits: " line

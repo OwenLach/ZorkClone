@@ -6,6 +6,7 @@ public class Room {
     private String name = null; 
     private String desc = ""; 
     private Hashtable<String, Exit> exits = null; 
+    //npc
     
     public Room(String name){
         this.name = name;
@@ -69,7 +70,10 @@ public class Room {
                    description += "\nThere is a " + item.getPrimaryName() + " here.";
                 }
             }
+            
 
+            // check if verbose if on 
+            // if (GameState.instance.isVerboseMode()) {
             description += "\nExits:";
             for (Exit exit : this.exits.values()) {
                 description += "\n" + exit.describe();
@@ -97,6 +101,8 @@ public class Room {
             }
         }
 
+        // check if verbose if on 
+        // if (GameState.instance.isVerboseMode()) {
         description += "\nExits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();

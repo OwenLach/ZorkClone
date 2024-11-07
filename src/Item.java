@@ -8,6 +8,10 @@ public class Item {
     private String primaryName = ""; 
     private int weight ;
     private Hashtable<String,String> messages = new Hashtable<String, String>();
+    // private Hashtable<String,ArrayList> events = new Hashtable<String, String>();
+    // drink : [Transform(emptyCan),Wound(-1)]
+    // make a value inst var
+    // make method to get the value of item
     private HashSet<String> aliases = new HashSet<String>();
 
     public Item(Scanner scnr) throws NoItemException{
