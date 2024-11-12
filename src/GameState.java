@@ -35,12 +35,15 @@ class GameState {
         return this.Verbose;
     }
 
-    public NPC getNPCFromROom(Room room) {
+    public NPC getNPCFromRoom(Room room) {
     }
 
-    public Item getItemFromNPCInventory() throw NoItemException {
+    public Item getItemFromNPCInventory(Stirng item) throw NoItemException {
     }
 
+    void addNPCToRoomMethod() {
+        this.npcRoomPair.put(Room, NPC);
+    }
     */
 
 
@@ -147,9 +150,6 @@ class GameState {
         this.allRoomContents.get(room).remove(item);
     }
 
-    // void addNPCToRoomMethod() {
-        // this.npcRoomPair.put(Room, NPC);
-    // }
 
     void store(String saveName) {
 

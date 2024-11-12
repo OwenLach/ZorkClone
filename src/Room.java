@@ -70,7 +70,6 @@ public class Room {
                    description += "\nThere is a " + item.getPrimaryName() + " here.";
                 }
             }
-            
 
             // check if verbose if on 
             // if (GameState.instance.isVerboseMode()) {
