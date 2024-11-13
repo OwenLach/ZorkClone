@@ -6,6 +6,7 @@ class ScoreEvent extends Event {
 	}	
 
 	void execute() {
+        System.out.println("made new ScoreEvent() with change in score of " + this.changeInScore);
 		//Player.instance().setScore(this.changeInScore);
 	}
 

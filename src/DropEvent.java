@@ -6,6 +6,7 @@ class DropEvent extends Event {
 	}
 	
 	void execute() {
+        System.out.println("made new DropEvent() and now executing");
 		//GameState.instance().removeFromInventory();
 		//GameState.instance().addItemToRoom(GameState.instance().getPlayerCurrRoom(), item);
 	}

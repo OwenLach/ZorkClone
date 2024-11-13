@@ -29,7 +29,7 @@ public class Dungeon {
             this.title = scnr.nextLine();
             String version =  scnr.nextLine();
 
-            if (!version.equals("Zork III")) {
+            if (!version.equals("Zork++")) {
                 throw new IllegalDungeonFormatException();
             }
 

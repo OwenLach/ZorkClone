@@ -8,6 +8,7 @@ class TransformEvent extends Event {
 	
     
 	void execute() {
+        System.out.println("made new TransformEvent(), item is now changing into " + this.item.getPrimaryName());
 
 	}
 	

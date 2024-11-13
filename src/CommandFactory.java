@@ -66,11 +66,15 @@ class CommandFactory {
             return new SaveCommand();
         }
         //add extra check for verbose mode
+        
         else {
-            try {
-                String verb = commandParts[0].toLowerCase();
-                String itemName = commandParts[1];
+            if (commandParts.length == 1) {
+                return new UnknownCommand(commandString);
+            }
 
+            try {
+                String verb = commandParts[0];
+                String itemName = commandParts[1];
                 Item item = GameState.instance().getItemInVicinityNamed(itemName);
                 return new ItemSpecificCommand(item, verb);
             }

@@ -9,9 +9,16 @@ class ItemSpecificCommand extends Command {
     }
 
     String execute() {
-        return this.item.getMessageForVerb(verb);
-        //Event e = EventFactory.instance().parse(this.item, this.verb);
-        //e.execute()
+        for (String s : this.item.getEvents(verb)) {
+        Event e = EventFactory.instance().parseEvent(this.item, s);
+            e.execute();
+        }
+
+        String message = item.getMessageForVerb(verb);
+        if (message == null) { 
+            return "Cannot " + this.verb + " on " + this.item.getPrimaryName(); 
+        }
+        return message; 
     }
 
 }

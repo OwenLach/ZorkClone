@@ -2,14 +2,16 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.io.FileReader;
+import java.util.*;
 
 public class Item {
     
     private String primaryName = ""; 
     private int weight ;
     private Hashtable<String,String> messages = new Hashtable<String, String>();
-    // private Hashtable<String,ArrayList> events = new Hashtable<String, String>();
+    private Hashtable<String,ArrayList<String>> events = new Hashtable<String, ArrayList<String>>();
     // drink : [Transform(emptyCan),Wound(-1)]
+    
     // make a value inst var
     // make method to get the value of item
     private HashSet<String> aliases = new HashSet<String>();
@@ -39,24 +41,56 @@ public class Item {
             possibleAction = true;
             String[] splitAction = itemAction.split(":");
 
-            // checks to se if when line is split at ":" there is only 1
-            // ":" verifying there is only two halves, the key(left) and
-            // value(right) 
-            if (splitAction.length == 2) { 
-                // set's what's before ":" as action name
+            // if action has any events with it
+            if (splitAction[0].indexOf("[") != -1) {
+                int startIdx = splitAction[0].indexOf("[") + 1;
+                int endIdx = splitAction[0].indexOf("]");
+                String eventsString = splitAction[0].substring(startIdx, endIdx);
+                String[] eventsArray = eventsString.split(","); 
+
+                String action = splitAction[0].substring(0, splitAction[0].indexOf("["));
+                String response = splitAction[1];
+                messages.put(action, response); 
+                this.events.put(action, new ArrayList<String>(Arrays.asList(eventsArray)));
+            }
+            // no events on the action
+            else {
                 String action = splitAction[0];
-
-                // what's after ":" as action response
                 String response = splitAction[1]; 
-
-                //adds the action and action response to hashtable
                 messages.put(action, response); 
             }
+            /*
+                // checks to se if when line is split at ":" there is only 1
+                // ":" verifying there is only two halves, the key(left) and
+                // value(right) 
+                //if (splitAction.length == 2) { 
+                    // set's what's before ":" as action name
+                    String action = splitAction[0];
+
+                    // what's after ":" as action response
+                    String response = splitAction[1]; 
+
+                    //adds the action and action response to hashtable
+                    messages.put(action, response); 
+                //}
+            */
         }
-        //checks to see if item has no action
-        if(!possibleAction) { 
-        }
+        /*
+            //checks to see if item has no action
+            if(!possibleAction) { 
+            }
+        */
 	}
+
+    public ArrayList<String> getEvents(String action) {
+        if (action.equals("sitOn")) {
+            System.out.println("about getting events for sitOn action");
+        }
+        if (this.events.get(action) == null) {
+            return new ArrayList<String>();
+       }
+        return this.events.get(action);
+    }
 
 	public boolean goesBy(String name) {
 		return aliases.contains(name);
@@ -66,7 +100,7 @@ public class Item {
 		return this.primaryName;
 	}
 	public String getMessageForVerb(String verb) {
-		return messages.getOrDefault(verb, "");
+		return messages.get(verb);
 	}
     
     public HashSet<String> getAllItemActions() {
