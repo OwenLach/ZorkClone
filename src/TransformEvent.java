@@ -1,14 +1,26 @@
-class TransformEvent extends Event {
-	private Item item = null;
-	private boolean isInInventory = false;
 
-	TransformEvent(Item item) {
-		this.item = item;
+class TransformEvent extends Event {
+	private Item originalItem = null;
+    private Item newItem = null;
+
+	TransformEvent(Item originalItem, Item newItem) {
+		this.originalItem = originalItem;
+        this.newItem = newItem;
 	}
-	
     
 	void execute() {
-        System.out.println("made new TransformEvent(), item is now changing into " + this.item.getPrimaryName());
+
+        GameState GS = GameState.instance();
+        boolean isInInventory = GS.isInPlayerInventory(this.originalItem);
+
+        if (!isInInventory) {
+            GS.removeItemFromRoom(originalItem, GS.getAdventurersCurrentRoom());
+            GS.addItemToRoom(this.newItem, GS.getAdventurersCurrentRoom());
+        }
+        else {
+            GS.removeFromInventory(this.originalItem);
+            GS.addToInventory(this.newItem);
+        }
 
 	}
 	

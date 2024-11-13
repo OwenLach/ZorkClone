@@ -40,8 +40,10 @@ class EventFactory {
             else if (eventString.indexOf("Transform") != -1) {
                 int startIdx = eventString.indexOf("(") + 1;
                 int endIdx = eventString.indexOf(")");
-                Item i = GameState.instance().getDungeon().getItem(eventString.substring(startIdx, endIdx));
-                return new TransformEvent(i);
+                Item originalItem = item;
+                Item newItem = GameState.instance().getDungeon().getItem(eventString.substring(startIdx, endIdx));
+                return new TransformEvent(originalItem, newItem);
+
             }
             else {
                 int startIdx = eventString.indexOf("(") + 1;

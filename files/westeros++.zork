@@ -32,23 +32,35 @@ light[Die]:The wildfire explodes in a dazzling mushroom cloud, killing you and e
 GreenDragonEgg,GreenEgg
 30
 examine:This beautiful egg is a deep green, with burnished bronze flecks that come and go depending on how you turn it.
-heat[Transform(BabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Rhaegal."
+heat[Transform(GreenBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Rhaegal."
 ---
-BabyDragon,dragon
+GreenBabyDragon,GreenDragon
 40
 examine:Not Baby Yoda, perhaps, but still pretty cute.
-free[Drop]:The dragon begins to fly on its little wings, and hovers above you approvingly.
-feed[Score(1)]:*Gulp*! The little guy chomps down a small mammal in one gulp.
+free[Drop]:The green dragon begins to fly on its little wings, and hovers above you approvingly.
+feed[Score(1)]:*Gulp*! You fed the baby green dragon.
+---
+WhiteBabyDragon,WhiteDragon
+40
+examine:Not Baby Yoda, perhaps, but still pretty cute.
+free[Drop]:The white dragon begins to fly on its little wings, and hovers above you approvingly.
+feed[Score(1)]:*Gulp*! You fed the baby white dragon.
+---
+BlackBabyDragon,BlackDragon
+40
+examine:Not Baby Yoda, perhaps, but still pretty cute.
+free[Drop]:The black dragon begins to fly on its little wings, and hovers above you approvingly.
+feed[Score(1)]:*Gulp*! You fed the baby black dragon.
 ---
 WhiteDragonEgg,WhiteEgg
 30
 examine:This beautiful egg is pale cream, streaked with gold.
-heat[Transform(BabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Viserion."
+heat[Transform(WhiteBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Viserion."
 ---
 BlackDragonEgg,BlackEgg
 40
 examine:This egg is as black as midnight sea, yet alive with scarlet ripples and swirls.
-heat[Transform(BabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Drogon."
+heat[Transform(BlackBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Drogon."
 ---
 IronThrone,throne
 400000

@@ -90,6 +90,11 @@ class GameState {
         return weight;
     }
 
+    boolean isInPlayerInventory(Item item) {
+        return this.inventory.contains(item);
+    }
+
+
     void addToInventory(Item item) {
         this.inventory.add(item);
     }
