@@ -16,7 +16,7 @@ class ItemSpecificCommand extends Command {
 
         String message = item.getMessageForVerb(verb);
         if (message == null) { 
-            return "Cannot " + this.verb + " on " + this.item.getPrimaryName(); 
+            return "Cannot " + this.verb + this.item.getPrimaryName(); 
         }
         return message; 
     }

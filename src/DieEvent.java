@@ -1,6 +1,8 @@
 class DieEvent extends Event {
 	void execute() {
-        System.out.println("made new DieEvent() and now executing");
-		// tell user they died and restart, call GameState.restore() and reset the game
-	}
+        // WIP, still needs to print the event string message somehow
+        // before ending the program
+        System.err.println("\n======= Y O U    D I E D =======\n");
+	    System.exit(0);
+    }
 }
