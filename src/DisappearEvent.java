@@ -6,9 +6,9 @@ class DisappearEvent extends Event {
 	}
 	
 	void execute() {
-        System.out.println("made new DisappearEvent() and now executing");
-		//GameState.instance().removeFromInventory();
-		//GameState.instance().removeItemFromRoom(// get room that item is in, item);
-		//this.item = null;
-	}
+        GameState.instance().removeFromInventory(item);
+        GameState.instance().removeItemFromRoom(item, GameState.instance().getAdventurersCurrentRoom());
+        this.item = null;
+    
+    }
 }
