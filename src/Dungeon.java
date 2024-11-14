@@ -2,7 +2,6 @@
 import java.util.*;
 import java.io.File;
 
-
 public class Dungeon {
    
     private String title = "";
@@ -143,6 +142,27 @@ public class Dungeon {
     public void add(Item item) {
         this.items.put(item.getPrimaryName(), item);
     }
+
+    public Room getRandomRoom() {
+        Enumeration<Room> values = rooms.elements();
+        
+        int size = rooms.size();
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(size);
+
+        int currentIndex = 0;
+        for (Room room; values.hasMoreElements(); currentIndex++) {
+            room = values.nextElement();
+            if (currentIndex == randomIndex) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+
+
+
 
     public class IllegalDungeonFormatException extends Exception { }
 }
