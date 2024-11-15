@@ -8,7 +8,8 @@ class WoundEvent extends Event {
 	}	
 
 	void execute() {
-        System.out.println("made new WoundEvent(), changing health by " + this.changeInHealth);
-		//Player.instance().setHealth(this.changeInHealth);
+       // System.out.println("made new WoundEvent(), changing health by " + this.changeInHealth);
+		  int currHealth = Integer.parseInt(Player.instance().getHealth());
+        Player.instance().setHealth(currHealth - changeInHealth);
 	}
 }

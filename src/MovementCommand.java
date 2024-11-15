@@ -9,6 +9,7 @@ class MovementCommand extends Command {
 
     String execute() {
         GameState GS = GameState.instance();
+        //creating the instance of the current 
 
         Room currRoom = GS.getAdventurersCurrentRoom();
         if (currRoom.leaveBy(this.dir) != null) {

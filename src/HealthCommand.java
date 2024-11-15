@@ -1,4 +1,4 @@
-class HealthCommand {
+class HealthCommand extends Command{
 	HealthCommand() {
 	}
 

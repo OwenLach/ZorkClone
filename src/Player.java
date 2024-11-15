@@ -15,7 +15,7 @@ class Player {
 	}
 
 	public void setScore (int score) {
-		//this.score += score;
+		this.score += score;
 	}
 
 	public void setHealth (int health) {
@@ -27,7 +27,7 @@ class Player {
 	}
 
 	public String getHealth() {
-        return "";
+        return "your Current Health is " + health ;
 		// return a message bases on player health
 	}
 

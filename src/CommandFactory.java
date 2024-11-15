@@ -65,6 +65,12 @@ class CommandFactory {
         else if (command.equals("save")) {
             return new SaveCommand();
         }
+        else if (command.equals("score")) {
+          return new ScoreCommand();
+        }
+        else if (command.equals("health")){
+           return new HealthCommand();
+        }
         //add extra check for verbose mode
         
         else {
