@@ -202,6 +202,7 @@ class GameState {
             }
             pw.println(); 
             pw.println("Health:" + Player.instance().getHealthInt());
+            pw.println("Score:" + Player.instance().getScore());
             pw.flush();
             pw.close();
         }
@@ -270,15 +271,8 @@ class GameState {
 
             int health = Integer.parseInt(scnr.nextLine().split(":")[1]);
             Player.instance().setInitHealth(health);
-            /*
-                for (Map.Entry<Room, HashSet<Item>> roomContentsPair : allRoomContents.entrySet()) {
-                    System.out.println("Contents of " + roomContentsPair.getKey().getName());
-                    for (Item i : roomContentsPair.getValue()){
-                        System.out.print(i.getPrimaryName() + ",");
-                    }
-                    System.out.println();
-                }
-            */
+            int score = Integer.parseInt(scnr.nextLine().split(":")[1]);
+            Player.instance().setInitScore(score);
 
             for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
                 this.clearRoom(roomContentsPair.getKey()); //clears the room

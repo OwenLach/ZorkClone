@@ -19,6 +19,10 @@ class Player {
 		this.score += score;
 	}
 
+    public void setInitScore(int score) {
+        this.score = score;
+    }
+
     // for restoring game
     public void setInitHealth(int health) {
         this.health = health;
