@@ -201,6 +201,7 @@ class GameState {
                 pw.print(item.getPrimaryName() + ",");
             }
             pw.println(); 
+            pw.println("Health:" + Player.instance().getHealthInt());
             pw.flush();
             pw.close();
         }
@@ -266,6 +267,9 @@ class GameState {
                     this.addToInventory(item);
                 }
             }
+
+            int health = Integer.parseInt(scnr.nextLine().split(":")[1]);
+            Player.instance().setInitHealth(health);
             /*
                 for (Map.Entry<Room, HashSet<Item>> roomContentsPair : allRoomContents.entrySet()) {
                     System.out.println("Contents of " + roomContentsPair.getKey().getName());
