@@ -1,14 +1,20 @@
+import java.util.*;
+
 class ScoreEvent extends Event {
    private int changeInScore = 0;
+   private Item item; 
+   protected static ArrayList<Item> usedScoreItems = new ArrayList<Item>();
    
-	ScoreEvent(int score) {	
+	ScoreEvent(int score, Item item) {	
 		this.changeInScore = score;
+        this.item = item;
 	}	
 
 	void execute() {
-      //  String change = Integer.toString(changeInScore);
-        Player.instance().setScore(changeInScore);
-     //   System.out.println("made new ScoreEvent() with change in score of " + this.changeInScore);
-    	}
+        if (!usedScoreItems.contains(this.item)) {
+            Player.instance().setScore(changeInScore);
+            usedScoreItems.add(this.item);
+        }
+    }
 
 }

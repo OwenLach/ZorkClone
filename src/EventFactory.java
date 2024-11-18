@@ -35,7 +35,7 @@ class EventFactory {
                 int startIdx = eventString.indexOf("(") + 1;
                 int endIdx = eventString.indexOf(")");
                 int param = Integer.parseInt(eventString.substring(startIdx, endIdx));
-                return new ScoreEvent(param);
+                return new ScoreEvent(param, item);
             }
             else if (eventString.indexOf("Transform") != -1) {
                 int startIdx = eventString.indexOf("(") + 1;

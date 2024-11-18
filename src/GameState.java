@@ -203,6 +203,11 @@ class GameState {
             pw.println(); 
             pw.println("Health:" + Player.instance().getHealthInt());
             pw.println("Score:" + Player.instance().getScore());
+            pw.print("Used Score Items:");
+            for (Item i : ScoreEvent.usedScoreItems) {
+                pw.print(i.getPrimaryName() + ",");
+            }
+            pw.println();
             pw.flush();
             pw.close();
         }
@@ -273,6 +278,14 @@ class GameState {
             Player.instance().setInitHealth(health);
             int score = Integer.parseInt(scnr.nextLine().split(":")[1]);
             Player.instance().setInitScore(score);
+            String scoreItemsStr = scnr.nextLine().split(":")[1];
+
+            for (String itemName : scoreItemsStr.split(",")) {
+                Item item = this.dungeon.getItem(itemName);
+                ScoreEvent.usedScoreItems.add(item);
+                System.out.println("added " + itemName + " to used score items");
+            }
+
 
             for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
                 this.clearRoom(roomContentsPair.getKey()); //clears the room

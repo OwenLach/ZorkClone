@@ -16,8 +16,7 @@ class CommandFactory {
     }
 
     Command parse(String commandString) {
-        // check for new commands : Score,Health,Speak,Trade
-        // if (command.equals("trade") {return new TradeCommand() }
+        // check for new commands : Speak,Trade
         String[] commandParts = commandString.split(" "); 
         String command = commandParts[0];
        
