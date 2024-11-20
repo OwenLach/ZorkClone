@@ -9,12 +9,22 @@ class ItemSpecificCommand extends Command {
     }
 
     String execute() {
+        String message = item.getMessageForVerb(verb);
+
         for (String s : this.item.getEvents(verb)) {
-        Event e = EventFactory.instance().parseEvent(this.item, s);
-            e.execute();
+            Event e = EventFactory.instance().parseEvent(this.item, s);
+
+            if (e instanceof WinEvent) {
+                ((WinEvent) e).execute(message);
+            }
+            else if (e instanceof DieEvent) {
+                ((DieEvent) e).execute(message);
+            }
+            else {
+                e.execute();
+            }
         }
 
-        String message = item.getMessageForVerb(verb);
         if (message == null) { 
             return "Cannot " + this.verb + this.item.getPrimaryName(); 
         }
