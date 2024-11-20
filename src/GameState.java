@@ -283,7 +283,6 @@ class GameState {
             for (String itemName : scoreItemsStr.split(",")) {
                 Item item = this.dungeon.getItem(itemName);
                 ScoreEvent.usedScoreItems.add(item);
-                System.out.println("added " + itemName + " to used score items");
             }
 
 
