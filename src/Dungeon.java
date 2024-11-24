@@ -71,19 +71,19 @@ public class Dungeon {
             // after all room objects have been made
             GS.setAdventurersCurrentRoom(this.entry);
            
-        /*
-         ----------------------Hydrate NPC Objects----------------------------
+      
+         //----------------------Hydrate NPC Objects----------------------------
             scnr.nextLine(); //skip "NPCS: " line
                           
             try {
                 while (true) {
                     NPC npc = NPCFactory.instance().parse(scnr);
                 }
-            } catch (NONPCException e) {
-                System.out.pritnln("No more NPCS");
+            } catch (NoNPCException e) {
+                System.out.println("No more NPCS");
             }
 
-       */
+       
 
         // -------------------- Hydrate all exit objects ---------------------
 

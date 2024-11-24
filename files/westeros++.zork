@@ -69,6 +69,14 @@ touch[Wound(1)]:Ouch! Sharp steel opens a red line in your finger.
 sit[Win]:Hail to the Queen!
 sitOn[Win]:Hail to the Queen!
 ---
+gun
+7
+shoot:You shot the gun!
+---
+banana
+1
+eat:You ate the banana, it was good (need to make eat event)
+---
 ===
 Rooms:
 Winterfell
@@ -184,6 +192,24 @@ are built on a scale that would be more comfortable for giants than humans.
 However, much of it has far gone into decay. Only the lower thirds of two of
 the five towers appear to be occupied. Bats infest the tops of some of the
 towers.
+---
+===
+NPCS:
+verbal
+Joe
+Quotes:All gamblers quit before they make it big,Never trust a fart
+Winterfell
+---
+tradeable
+Sal
+Inventory:gun
+Crossroads Inn
+---
+both
+Q
+Quotes:Example quote 1,Example quote 2,Example quote 3
+Inventory:banana
+King's Landing
 ---
 ===
 Exits:

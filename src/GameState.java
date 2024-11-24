@@ -10,7 +10,7 @@ class GameState {
     private HashSet<Room> visited = null; 
     private ArrayList<Item> inventory = null; 
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
-    // private Hashtable<Room, NPC> npcRoomPair = null;
+    private Hashtable<Room, NPC> npcRoomPair = null;
     // private boolean Verbose = true;
     
     public static GameState instance() {
@@ -24,6 +24,7 @@ class GameState {
         visited = new HashSet<>();
         inventory = new ArrayList<Item>();
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
+        npcRoomPair = new Hashtable<Room, NPC>();
     }
 
     /*
@@ -35,17 +36,17 @@ class GameState {
         return this.Verbose;
     }
 
-    public NPC getNPCFromRoom(Room room) {
-    }
-
     public Item getItemFromNPCInventory(Stirng item) throw NoItemException {
     }
 
-    void addNPCToRoomMethod() {
-        this.npcRoomPair.put(Room, NPC);
-    }
     */
+    void addNPCtoRoom(Room room, NPC npc) {
+        this.npcRoomPair.put(room, npc);
+    }
 
+    public NPC getNPCFromRoom(Room room) {
+        return this.npcRoomPair.get(room);
+    }
 
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
