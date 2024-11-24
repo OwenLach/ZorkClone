@@ -70,8 +70,10 @@ class CommandFactory {
         else if (command.equals("health")){
            return new HealthCommand();
         }
+        else if (command.equals("speak")) {
+            return new SpeakCommand();
+        }
         //add extra check for verbose mode
-        
         else {
             if (commandParts.length == 1) {
                 return new UnknownCommand(commandString);

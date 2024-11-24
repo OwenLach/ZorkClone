@@ -9,4 +9,8 @@ class NPC {
         System.out.println("****************");
         return this.name;
     }
+
+    String speak() {
+        return this.name + " ignores you.";
+    }
 }

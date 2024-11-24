@@ -4,6 +4,8 @@ class VerbalTradeNPC extends NPC {
 
 	private ArrayList<String>  quotes = new ArrayList<String>();
 	private ArrayList<Item> inventory = new ArrayList<Item>();
+    private ArrayList<String> saysSynonyms = new ArrayList<String>(
+            Arrays.asList("bequeaths","states","says","proclaims","shouts"));
 
 	VerbalTradeNPC(Scanner s) {
         super(s.nextLine());
@@ -51,8 +53,9 @@ class VerbalTradeNPC extends NPC {
 	}
 
     String speak() {
-		//randomNum = java.util.random(this.quotes.size());
-		//this.quotes.get(randomNum);
-        return "";
+        Random rand = new Random();
+		int randomNum = rand.nextInt(this.quotes.size());
+        int randSaysSyn = rand.nextInt(this.saysSynonyms.size());
+		return this.name + " " + this.saysSynonyms.get(randSaysSyn) + " to you, \"" + this.quotes.get(randomNum) + ".\"";
 	}
 }
