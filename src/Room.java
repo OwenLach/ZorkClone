@@ -101,6 +101,12 @@ public class Room {
         description += this.name + "\n";
         description += this.desc;
         
+        // NPCs
+        NPC npc = GameState.instance().getNPCFromRoom(this);
+        if (npc != null) {
+            description += npc.getName() + " resides here.\n\n";
+        }
+
         if (this.getContents() != null) {
             for (Item item : this.getContents()) {
                 description += "There is a " + item.getPrimaryName() + "\n";
@@ -109,7 +115,7 @@ public class Room {
 
         // check if verbose if on 
         // if (GameState.instance.isVerboseMode()) {
-        description += "\nExits:";
+        description += "Exits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();
         }
