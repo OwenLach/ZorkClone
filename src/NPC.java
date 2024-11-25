@@ -1,4 +1,7 @@
-class NPC {
+import java.util.*;
+
+abstract class NPC {
+
     protected String name = "";
 
     NPC(String name) {
@@ -10,7 +13,8 @@ class NPC {
         return this.name;
     }
 
-    String speak() {
-        return this.name + " ignores you.";
-    }
+    abstract String speak(); 
+    abstract String trade();
+    abstract ArrayList<Item> getInventory();
+
 }

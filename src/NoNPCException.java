@@ -1,5 +1,1 @@
-public class NoNPCException extends Exception{
-
-
-
-}
+public class NoNPCException extends Exception {}

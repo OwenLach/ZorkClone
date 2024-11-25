@@ -113,8 +113,7 @@ public class Room {
             }
         }
 
-        // check if verbose if on 
-        // if (GameState.instance.isVerboseMode()) {
+        // check if verbose if on // if (GameState.instance.isVerboseMode()) {
         description += "Exits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();

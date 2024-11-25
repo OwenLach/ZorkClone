@@ -78,6 +78,7 @@ public class Dungeon {
             try {
                 while (true) {
                     NPC npc = NPCFactory.instance().parse(scnr);
+                    scnr.nextLine(); // throw out "---" delimeter
                 }
             } catch (NoNPCException e) {
                 System.out.println("No more NPCS");

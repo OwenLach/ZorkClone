@@ -36,10 +36,19 @@ class GameState {
         return this.Verbose;
     }
 
-    public Item getItemFromNPCInventory(Stirng item) throw NoItemException {
+    */
+    
+    public Item getItemFromNPCInventory(String item) throws NoNPCItemException {
+
+        for (Item i : npcRoomPair.get(this.currRoom).getInventory()) {
+            if (i.getPrimaryName().equals(item) || i.goesBy(item)) {
+               return i;
+           }
+        }
+
+        throw new NoNPCItemException();
     }
 
-    */
     void addNPCtoRoom(Room room, NPC npc) {
         this.npcRoomPair.put(room, npc);
     }

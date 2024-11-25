@@ -20,14 +20,22 @@ class VerbalNPC extends NPC {
         Room NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
         GameState.instance().addNPCtoRoom(NPCroom, this);
 
-        s.nextLine(); //skip ---
+        //s.nextLine(); //skip ---
         
 	}
-
+    
 	String speak() {
         Random rand = new Random();
 		int randomNum = rand.nextInt(this.quotes.size());
         int randSaysSyn = rand.nextInt(this.saysSynonyms.size());
         return this.name + " " + this.saysSynonyms.get(randSaysSyn) + " to you, \"" + this.quotes.get(randomNum) + ".\"";
 	}
+        
+    String trade() {
+        return this.name + " doesn't want to trade with you.";
+    }
+
+    ArrayList<Item> getInventory() {
+        return new ArrayList<Item>();
+    }
 }

@@ -73,6 +73,10 @@ class CommandFactory {
         else if (command.equals("speak")) {
             return new SpeakCommand();
         }
+        else if (command.equals("trade")) {
+            return new TradeCommand();
+        }
+ 
         //add extra check for verbose mode
         else {
             if (commandParts.length == 1) {
