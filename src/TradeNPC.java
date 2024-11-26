@@ -11,7 +11,6 @@ class TradeNPC extends NPC {
         for (String item : s.nextLine().split(":")[1].split(",")) {
             Item i = GameState.instance().getDungeon().getItem(item);
             this.inventory.add(i);
-            System.out.println("Added " + i.getPrimaryName() + " to NPC: " + this.name + "'s inventory");
         }
 
         Room NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
@@ -33,14 +32,21 @@ class TradeNPC extends NPC {
 
         this.showInventory();
         this.showPlayerInventory();
-        System.out.print("Trade what item in current inventory? \n> ");
+        System.out.print("Trade what item in current inventory? (q to cancel) \n> ");
 		Scanner scnr = new Scanner(System.in);
 		String playerItemStr = scnr.nextLine();	
+        if (playerItemStr.equals("q")) {
+            return "Trade Cancelled";
+        }
 
 		try {
 			Item playerItem = GS.getItemFromInventoryNamed(playerItemStr);
-			System.out.print("Trade " + playerItem.getPrimaryName() + " for what? \n> ");
+			System.out.print("Trade " + playerItem.getPrimaryName() + " for what? (q to cancel)\n> ");
 			String itemWantedStr = scnr.nextLine();
+            
+            if (itemWantedStr.equals("q")) {
+                return "Trade Cancelled";
+            }
 			Item itemWanted = GS.getItemFromNPCInventory(itemWantedStr);
 
 			// add check to make sure player item has enough values to trade for the npc item
@@ -64,6 +70,10 @@ class TradeNPC extends NPC {
 
 	}
 
+    void addToInventory(Item i) {
+        this.inventory.add(i);
+    }
+
 	void showInventory() {
         String res = "-----" + this.name + "'s Inventory----\n";
         for (Item i : this.inventory)
@@ -82,5 +92,9 @@ class TradeNPC extends NPC {
         }
 
         System.out.println(res);
+    }
+
+    void clearInventory() {
+        this.inventory.clear();
     }
 }

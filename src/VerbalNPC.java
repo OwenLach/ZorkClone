@@ -14,7 +14,6 @@ class VerbalNPC extends NPC {
 
         for (String quote : quotesArr) {
             this.quotes.add(quote);
-            System.out.println("added quote: " + quote + " - to NPC: " + this.name);
         }
 
         Room NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
@@ -38,4 +37,7 @@ class VerbalNPC extends NPC {
     ArrayList<Item> getInventory() {
         return new ArrayList<Item>();
     }
+
+    void addToInventory(Item i) {}
+    void clearInventory() {}
 }

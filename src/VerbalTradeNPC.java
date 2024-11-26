@@ -13,7 +13,6 @@ class VerbalTradeNPC extends TradeNPC {
 
         for (String quote : quotesArr) {
             this.quotes.add(quote);
-            System.out.println("added quote: " + quote + " - to NPC: " + this.name);
         }
 	}
 

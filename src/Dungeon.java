@@ -81,7 +81,6 @@ public class Dungeon {
                     scnr.nextLine(); // throw out "---" delimeter
                 }
             } catch (NoNPCException e) {
-                System.out.println("No more NPCS");
             }
 
        

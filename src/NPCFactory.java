@@ -22,15 +22,12 @@ class NPCFactory {
 		}
 
 		if (npcType.equals("verbal")) {
-            System.out.println("making new verbal npc");
 			return new VerbalNPC(scnr);
 		}
 		else if (npcType.equals("tradeable")) {
-            System.out.println("making new trade npc");
 			return new TradeNPC(scnr);
 		}
 		else {
-            System.out.println("making new verbal/trade npc");
 			return new VerbalTradeNPC(scnr);
 		}
 	}

@@ -11,6 +11,7 @@ class GameState {
     private ArrayList<Item> inventory = null; 
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
     private Hashtable<Room, NPC> npcRoomPair = null;
+    private Hashtable <String, NPC> npcNames = null;
     // private boolean Verbose = true;
     
     public static GameState instance() {
@@ -25,6 +26,7 @@ class GameState {
         inventory = new ArrayList<Item>();
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
         npcRoomPair = new Hashtable<Room, NPC>();
+        npcNames = new Hashtable<String, NPC>();
     }
 
     /*
@@ -37,6 +39,10 @@ class GameState {
     }
 
     */
+
+    public NPC getNPCByName(String name) {
+        return npcNames.get(name);
+    }
     
     public Item getItemFromNPCInventory(String item) throws NoNPCItemException {
 
@@ -51,6 +57,7 @@ class GameState {
 
     void addNPCtoRoom(Room room, NPC npc) {
         this.npcRoomPair.put(room, npc);
+        this.npcNames.put(npc.getName(), npc);
     }
 
     public NPC getNPCFromRoom(Room room) {
@@ -218,6 +225,28 @@ class GameState {
                 pw.print(i.getPrimaryName() + ",");
             }
             pw.println();
+
+            pw.println("===");
+            pw.println("NPCS:");
+            for (Room room : this.visited) {
+                NPC npc = this.npcRoomPair.get(room);
+
+                if (npc != null) {
+                    ArrayList<Item> npcItems = npc.getInventory();
+
+                    if (!npcItems.isEmpty()) {
+                        pw.print(npc.getName() + ":");
+
+                        for (Item i : npc.getInventory()) {
+                            pw.print(i.getPrimaryName() + ",");
+                        }
+                        pw.println();
+                    }
+                }
+
+            }
+            pw.println("===");
+
             pw.flush();
             pw.close();
         }
@@ -288,11 +317,37 @@ class GameState {
             Player.instance().setInitHealth(health);
             int score = Integer.parseInt(scnr.nextLine().split(":")[1]);
             Player.instance().setInitScore(score);
-            String scoreItemsStr = scnr.nextLine().split(":")[1];
 
-            for (String itemName : scoreItemsStr.split(",")) {
-                Item item = this.dungeon.getItem(itemName);
-                ScoreEvent.usedScoreItems.add(item);
+            String[] scoreItems = scnr.nextLine().split(":");
+            if (scoreItems.length != 1) {
+                System.out.println("no score items");
+                String scoreItemsStr = scnr.nextLine().split(":")[1];
+
+                for (String itemName : scoreItemsStr.split(",")) {
+                    Item item = this.dungeon.getItem(itemName);
+                    ScoreEvent.usedScoreItems.add(item);
+                }
+            }
+
+            scnr.nextLine(); // throw out === 
+            scnr.nextLine(); // throw out NPCS: 
+                                                 
+            while (true) {
+                String line = scnr.nextLine();
+
+                if (line.equals("===")) {
+                    break;
+                }
+
+                
+                NPC npc = this.getNPCByName(line.split(":")[0]);
+                npc.clearInventory();
+                String npcInventoryString = line.split(":")[1];
+            
+                for (String string : npcInventoryString.split(",")) {
+                    Item item = this.dungeon.getItem(string);
+                    npc.addToInventory(item);
+                }
             }
 
 
