@@ -4,18 +4,19 @@ class InventoryCommand extends Command {
 
      String execute() {
          ArrayList<Item> inv = GameState.instance().getInventory();
+         String res = "";
 
          if (inv.isEmpty()) {
              return "You are empty-handed.";
          }
          
-         System.out.println("You are carrying: ");
+         res += "You are carrying:";
 
          for (Item item : inv) {
-             System.out.println("-" + item.getPrimaryName());
+            res += "\n  -" + item.getPrimaryName() + " : " + item.getValue() + " credits";
          }
 
-        return "";
+        return res;
      
      }
 }

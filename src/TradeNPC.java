@@ -5,7 +5,6 @@ class TradeNPC extends NPC {
 	protected ArrayList<Item> inventory = new ArrayList<Item>(); 
     
 	TradeNPC(Scanner s) {
-		// setup NPC
         super(s.nextLine());
 
         for (String item : s.nextLine().split(":")[1].split(",")) {
@@ -16,7 +15,6 @@ class TradeNPC extends NPC {
         Room NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
         GameState.instance().addNPCtoRoom(NPCroom, this);
 
-        //s.nextLine(); //skip ---
 	}
 
 	ArrayList<Item> getInventory() { 
@@ -32,39 +30,69 @@ class TradeNPC extends NPC {
 
         this.showInventory();
         this.showPlayerInventory();
-        System.out.print("Trade what item in current inventory? (q to cancel) \n> ");
+        System.out.print("Trade what item in current inventory? (q to cancel and \",\" for multiple items) \n> ");
 		Scanner scnr = new Scanner(System.in);
 		String playerItemStr = scnr.nextLine();	
+
         if (playerItemStr.equals("q")) {
-            return "Trade Cancelled";
+            return "\nTrade Cancelled";
         }
 
 		try {
-			Item playerItem = GS.getItemFromInventoryNamed(playerItemStr);
-			System.out.print("Trade " + playerItem.getPrimaryName() + " for what? (q to cancel)\n> ");
+            ArrayList<Item> playerItems = new ArrayList<Item>();
+            ArrayList<Item> npcItems = new ArrayList<Item>();
+
+            for (String itemStr : playerItemStr.split(",")) {
+                playerItems.add(GS.getItemFromInventoryNamed(itemStr));
+            }
+
+            if (playerItems.size() == 1) {
+                System.out.print("Trade item for what? (q to cancel and \",\" for multiple items) \n> ");
+            }
+            else {
+                System.out.print("Trade items for what? (q to cancel and \",\" for multiple items) \n> ");
+            }
+
 			String itemWantedStr = scnr.nextLine();
             
             if (itemWantedStr.equals("q")) {
-                return "Trade Cancelled";
+                return "\nTrade Cancelled";
             }
-			Item itemWanted = GS.getItemFromNPCInventory(itemWantedStr);
 
-			// add check to make sure player item has enough values to trade for the npc item
-			// might have to change Item class slightly 
-            this.inventory.add(playerItem);
-            this.inventory.remove(itemWanted);
+            for (String itemStr : itemWantedStr.split(",")) {
+                npcItems.add(GS.getItemFromNPCInventory(itemStr));
+            }
 
-            GS.addToInventory(itemWanted);
-            GS.removeFromInventory(playerItem);
+            int sumVals = 0;
+            for (Item i : playerItems) {
+                sumVals += i.getValue();
+            }
 
-            return "You successfullly traded " + playerItem.getPrimaryName() + " for " + itemWanted.getPrimaryName() + ".";
+            int npcVals = 0;
+            for (Item i : npcItems) {
+                npcVals += i.getValue();
+            }
+
+            if (sumVals < npcVals) {
+                return "\nNot enough credits.";
+            }
+
+            for (Item i : playerItems) {
+                this.inventory.add(i);
+                GS.removeFromInventory(i);
+            }
+
+            for (Item i : npcItems) {
+                this.inventory.remove(i);
+                GS.addToInventory(i);
+            }
+
+            return "\nTrade Successful!";
 		}
 		catch(NoItemException e) {
-			// make sure it shows the right error message
 			return "You don't have that item in your inventory to trade";
 		}
         catch(NoNPCItemException e) {
-			// make sure it shows the right error message
 			return this.name + " doesn't have what you are looking for.";
 		}       
 
@@ -78,7 +106,7 @@ class TradeNPC extends NPC {
         String res = "-----" + this.name + "'s Inventory----\n";
         for (Item i : this.inventory)
         {
-            res += "         -" + i.getPrimaryName() + "\n";
+            res += "   -" + i.getPrimaryName() + " : " + i.getValue() + " credits" + "\n";
         }
 
         System.out.println(res);
@@ -88,7 +116,7 @@ class TradeNPC extends NPC {
         String res = "------Your Inventory-----\n";
         for (Item i : GameState.instance().getInventory())
         {
-            res += "      -" + i.getPrimaryName() + "\n";
+            res += "   -" + i.getPrimaryName() + " : " + i.getValue() + " credits" + "\n";
         }
 
         System.out.println(res);

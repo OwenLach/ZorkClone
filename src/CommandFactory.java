@@ -58,7 +58,7 @@ class CommandFactory {
         else if (command.equals("look")) {
            return new LookCommand();
         }
-        else if (command.equals("i")) {
+        else if (command.equals("i") || command.equals("inventory")) {
            return new InventoryCommand();
         }
         else if (command.equals("save")) {
