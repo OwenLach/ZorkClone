@@ -201,6 +201,13 @@ class GameState {
                 pw.print(item.getPrimaryName() + ",");
             }
             pw.println(); 
+            pw.println("Health:" + Player.instance().getHealthInt());
+            pw.println("Score:" + Player.instance().getScore());
+            pw.print("Used Score Items:");
+            for (Item i : ScoreEvent.usedScoreItems) {
+                pw.print(i.getPrimaryName() + ",");
+            }
+            pw.println();
             pw.flush();
             pw.close();
         }
@@ -266,15 +273,18 @@ class GameState {
                     this.addToInventory(item);
                 }
             }
-            /*
-                for (Map.Entry<Room, HashSet<Item>> roomContentsPair : allRoomContents.entrySet()) {
-                    System.out.println("Contents of " + roomContentsPair.getKey().getName());
-                    for (Item i : roomContentsPair.getValue()){
-                        System.out.print(i.getPrimaryName() + ",");
-                    }
-                    System.out.println();
-                }
-            */
+
+            int health = Integer.parseInt(scnr.nextLine().split(":")[1]);
+            Player.instance().setInitHealth(health);
+            int score = Integer.parseInt(scnr.nextLine().split(":")[1]);
+            Player.instance().setInitScore(score);
+            String scoreItemsStr = scnr.nextLine().split(":")[1];
+
+            for (String itemName : scoreItemsStr.split(",")) {
+                Item item = this.dungeon.getItem(itemName);
+                ScoreEvent.usedScoreItems.add(item);
+            }
+
 
             for (Map.Entry<Room, HashSet<Item>> roomContentsPair : updateRooms.entrySet()) {
                 this.clearRoom(roomContentsPair.getKey()); //clears the room

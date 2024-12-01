@@ -59,36 +59,13 @@ public class Item {
                 String response = splitAction[1]; 
                 messages.put(action, response); 
             }
-            /*
-                // checks to se if when line is split at ":" there is only 1
-                // ":" verifying there is only two halves, the key(left) and
-                // value(right) 
-                //if (splitAction.length == 2) { 
-                    // set's what's before ":" as action name
-                    String action = splitAction[0];
-
-                    // what's after ":" as action response
-                    String response = splitAction[1]; 
-
-                    //adds the action and action response to hashtable
-                    messages.put(action, response); 
-                //}
-            */
         }
-        /*
-            //checks to see if item has no action
-            if(!possibleAction) { 
-            }
-        */
 	}
 
     public ArrayList<String> getEvents(String action) {
-        if (action.equals("sitOn")) {
-            System.out.println("about getting events for sitOn action");
-        }
         if (this.events.get(action) == null) {
             return new ArrayList<String>();
-       }
+        }
         return this.events.get(action);
     }
 

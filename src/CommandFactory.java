@@ -16,8 +16,7 @@ class CommandFactory {
     }
 
     Command parse(String commandString) {
-        // check for new commands : Score,Health,Speak,Trade
-        // if (command.equals("trade") {return new TradeCommand() }
+        // check for new commands : Speak,Trade
         String[] commandParts = commandString.split(" "); 
         String command = commandParts[0];
        
@@ -70,6 +69,9 @@ class CommandFactory {
         }
         else if (command.equals("health")){
            return new HealthCommand();
+        }
+        else if (command.equals("verbose")){
+           return new VerboseCommand();
         }
         //add extra check for verbose mode
         
