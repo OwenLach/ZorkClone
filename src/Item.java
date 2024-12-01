@@ -10,6 +10,7 @@ public class Item {
     private int weight ;
     private Hashtable<String,String> messages = new Hashtable<String, String>();
     private Hashtable<String,ArrayList<String>> events = new Hashtable<String, ArrayList<String>>();
+    private int value = 0;
     // drink : [Transform(emptyCan),Wound(-1)]
     
     // make a value inst var
@@ -33,6 +34,8 @@ public class Item {
         
         String itemWeight = scnr.nextLine();
         this.weight = Integer.parseInt(itemWeight);
+
+        this.value = Integer.parseInt(scnr.nextLine().split(":")[1]);
 
         String itemAction;
         boolean possibleAction = false; //used to verify if item is able to enact action
@@ -61,6 +64,10 @@ public class Item {
             }
         }
 	}
+
+    public int getValue() {
+        return this.value;
+    }
 
     public ArrayList<String> getEvents(String action) {
         if (this.events.get(action) == null) {

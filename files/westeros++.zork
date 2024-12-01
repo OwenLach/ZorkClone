@@ -4,6 +4,7 @@ Zork++
 Items:
 dragonglass,glass
 4
+value:8
 break[Wound(1)]:Ouch! The glass cuts your hand.
 wield:There's no one here to wield it against.
 throw[Drop,Teleport]:You huck the dragonglass down to the ground, at which point it shatters and leaves you feeling disoriented.
@@ -11,63 +12,84 @@ examine:It's a rough-hewn obsidian sliver, sharp as a needle.
 ---
 BastardSword,sword
 25
+value:6
 examine:This blade is forged from Valyrian steel, with a wolf's head pommel.
 swing:The sword is too heavy for a loser like you to swing.
 ---
 dagger
 12
+value:4
 examine:This sharp assassin's weapon has a dragonbone hilt.
 throw[Disappear]:The dagger clumsily hits the wall, and breaks to pieces.
 ---
 SapphireNecklace,necklace
 4
+value:8
 examine:This is a dainty jeweled necklace sparkling blue.
 wear[Score(1)]:Why, you look lovely!
 ---
 wildfire
 2
+value:2
 examine:This is a curious green liquid. You wonder what would happen if you tried to light it.
 light[Die]:The wildfire explodes in a dazzling mushroom cloud, killing you and everyone else in the world.
 ---
 GreenDragonEgg,GreenEgg
 30
+value:3
 examine:This beautiful egg is a deep green, with burnished bronze flecks that come and go depending on how you turn it.
 heat[Transform(GreenBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Rhaegal."
 ---
 GreenBabyDragon,GreenDragon
 40
+value:3
 examine:Not Baby Yoda, perhaps, but still pretty cute.
 free[Drop]:The green dragon begins to fly on its little wings, and hovers above you approvingly.
 feed[Score(1)]:*Gulp*! You fed the baby green dragon.
 ---
 WhiteBabyDragon,WhiteDragon
 40
+value:3
 examine:Not Baby Yoda, perhaps, but still pretty cute.
 free[Drop]:The white dragon begins to fly on its little wings, and hovers above you approvingly.
 feed[Score(1)]:*Gulp*! You fed the baby white dragon.
 ---
 BlackBabyDragon,BlackDragon
 40
+value:3
 examine:Not Baby Yoda, perhaps, but still pretty cute.
 free[Drop]:The black dragon begins to fly on its little wings, and hovers above you approvingly.
 feed[Score(1)]:*Gulp*! You fed the baby black dragon.
 ---
 WhiteDragonEgg,WhiteEgg
 30
+value:3
 examine:This beautiful egg is pale cream, streaked with gold.
 heat[Transform(WhiteBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Viserion."
 ---
 BlackDragonEgg,BlackEgg
 40
+value:3
 examine:This egg is as black as midnight sea, yet alive with scarlet ripples and swirls.
 heat[Transform(BlackBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Drogon."
 ---
 IronThrone,throne
 400000
+value:10000
 examine:The great metallic throne, forged from a thousand swords of imperial enemies, dominates the room and makes you feel considerably smaller. There are still sharp edges, so you are wary of touching it.
 touch[Wound(1)]:Ouch! Sharp steel opens a red line in your finger.
 sit[Win]:Hail to the Queen!
 sitOn[Win]:Hail to the Queen!
+---
+gun
+7
+value:4
+shoot:You shot the gun!
+---
+banana
+1
+value:4
+eat:You ate the banana, it was good (need to make eat event)
 ---
 ===
 Rooms:
@@ -184,6 +206,24 @@ are built on a scale that would be more comfortable for giants than humans.
 However, much of it has far gone into decay. Only the lower thirds of two of
 the five towers appear to be occupied. Bats infest the tops of some of the
 towers.
+---
+===
+NPCS:
+verbal
+Joe
+Quotes:All gamblers quit before they make it big,Never trust a fart
+Winterfell
+---
+tradeable
+Sal
+Inventory:gun
+Crossroads Inn
+---
+both
+Q
+Inventory:banana
+King's Landing
+Quotes:Example quote 1,Example quote 2,Example quote 3
 ---
 ===
 Exits:

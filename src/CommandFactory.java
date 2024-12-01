@@ -58,7 +58,7 @@ class CommandFactory {
         else if (command.equals("look")) {
            return new LookCommand();
         }
-        else if (command.equals("i")) {
+        else if (command.equals("i") || command.equals("inventory")) {
            return new InventoryCommand();
         }
         else if (command.equals("save")) {
@@ -69,12 +69,15 @@ class CommandFactory {
         }
         else if (command.equals("health")){
            return new HealthCommand();
+        } 
+        else if (command.equals("speak")) {
+            return new SpeakCommand();
         }
-        else if (command.equals("verbose")){
-           return new VerboseCommand();
+        else if (command.equals("trade")) {
+            return new TradeCommand();
         }
+ 
         //add extra check for verbose mode
-        
         else {
             if (commandParts.length == 1) {
                 return new UnknownCommand(commandString);

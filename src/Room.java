@@ -61,10 +61,20 @@ public class Room {
     }
 
     String describe() {
-        if (!GameState.instance().hasBeenVisited(this)) {
+        GameState GS = GameState.instance();
 
+        if (!GS.hasBeenVisited(this)) {
+            
+            //room description
             String description = name + "\n" + desc;
+            
+            // NPCs
+            NPC npc = GS.getNPCFromRoom(this);
+            if (npc != null) {
+                description += npc.getName() + " resides here.\n";
+            }
 
+            //items in room
             if (this.getContents() != null && !this.getContents().isEmpty()) {
                 for(Item item : this.getContents()) {
                    description += "\nThere is a " + item.getPrimaryName() + " here.";
@@ -78,11 +88,8 @@ public class Room {
                 description += "\n" + exit.describe();
             }
             
-            
-            GameState.instance().visit(this);
-
+            GS.visit(this);
             return description;
-
         } 
         else {
             return name;
@@ -94,15 +101,20 @@ public class Room {
         description += this.name + "\n";
         description += this.desc;
         
+        // NPCs
+        NPC npc = GameState.instance().getNPCFromRoom(this);
+        if (npc != null) {
+            description += npc.getName() + " resides here.\n\n";
+        }
+
         if (this.getContents() != null) {
             for (Item item : this.getContents()) {
                 description += "There is a " + item.getPrimaryName() + "\n";
             }
         }
 
-        // check if verbose if on 
-        // if (GameState.instance.isVerboseMode()) {
-        description += "\nExits:";
+        // check if verbose if on // if (GameState.instance.isVerboseMode()) {
+        description += "Exits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();
         }

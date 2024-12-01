@@ -1,4 +1,5 @@
 class EventFactory {
+
 	private static EventFactory instance = null;
 	
 	public static EventFactory instance() {
