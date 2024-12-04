@@ -2,11 +2,24 @@ Westeros
 Zork++
 ===
 Items:
-apple,fruit
+apple
 1
 value:1
 examine:the funny apple from death note!!!!
 eat[Eat(-2),Disappear]:You are NOT john death note
+---
+senzuBean,bean
+1
+value:5
+examine:a green bean
+eat[Wound(-9999),Eat(-1),Disappear]:Hell yeah.
+throw:Cell catches the bean & heals to full
+---
+ratPoison,poison
+2
+value:1
+examine:Literal rat poison
+consume[Wound(9),Eat(1),Disappear]:why would you do that
 ---
 dragonglass,glass
 4
@@ -95,12 +108,13 @@ shoot:You shot the gun!
 banana
 1
 value:4
-eat[Eat(-2)]:You ate the banana, it was good
+examine:banana
+eat[Eat(-2),Disappear]:You ate the banana, it was good
 ---
 ===
 Rooms:
 Winterfell
-Contents: dagger,apple
+Contents: dagger
 You stand within a huge castle complex spanning several acres, consisting of
 two massive walls and a village located just outside. Banners featuring the
 head of a direwolf are flapping in the chilly breeze.
@@ -222,14 +236,14 @@ Winterfell
 ---
 tradeable
 Sal
-Inventory:gun
+Inventory:gun,senzuBean
 Crossroads Inn
 ---
 both
 Q
-Inventory:banana
+Inventory:banana,ratPoison
 King's Landing
-Quotes:Example quote 1,Example quote 2,Example quote 3
+Quotes:I didn't want to be a comedian,I think we killed Murr
 ---
 ===
 Exits:

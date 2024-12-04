@@ -220,6 +220,7 @@ class GameState {
             pw.println(); 
             pw.println("Health:" + Player.instance().getHealthInt());
             pw.println("Score:" + Player.instance().getScore());
+            pw.println("Hunger:" + Player.instance().getHungerInt());
             pw.print("Used Score Items:");
             for (Item i : ScoreEvent.usedScoreItems) {
                 pw.print(i.getPrimaryName() + ",");
@@ -317,6 +318,8 @@ class GameState {
             Player.instance().setInitHealth(health);
             int score = Integer.parseInt(scnr.nextLine().split(":")[1]);
             Player.instance().setInitScore(score);
+            int hunger = Integer.parseInt(scnr.nextLine().split(":")[1]);
+            Player.instance().setInitHunger(hunger);
 
             String[] scoreItems = scnr.nextLine().split(":");
             if (scoreItems.length != 1) {
