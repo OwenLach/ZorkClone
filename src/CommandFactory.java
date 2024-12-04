@@ -73,6 +73,9 @@ class CommandFactory {
         else if (command.equals("speak")) {
             return new SpeakCommand();
         }
+        else if (command.equals("hunger")) {
+            return new HungerCommand();
+        }
         else if (command.equals("trade")) {
             return new TradeCommand();
         }

@@ -30,7 +30,7 @@ class Player {
 
 	public void setHealth (int health) {
 		this.health -= health;
-
+        // check if health is 0
         if (this.health <= 0) { 
             new DieEvent().execute();
         }
@@ -77,13 +77,41 @@ class Player {
             return "You're as fit as can be.";
         }
 	}
-    
+   
+    public void setInitHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
 	public void setHunger(int hunger) {
-		//this.hunger += hunger;
-		// check for if hunger < 0
+		this.hunger += hunger;
+		// check if hunger < 0
+        if (hunger <= 0) {
+            new DieEvent().execute();
+        }
 	}
 
-	public int getHunger() {
+	public int getHungerInt() {
 		return this.hunger;
 	}
+
+    public String getHunger() {
+        if (this.hunger <= 1) {
+            return "You're starving to death!";
+        }
+        if (this.hunger <= 3) {
+            return "You're beginning to starve!";
+        }
+        if (this.hunger <= 5) {
+            return "You're getting pretty hungry.";
+        }
+    
+        if (this.hunger <= 8) {
+            return "You could eat.";
+        }
+
+        if (this.hunger <= 10) {
+            return "Fat, dumb, & happy.";
+        }
+    return null;
+    }
 }
