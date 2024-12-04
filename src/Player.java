@@ -83,9 +83,12 @@ class Player {
     }
 
 	public void setHunger(int hunger) {
-		this.hunger += hunger;
+		this.hunger -= hunger;
 		// check if hunger < 0
-        if (hunger <= 0) {
+        if (this.hunger == 1) {
+            System.out.println("!! You are starving to death! !!");
+        }
+        if (this.hunger <= 0) {
             new DieEvent().execute();
         }
 	}
@@ -111,6 +114,9 @@ class Player {
 
         if (this.hunger <= 10) {
             return "Fat, dumb, & happy.";
+        }
+        if (this.hunger >= 10) {
+            return "You're bloated, man.";
         }
     return null;
     }
