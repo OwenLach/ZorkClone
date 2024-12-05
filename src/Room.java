@@ -63,9 +63,8 @@ public class Room {
     String describe() {
        GameState GS = GameState.instance();
 
-       if (!GS.isVerboseMode()) {
+       if (!GS.isVerboseMode() && !GS.hasBeenVisited(this))  {
         
-           System.out.println("entered if statement");
            String description = name + "\n" + desc;
         
            NPC npc = GS.getNPCFromRoom(this);
