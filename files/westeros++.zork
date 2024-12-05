@@ -2,6 +2,12 @@ Westeros
 Zork++
 ===
 Items:
+apple,fruit
+1
+value:1
+examine:the funny apple from death note!!!!
+eat[Eat(-2),Disappear]:You are NOT john death note
+---
 dragonglass,glass
 4
 value:8
@@ -89,12 +95,12 @@ shoot:You shot the gun!
 banana
 1
 value:4
-eat:You ate the banana, it was good (need to make eat event)
+eat[Eat(-2)]:You ate the banana, it was good
 ---
 ===
 Rooms:
 Winterfell
-Contents: dagger
+Contents: dagger,apple
 You stand within a huge castle complex spanning several acres, consisting of
 two massive walls and a village located just outside. Banners featuring the
 head of a direwolf are flapping in the chilly breeze.

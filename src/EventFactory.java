@@ -46,6 +46,12 @@ class EventFactory {
                 return new TransformEvent(originalItem, newItem);
 
             }
+            else if (eventString.indexOf("Eat") != -1) {
+                int startIdx = eventString.indexOf("(") + 1;
+                int endIdx = eventString.indexOf(")");
+                int param = Integer.parseInt(eventString.substring(startIdx, endIdx));
+                return new EatEvent(param);
+            }
             else {
                 int startIdx = eventString.indexOf("(") + 1;
                 int endIdx = eventString.indexOf(")");
