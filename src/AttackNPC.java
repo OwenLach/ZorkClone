@@ -5,6 +5,7 @@ class AttackNPC extends NPC {
     private int health; 
     private int attack;
     
+	private ArrayList<String> quotes = new ArrayList<String>();
     private ArrayList<String> responses = new ArrayList<String>(
             Arrays.asList("grunts", "steps back", "flinches", "winces", "staggers", "yelps"));
     
@@ -16,9 +17,19 @@ class AttackNPC extends NPC {
         health = Integer.parseInt(s.nextLine().split(":")[1]);
         attack = Integer.parseInt(s.nextLine().split(":")[1]); 
 
-        NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
-        GameState.instance().addNPCtoRoom(NPCroom, this);
-	}
+        String lineAfterStats = s.nextLine();
+        if (lineAfterStats.contains("Quotes:")) {
+                String[] attackLines = lineAfterStats.split(":")[1].split(",");
+            for (String line : attackLines) {
+                this.quotes.add(line);
+            }
+            NPCroom = GameState.instance().getDungeon().getRoom(s.nextLine());
+            GameState.instance().addNPCtoRoom(NPCroom, this);
+        } else {
+            NPCroom = GameState.instance().getDungeon().getRoom(lineAfterStats);
+            GameState.instance().addNPCtoRoom(NPCroom, this);
+        }
+    }
     
     public int getNPCAttack() {
        return this.attack; 
@@ -30,7 +41,7 @@ class AttackNPC extends NPC {
 
         this.health -= health;
         if (this.health <= 0) {
-            System.out.println(this.name + "falls, vanquished forever.");
+            System.out.println(this.name + " falls, vanquished forever.");
             GameState.instance().removeNPCFromRoom(NPCroom, this);   
         } else {
             System.out.println(this.name + " " + this.responses.get(randResponse) + " at your attack.");
