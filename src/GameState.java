@@ -12,7 +12,7 @@ class GameState {
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
     private Hashtable<Room, NPC> npcRoomPair = null;
     private Hashtable <String, NPC> npcNames = null;
-    private boolean verbose = false;
+    private boolean verbose = true;
     
     public static GameState instance() {
         if (GameState.instance == null) {

@@ -84,6 +84,14 @@ class CommandFactory {
     //       return new VerboseCommand();  
       //  }
         else if (command.equals("verbose")) {
+            if (commandParts[1].equals("on") ||commandParts[1].equals("off")) {
+                return new VerboseCommand(commandParts[1]);
+            }
+            else {
+                return new UnknownCommand(commandString);
+            }
+
+            /*
            if (commandParts[1].equals("on")){
               GameState.instance().setVerboseMode(true);
               return new VerboseCommand();  
@@ -91,9 +99,9 @@ class CommandFactory {
               GameState.instance().setVerboseMode(false);
               return new VerboseCommand();
            }
+           */
         }
  
-        //add extra check for verbose mode
         else {
             if (commandParts.length == 1) {
                 return new UnknownCommand(commandString);
