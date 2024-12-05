@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -13,6 +12,7 @@ class GameState {
     private Hashtable<Room, NPC> npcRoomPair = null;
     private Hashtable <String, NPC> npcNames = null;
     private boolean verbose = true;
+    private Random rand = null;
     
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -27,8 +27,13 @@ class GameState {
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
         npcRoomPair = new Hashtable<Room, NPC>();
         npcNames = new Hashtable<String, NPC>();
+        rand = new Random();
+        rand.setSeed(13);
     }
 
+    public Random getRand() {
+        return this.rand;
+    }
     
     public void setVerboseMode(boolean isVerbose) {
         this.verbose = isVerbose;
