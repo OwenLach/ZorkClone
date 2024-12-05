@@ -64,6 +64,17 @@ class GameState {
         return this.npcRoomPair.get(room);
     }
 
+    public void removeNPCFromRoom(Room room, NPC npc) {
+        this.npcRoomPair.remove(room, npc);
+        this.npcNames.remove(npc.getName(), npc);
+    }
+/*    public boolean hasAttackNPC(Room room) {
+        if (getNPCFromRoom(AdventurersCurrentRoom)) {
+            NPC npc = getNPCFromRoom
+            if         
+        }
+    }
+*/
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
     }

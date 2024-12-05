@@ -52,6 +52,12 @@ class EventFactory {
                 int param = Integer.parseInt(eventString.substring(startIdx, endIdx));
                 return new EatEvent(param);
             }
+            else if (eventString.indexOf("Damage") != -1) {
+                int startIdx = eventString.indexOf("(") + 1;
+                int endIdx = eventString.indexOf(")");
+                int param = Integer.parseInt(eventString.substring(startIdx, endIdx));
+                return new DamageEvent(param);
+            }
             else {
                 int startIdx = eventString.indexOf("(") + 1;
                 int endIdx = eventString.indexOf(")");

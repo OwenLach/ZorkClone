@@ -71,7 +71,12 @@ public class Room {
             // NPCs
             NPC npc = GS.getNPCFromRoom(this);
             if (npc != null) {
-                description += npc.getName() + " resides here.\n";
+                if (npc instanceof AttackNPC) {
+                    description += "\n" + npc.getName() + " attacks you!\n";
+                }
+                else {
+                description += "\n" + npc.getName() + " resides here.\n";
+                }
             }
 
             //items in room
@@ -99,13 +104,20 @@ public class Room {
     String lookAtRoom() {
         String description = "\n"; 
         description += this.name + "\n";
-        description += this.desc;
+        description += this.desc + "\n";
         
         // NPCs
         NPC npc = GameState.instance().getNPCFromRoom(this);
+            
         if (npc != null) {
-            description += npc.getName() + " resides here.\n\n";
+            if (npc instanceof AttackNPC) {
+                description += "\n" + npc.getName() + " attacks you!\n";
+            }
+            else {
+                description += "\n" + npc.getName() + " resides here.\n";
+            }
         }
+
 
         if (this.getContents() != null) {
             for (Item item : this.getContents()) {

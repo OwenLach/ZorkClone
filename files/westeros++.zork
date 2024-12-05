@@ -40,6 +40,7 @@ dagger
 value:4
 examine:This sharp assassin's weapon has a dragonbone hilt.
 throw[Disappear]:The dagger clumsily hits the wall, and breaks to pieces.
+stab[Damage(4)]:You stab the dagger forward.
 ---
 SapphireNecklace,necklace
 4
@@ -244,6 +245,12 @@ Q
 Inventory:banana,ratPoison
 King's Landing
 Quotes:I didn't want to be a comedian,I think we killed Murr
+---
+enemy
+Murr
+Health:10
+Attack:4
+The Wall
 ---
 ===
 Exits:
