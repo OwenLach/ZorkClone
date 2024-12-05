@@ -20,6 +20,10 @@ class ItemSpecificCommand extends Command {
             else if (e instanceof DieEvent) {
                 ((DieEvent) e).execute(message);
             }
+            else if (e instanceof DamageEvent) {
+                ((DamageEvent) e).execute(message);
+                return "";
+            }
             else {
                 e.execute();
             }

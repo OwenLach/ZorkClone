@@ -1,0 +1,28 @@
+Zork III save data
+Dungeon file: /home/students/enesimi/zorkProject/src/westeros++.zork
+Room states:
+Winterfell:
+beenHere=true
+---
+The Wall:
+beenHere=true
+Contents: dragonglass,
+---
+North Kingsroad:
+beenHere=true
+---
+Crossroads Inn:
+beenHere=true
+---
+===
+Adventurer:
+Current room: Crossroads Inn
+Inventory: gun,senzuBean,
+Health:10
+Score:0
+Hunger:6
+Used Score Items:
+===
+NPCS:
+Sal:dagger,BastardSword,
+===

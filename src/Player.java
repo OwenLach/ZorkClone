@@ -86,7 +86,7 @@ class Player {
 		this.hunger -= hunger;
 		// check if hunger < 0
         if (this.hunger == 1) {
-            System.out.println("!! You are starving to death! !!");
+            System.out.println("    ! !    You are starving to death!    ! !    ");
         }
         if (this.hunger <= 0) {
             new DieEvent().execute();

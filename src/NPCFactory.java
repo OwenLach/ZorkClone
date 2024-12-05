@@ -27,6 +27,9 @@ class NPCFactory {
 		else if (npcType.equals("tradeable")) {
 			return new TradeNPC(scnr);
 		}
+        else if (npcType.equals("enemy")) {
+            return new AttackNPC(scnr);
+        }
 		else {
 			return new VerbalTradeNPC(scnr);
 		}
