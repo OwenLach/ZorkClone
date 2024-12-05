@@ -62,10 +62,10 @@ public class Room {
 
     String describe() {
        GameState GS = GameState.instance();
-    
-       // Check if verbose mode is enabled
-       if (GS.isVerboseMode()) {
+
+       if (!GS.isVerboseMode()) {
         
+           System.out.println("entered if statement");
            String description = name + "\n" + desc;
         
            NPC npc = GS.getNPCFromRoom(this);
@@ -145,7 +145,7 @@ public class Room {
         }
 
         // check if verbose if on 
-        if (GameState.instance().isVerboseMode()) {
+        if (!GameState.instance().isVerboseMode()) {
         description += "Exits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();
