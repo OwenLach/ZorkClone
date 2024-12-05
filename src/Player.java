@@ -3,7 +3,7 @@ class Player {
 	private static Player instance = null;
 	private static int score = 0;
 	private static int health = 10;
-	private static int hunger = 10;
+	private static int hunger = 20;
 	
 	public static Player instance() {
 		if (Player.instance == null) {

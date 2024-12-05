@@ -38,13 +38,15 @@ class AttackNPC extends NPC {
     public void setNPCHealth(int health) {
         Random rand = new Random();
         int randResponse = rand.nextInt(this.responses.size());
+        int randQuote = rand.nextInt(this.quotes.size());
 
         this.health -= health;
         if (this.health <= 0) {
-            System.out.println(this.name + " falls, vanquished forever.");
+            System.out.println("\n" + this.name + " falls, vanquished forever.");
             GameState.instance().removeNPCFromRoom(NPCroom, this);   
         } else {
-            System.out.println(this.name + " " + this.responses.get(randResponse) + " at your attack.");
+            System.out.println("\n" + this.name + " " + this.responses.get(randResponse) + " at your attack.");
+            System.out.println("\"" + this.quotes.get(randQuote) + "!\""); 
         }
     }
 
