@@ -69,7 +69,7 @@ class CommandFactory {
         }
         else if (command.equals("health")){
            return new HealthCommand();
-        }
+        } 
         else if (command.equals("speak")) {
             return new SpeakCommand();
         }
@@ -77,7 +77,20 @@ class CommandFactory {
             return new HungerCommand();
         }
         else if (command.equals("trade")) {
-            return new TradeCommand();
+           return new TradeCommand();
+        }
+//        else if (command.equals("verbose on")) {
+  //         GameState.instance().setVerboseMode(true);
+    //       return new VerboseCommand();  
+      //  }
+        else if (command.equals("verbose")) {
+           if (commandParts[1].equals("on")){
+              GameState.instance().setVerboseMode(true);
+              return new VerboseCommand();  
+           }else{
+              GameState.instance().setVerboseMode(false);
+              return new VerboseCommand();
+           }
         }
  
         //add extra check for verbose mode

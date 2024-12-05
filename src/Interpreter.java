@@ -34,11 +34,12 @@ class Interpreter {
         Scanner scnr = new Scanner(System.in);
         String input;
 
+
         do {
             System.out.println();
             System.out.print("Enter a command (q to quit) > ");
             input = scnr.nextLine();
-
+           
             if (input.equals("q")) {
                 continue;
             }

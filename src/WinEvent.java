@@ -1,5 +1,8 @@
+import java.util.Arrays;
+
 class WinEvent extends Event {
-    void execute() {}
+
+  void execute() {}
 
 	void execute(String message) {
         System.out.println("\n" + message);
@@ -7,4 +10,5 @@ class WinEvent extends Event {
         System.out.println("         " + new ScoreCommand().execute());
         System.exit(0);
     }
+    
 }

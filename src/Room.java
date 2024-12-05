@@ -61,46 +61,65 @@ public class Room {
     }
 
     String describe() {
-        GameState GS = GameState.instance();
-
-        if (!GS.hasBeenVisited(this)) {
-            
-            //room description
-            String description = name + "\n" + desc;
-            
-            // NPCs
-            NPC npc = GS.getNPCFromRoom(this);
-            if (npc != null) {
-                if (npc instanceof AttackNPC) {
-                    description += "\n" + npc.getName() + " attacks you!\n";
-                }
-                else {
-                description += "\n" + npc.getName() + " resides here.\n";
-                }
-            }
-
-            //items in room
-            if (this.getContents() != null && !this.getContents().isEmpty()) {
-                for(Item item : this.getContents()) {
-                   description += "\nThere is a " + item.getPrimaryName() + " here.";
-                }
-            }
-
-            // check if verbose if on 
-            // if (GameState.instance.isVerboseMode()) {
-            description += "\nExits:";
-            for (Exit exit : this.exits.values()) {
-                description += "\n" + exit.describe();
-            }
-            
-            GS.visit(this);
-            return description;
-        } 
-        else {
-            return name;
-        }
-    }
+       GameState GS = GameState.instance();
     
+       // Check if verbose mode is enabled
+       if (GS.isVerboseMode()) {
+        
+           String description = name + "\n" + desc;
+        
+           NPC npc = GS.getNPCFromRoom(this);
+           if (npc != null) {
+               if (npc instanceof AttackNPC) {
+                   description += "\n" + npc.getName() + " attacks you!\n";
+               }
+               else{
+                   description += npc.getName() + " resides here.\n";
+               }
+           }
+
+           if (this.getContents() != null && !this.getContents().isEmpty()) {
+               for (Item item : this.getContents()) {
+                   description += "\nThere is a " + item.getPrimaryName() + " here.";
+               }
+           }
+
+           GS.visit(this);
+
+           return description;
+    
+       }
+
+       if (!GS.hasBeenVisited(this)) {
+        
+           String description = name + "\n" + desc;
+
+           NPC npc = GS.getNPCFromRoom(this);
+           if (npc != null) {
+               if (npc instanceof AttackNPC) {
+                   description += "\n" + npc.getName() + " attacks you!\n";
+               } else {
+                   description += npc.getName() + " resides here.\n";
+               }
+           }
+
+           if (this.getContents() != null && !this.getContents().isEmpty()) {
+               for (Item item : this.getContents()) {
+                   description += "\nThere is a " + item.getPrimaryName() + " here.";
+               }
+           }
+
+           description += "\nExits:";
+           for (Exit exit : this.exits.values()) {
+               description += "\n" + exit.describe();
+           }
+
+           GS.visit(this);
+           return description;
+       }
+       return name;
+    }
+
     String lookAtRoom() {
         String description = "\n"; 
         description += this.name + "\n";
@@ -125,12 +144,14 @@ public class Room {
             }
         }
 
-        // check if verbose if on // if (GameState.instance.isVerboseMode()) {
+        // check if verbose if on 
+        if (GameState.instance().isVerboseMode()) {
         description += "Exits:";
         for (Exit exit : this.exits.values()) {
             description += "\n" + exit.describe();
         }
         
+       }
         return description;
     }
 
