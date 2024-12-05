@@ -74,7 +74,20 @@ class CommandFactory {
             return new SpeakCommand();
         }
         else if (command.equals("trade")) {
-            return new TradeCommand();
+           return new TradeCommand();
+        }
+//        else if (command.equals("verbose on")) {
+  //         GameState.instance().setVerboseMode(true);
+    //       return new VerboseCommand();  
+      //  }
+        else if (command.equals("verbose")) {
+           if (commandParts[1].equals("on")){
+              GameState.instance().setVerboseMode(true);
+              return new VerboseCommand();  
+           }else{
+              GameState.instance().setVerboseMode(false);
+              return new VerboseCommand();
+           }
         }
  
         //add extra check for verbose mode

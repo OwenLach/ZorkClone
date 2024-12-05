@@ -12,7 +12,7 @@ class GameState {
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
     private Hashtable<Room, NPC> npcRoomPair = null;
     private Hashtable <String, NPC> npcNames = null;
-    // private boolean Verbose = true;
+    private boolean verbose = false;
     
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -29,16 +29,14 @@ class GameState {
         npcNames = new Hashtable<String, NPC>();
     }
 
-    /*
-     public void setVerboseMode(boolean isVerbose) {
-        this.Verbose = isVerbose;
+    
+    public void setVerboseMode(boolean isVerbose) {
+        this.verbose = isVerbose;
      }
 
     public boolean isVerboseMode() {
-        return this.Verbose;
+        return this.verbose;
     }
-
-    */
 
     public NPC getNPCByName(String name) {
         return npcNames.get(name);

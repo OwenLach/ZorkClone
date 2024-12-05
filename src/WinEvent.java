@@ -10,5 +10,5 @@ class WinEvent extends Event {
         System.out.println("         " + new ScoreCommand().execute());
         System.exit(0);
     }
-
+    
 }

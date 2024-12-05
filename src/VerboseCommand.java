@@ -1,13 +1,13 @@
 class VerboseCommand extends Command{
+   
+    VerboseCommand() {
+    }
 
-   VerboseCommand(){}
-
-   String execute(){
-
-      GameState GS = GameState.instance();
-      Room currentRoom = getAdventuresCurrentRoom();
-      
-
-
-   }
+    String execute() {
+          if (GameState.instance().isVerboseMode()) {  
+            return "Verbose Mode ON";
+        } else {  
+            return "Verbose Mode OFF";
+        }
+    }
 }
