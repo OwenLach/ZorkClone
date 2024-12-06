@@ -10,9 +10,9 @@ eat[Eat(-2),Disappear]:You are NOT john death note
 ---
 senzuBean,bean
 1
-value:10
+value:8
 examine:a green bean
-eat[Wound(-9999),Eat(-1),Disappear]:Hell yeah.
+eat[Wound(-9999),Eat(-1)]:Hell yeah.
 throw:Cell catches the bean & heals to full
 ---
 ratPoison,poison
@@ -93,18 +93,17 @@ value:3
 examine:This egg is as black as midnight sea, yet alive with scarlet ripples and swirls.
 heat[Transform(BlackBabyDragon)]:When warmed to great temperatures, the egg hatches and a cute little green dragon emerges! (*spoilers*) You name it "Drogon."
 ---
-IronThrone,throne
-400000
-value:10000
-examine:The great metallic throne, forged from a thousand swords of imperial enemies, dominates the room and makes you feel considerably smaller. There are still sharp edges, so you are wary of touching it.
-touch[Wound(1)]:Ouch! Sharp steel opens a red line in your finger.
-sit[Win]:Hail to the Queen!
-sitOn[Win]:Hail to t10 Queen!
+soulOfTheLords,soul
+40
+value:10
+examine:One of the twisted souls, steeped in strength. Since Lord Gwyn, the first Lord of Cinder, many exalted lords have linked the First Flame, and it is their very souls that have manifested themselves as defender of the flame.
+absorb[Win]:You absorb the soul, finally free of the ashen curse. 
 ---
 gun
 7
 value:4
-shoot:You shot the gun!
+examine:what's a modern firearm doing in this fantasy land?
+shoot[Damage(9)]:You shot the gun!
 ---
 banana
 1
@@ -213,7 +212,7 @@ are hundreds of mineshafts in the depths of the Rock, as well as yet untouched
 gold veins. From below the Rock thunder can be heard, where the sea comes in.
 ---
 King's Landing
-Contents: wildfire,SapphireNecklace,IronThrone
+Contents: wildfire,SapphireNecklace,soulOfTheLords
 This extraordinary city is extremely populous, but rather unsightly and dirty
 compared to other cities. The city is roughly square-shaped, sprawling across
 several miles and defended by tall walls. Poorer smallfolk build shanty
@@ -232,12 +231,12 @@ towers.
 NPCS:
 verbal
 Joe
-Quotes:All gamblers quit before they make it big,Never trust a fart
+Quotes:All gamblers quit before they make it big,Never trust a fart,I look like a guy who should own a feret,Who's phone is ringing? Mine! Mine!
 Winterfell
 ---
 tradeable
 Sal
-Inventory:gun,senzuBean
+Inventory:gun,senzuBean,soulOfTheLords
 Crossroads Inn
 ---
 both
@@ -250,7 +249,7 @@ enemy
 Murr
 Health:10
 Attack:4
-Quotes:Average Murr punishment,do you really want to know the method?,they shaved my eyebrows,I love Guy Fieri
+Quotes:Average Murr punishment,they shaved my eyebrows,I love Guy Fieri
 The Wall
 ---
 ===
