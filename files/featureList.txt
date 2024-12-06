@@ -33,11 +33,15 @@ Verbose Mode
 The game initally starts as verbose mode, which is the normal default. Typing
 "verbose off" will turn off verbose mode. This makes it so that exits aren't
 displayed. Typing "verbose on" will turn verbose mode back on and exits will be
-displayed.
+displayed. Using the look command will ignore verbose mode and display exits no
+matter what as that is the point of the look command.
 
 From the start of the game, the exits will be displayed as verbose is initally
 on. Type "verbose off" to turn off verbose mode. Go "n". The exits shouldn't be
-displayed for the room "The Wall".
+displayed for the room "The Wall". Go "s", only "Winterfell appears as that is
+the starting room and has already been visited. Go "s" again to "North
+Kingsroad". No exits should be shown. Now type "verbose on" to turn back on
+verbose mode. Go "s" one last time to "Crossroads Inn" and the exits should be
+shown.
 
-**** using the look command will ignore verbose mode and display exits no
-matter what as that is the point of the look command ****
+
