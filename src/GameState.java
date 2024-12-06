@@ -11,6 +11,7 @@ class GameState {
     private Hashtable<Room, HashSet<Item>> allRoomContents = null; 
     private Hashtable<Room, NPC> npcRoomPair = null;
     private Hashtable <String, NPC> npcNames = null;
+    private ArrayList<NPC> deadNPCs = null;
     private boolean verbose = true;
     private Random rand = null;
     
@@ -27,6 +28,7 @@ class GameState {
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
         npcRoomPair = new Hashtable<Room, NPC>();
         npcNames = new Hashtable<String, NPC>();
+        deadNPCs = new ArrayList<NPC>();
         rand = new Random();
         rand.setSeed(13);
     }
@@ -45,6 +47,16 @@ class GameState {
 
     public NPC getNPCByName(String name) {
         return npcNames.get(name);
+    }
+    public Room getNPCRoom(NPC targetNpc) {
+//        NPC targetNpc = this.getNPCByName(name);
+        for (Room room : npcRoomPair.keySet()) {
+            if (npcRoomPair.get(room).equals(targetNpc)) {
+                return room;
+            }
+        }
+       return null; 
+
     }
     
     public Item getItemFromNPCInventory(String item) throws NoNPCItemException {
@@ -65,6 +77,10 @@ class GameState {
 
     public NPC getNPCFromRoom(Room room) {
         return this.npcRoomPair.get(room);
+    }
+
+    public ArrayList<NPC> getDeadNPCs() {
+        return deadNPCs;
     }
 
     public void removeNPCFromRoom(Room room, NPC npc) {
@@ -243,9 +259,15 @@ class GameState {
 
             pw.println("===");
             pw.println("NPCS:");
+            
+           //saves dead enemies first 
+            for (NPC attackNPC : this.deadNPCs) {
+                pw.print(attackNPC.getName() + ":Dead");
+                pw.println();
+            } 
             for (Room room : this.visited) {
                 NPC npc = this.npcRoomPair.get(room);
-
+                
                 if (npc != null) {
                     ArrayList<Item> npcItems = npc.getInventory();
 
@@ -359,8 +381,13 @@ class GameState {
                     break;
                 }
 
-                
                 NPC npc = this.getNPCByName(line.split(":")[0]);
+                
+                //checks if npc is dead
+                if (line.contains("Dead")) {
+                    Room npcRoom = this.getNPCRoom(npc);
+                    this.removeNPCFromRoom(npcRoom, npc);
+                }
                 npc.clearInventory();
                 String npcInventoryString = line.split(":")[1];
             

@@ -43,7 +43,8 @@ class AttackNPC extends NPC {
         this.health -= health;
         if (this.health <= 0) {
             System.out.println("\n" + this.name + " falls, vanquished forever.");
-            GameState.instance().removeNPCFromRoom(NPCroom, this);   
+            GameState.instance().removeNPCFromRoom(NPCroom, this);
+            GameState.instance().getDeadNPCs().add(this);   
         } else {
             System.out.println("\n" + this.name + " " + this.responses.get(randResponse) + " at your attack.");
             System.out.println("\"" + this.quotes.get(randQuote) + "!\""); 
