@@ -56,11 +56,11 @@ class AttackNPC extends NPC {
 
     //maybe add speaking
     String speak() {
-        return "";
+        return this.name + " refuses to talk to you."; 
     }
     
     String trade() {
-        return "";
+        return this.name + " ain't gonna trade with you.";
     }
     
     ArrayList<Item> getInventory() {

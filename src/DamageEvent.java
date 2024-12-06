@@ -1,3 +1,5 @@
+import java.util.*;
+
 class DamageEvent extends Event {
 
 	private int changeInHealth = 0;

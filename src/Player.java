@@ -86,7 +86,7 @@ class Player {
 		this.hunger -= hunger;
 		// check if hunger < 0
         if (this.hunger == 1) {
-            System.out.println("    ! !    You are starving to death!    ! !    ");
+            System.out.println("\n    ! !    You are starving to death!    ! !    ");
         }
         if (this.hunger <= 0) {
             new DieEvent().execute();
@@ -105,17 +105,20 @@ class Player {
             return "You're beginning to starve!";
         }
         if (this.hunger <= 5) {
+            return "Eat something, man!";
+        }
+        if (this.hunger <= 10) {
             return "You're getting pretty hungry.";
         }
     
-        if (this.hunger <= 8) {
+        if (this.hunger <= 15) {
             return "You could eat.";
         }
 
-        if (this.hunger <= 10) {
+        if (this.hunger <= 20) {
             return "Fat, dumb, & happy.";
         }
-        if (this.hunger >= 10) {
+        if (this.hunger > 20) {
             return "You're bloated, man.";
         }
     return null;

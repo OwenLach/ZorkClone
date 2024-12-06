@@ -36,6 +36,12 @@ class TakeCommand extends Command {
                 GS.removeItemFromRoom(i, currentRoom);
             }
             
+            NPC currentNPC = GameState.instance().getNPCFromRoom(GameState.instance().getAdventurersCurrentRoom());
+            // If there is an AttackNPC in the room, apply damage
+            if (currentNPC != null && currentNPC instanceof AttackNPC) {
+                Player.instance().setHealth(((AttackNPC) currentNPC).getNPCAttack());
+                System.out.println(currentNPC.getName() + " strikes you!");
+                            }
            return returnDesc;
         }
 
@@ -63,12 +69,21 @@ class TakeCommand extends Command {
                         else {
                             GS.addToInventory(item);
                             GS.removeItemFromRoom(item, currentRoom);
+                            
+                            NPC currentNPC = GameState.instance().getNPCFromRoom(GameState.instance().getAdventurersCurrentRoom());
+                            // If there is an AttackNPC in the room, apply damage
+                            if (currentNPC != null && currentNPC instanceof AttackNPC) {
+                                Player.instance().setHealth(((AttackNPC) currentNPC).getNPCAttack());
+                                System.out.println(currentNPC.getName() + " strikes you!");
+                            }
+                            
                             return itemName + " taken";
                         }
                     }
                 }
             }
         }
+        
         
         return "Can't add " + itemName + " to inventory";
    }

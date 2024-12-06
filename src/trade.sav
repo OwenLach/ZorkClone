@@ -4,10 +4,6 @@ Room states:
 Winterfell:
 beenHere=true
 ---
-The Wall:
-beenHere=true
-Contents: dragonglass,
----
 North Kingsroad:
 beenHere=true
 ---
@@ -17,12 +13,12 @@ beenHere=true
 ===
 Adventurer:
 Current room: Crossroads Inn
-Inventory: gun,senzuBean,
+Inventory: gun,
 Health:10
 Score:0
-Hunger:6
+Hunger:18
 Used Score Items:
 ===
 NPCS:
-Sal:dagger,BastardSword,
+Sal:senzuBean,dagger,
 ===

@@ -13,7 +13,14 @@ class TradeCommand extends Command {
             return "Who are you trying to trade with?";
         }
 
+        if (npc instanceof AttackNPC) {
+            Player.instance().setHealth(((AttackNPC) npc).getNPCAttack());
+            System.out.println(npc.getName() + " strikes you!");
+            return npc.trade();
+        }
+            
         return npc.trade();
+        
 	}
 
 }

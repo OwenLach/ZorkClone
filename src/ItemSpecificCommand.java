@@ -32,6 +32,13 @@ class ItemSpecificCommand extends Command {
         if (message == null) { 
             return "Cannot " + this.verb + this.item.getPrimaryName(); 
         }
+        
+        NPC currentNPC = GameState.instance().getNPCFromRoom(GameState.instance().getAdventurersCurrentRoom());
+        // If there is an AttackNPC in the room, apply damage
+        if (currentNPC != null && currentNPC instanceof AttackNPC) {
+            Player.instance().setHealth(((AttackNPC) currentNPC).getNPCAttack());
+            System.out.println(currentNPC.getName() + " strikes you!");
+        }
         return message; 
     }
 
