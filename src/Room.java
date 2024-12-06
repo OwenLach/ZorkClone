@@ -63,6 +63,10 @@ public class Room {
     String describe() {
        GameState GS = GameState.instance();
 
+       if (GS.hasBeenVisited(this)) {
+           return name;
+       }
+
        if (!GS.isVerboseMode() && !GS.hasBeenVisited(this))  {
         
            String description = name + "\n" + desc;
