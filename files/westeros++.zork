@@ -10,7 +10,7 @@ eat[Eat(-2),Disappear]:You are NOT john death note
 ---
 senzuBean,bean
 1
-value:5
+value:10
 examine:a green bean
 eat[Wound(-9999),Eat(-1),Disappear]:Hell yeah.
 throw:Cell catches the bean & heals to full
@@ -19,7 +19,7 @@ ratPoison,poison
 2
 value:1
 examine:Literal rat poison
-consume[Wound(9),Eat(1),Disappear]:why would you do that
+eat[Wound(9),Eat(1),Disappear]:why would you do that
 ---
 dragonglass,glass
 4
@@ -99,7 +99,7 @@ value:10000
 examine:The great metallic throne, forged from a thousand swords of imperial enemies, dominates the room and makes you feel considerably smaller. There are still sharp edges, so you are wary of touching it.
 touch[Wound(1)]:Ouch! Sharp steel opens a red line in your finger.
 sit[Win]:Hail to the Queen!
-sitOn[Win]:Hail to the Queen!
+sitOn[Win]:Hail to t10 Queen!
 ---
 gun
 7
@@ -242,7 +242,7 @@ Crossroads Inn
 ---
 both
 Q
-Inventory:banana,ratPoison
+Inventory:banana,ratPoison,apple
 King's Landing
 Quotes:I didn't want to be a comedian,I think we killed Murr
 ---
