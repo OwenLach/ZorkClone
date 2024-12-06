@@ -1,0 +1,43 @@
+Verbal NPC
+----------
+From the very start of the game, type the command "speak" 3 times. Joe will
+mention quotes with the topics of a ferret, a fart, and gambling. Go "s" two
+times and type the command "speak", Sal will ignore you. Go "s" three more
+times and type the "speak" command 3 times. Q will say that he thinks they
+killed murr and that he didn't want to be a comedian twice.
+
+Trade NPC
+---------
+From the very start of the game, type "take dagger" to take the dagger. Then
+type "trade". Joe isn't a trade npc and the game lets you know you can't trade
+with him. Go "n", and type "take glass" to take the dragon glass. Go "s" three
+time. Type "trade" and your Sal's and your inventory will be displayed. Type
+"dagger" to select the dagger from your inventory and hit enter. Type "gun" to
+select that as the item you want and press enter. The dagger was worth at least
+the same amount of credits as the gun and the trade should be successful. Type
+"trade" again. Type "gun" to select it from your current inventory and hit
+enter. Type "senzuBean" to select that as the item you want from Sal's
+inventory. The gun isn't worth as much as the senzuBean and the trade will
+fail, also letting you know why it failed. Finally type "trade" one last time.
+Type in "glass,gun" to select the dragonglass, and gun from your inventory and
+hit enter. Then type "dagger,senzuBean" to select those items as the ones you
+want from Sal's inventory and hit enter. The trade should be successfull. Type "i" and the dagger
+and senzuBean should be in your inventory.
+
+Hunger
+------
+
+
+Verbose Mode
+------------
+The game initally starts as verbose mode, which is the normal default. Typing
+"verbose off" will turn off verbose mode. This makes it so that exits aren't
+displayed. Typing "verbose on" will turn verbose mode back on and exits will be
+displayed.
+
+From the start of the game, the exits will be displayed as verbose is initally
+on. Type "verbose off" to turn off verbose mode. Go "n". The exits shouldn't be
+displayed for the room "The Wall".
+
+**** using the look command will ignore verbose mode and display exits no
+matter what as that is the point of the look command ****
