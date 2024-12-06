@@ -212,7 +212,7 @@ are hundreds of mineshafts in the depths of the Rock, as well as yet untouched
 gold veins. From below the Rock thunder can be heard, where the sea comes in.
 ---
 King's Landing
-Contents: wildfire,SapphireNecklace,soulOfTheLords
+Contents: wildfire,SapphireNecklace
 This extraordinary city is extremely populous, but rather unsightly and dirty
 compared to other cities. The city is roughly square-shaped, sprawling across
 several miles and defended by tall walls. Poorer smallfolk build shanty
@@ -241,7 +241,7 @@ Crossroads Inn
 ---
 both
 Q
-Inventory:banana,ratPoison,apple
+Inventory:banana,ratPoison,apple,soulOfTheLords
 King's Landing
 Quotes:I didn't want to be a comedian,I think we killed Murr
 ---
