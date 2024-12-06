@@ -1,4 +1,4 @@
 Sample Dungeon Walkthrough
 --------------------------
 
-
+Upon spawning into Impractical Westeros, you should first pick up the dagger by typing "take dagger" in order to defend yourself. Then, type "n" to move north to The Wall where you'll be attacked. Typing "stab dagger" 3 times will finish off the attacking Murr, allowing you to type "take sword" in peace. Typing "s" 6 times will leave you at King's Landing where Q hangs out at. Type "trade" to enter the trade menu with him & type "dagger,sword" to offer your inventory equal to 10 credits. Then type "soul" for the Soul of the Lords valued at the same 10 credits, & you should recieve the item. Lastly, you can optionally examine it & type "absorb soul" to consume the lord's soul, completing the game.
