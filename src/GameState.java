@@ -188,7 +188,7 @@ class GameState {
 
 
     void store(String saveName) {
-
+                   
         try {
             PrintWriter pw = new PrintWriter(new File(saveName));
             pw.println("Zork III save data");
@@ -261,6 +261,9 @@ class GameState {
 
             }
             pw.println("===");
+            pw.println("Verbose: " + 
+                  Boolean.toString(GameState.instance().isVerboseMode()));
+
 
             pw.flush();
             pw.close();
@@ -365,6 +368,11 @@ class GameState {
                     Item item = this.dungeon.getItem(string);
                     npc.addToInventory(item);
                 }
+            }
+            String verboseString = scnr.nextLine().split(" ")[1];
+
+            if (verboseString.equals("false")){
+               this.setVerboseMode(false);
             }
 
 
