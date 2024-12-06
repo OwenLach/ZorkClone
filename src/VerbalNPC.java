@@ -24,7 +24,7 @@ class VerbalNPC extends NPC {
 	}
     
 	String speak() {
-        Random rand = new Random();
+        Random rand = GameState.instance().getRand();
 		int randomNum = rand.nextInt(this.quotes.size());
         int randSaysSyn = rand.nextInt(this.saysSynonyms.size());
         return this.name + " " + this.saysSynonyms.get(randSaysSyn) + " to you, \"" + this.quotes.get(randomNum) + ".\"";

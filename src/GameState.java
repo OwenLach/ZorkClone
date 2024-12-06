@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -13,6 +12,7 @@ class GameState {
     private Hashtable<Room, NPC> npcRoomPair = null;
     private Hashtable <String, NPC> npcNames = null;
     private boolean verbose = true;
+    private Random rand = null;
     
     public static GameState instance() {
         if (GameState.instance == null) {
@@ -27,8 +27,13 @@ class GameState {
         allRoomContents = new Hashtable<Room, HashSet<Item>>();
         npcRoomPair = new Hashtable<Room, NPC>();
         npcNames = new Hashtable<String, NPC>();
+        rand = new Random();
+        rand.setSeed(13);
     }
 
+    public Random getRand() {
+        return this.rand;
+    }
     
     public void setVerboseMode(boolean isVerbose) {
         this.verbose = isVerbose;
@@ -183,7 +188,7 @@ class GameState {
 
 
     void store(String saveName) {
-
+                   
         try {
             PrintWriter pw = new PrintWriter(new File(saveName));
             pw.println("Zork III save data");
@@ -256,6 +261,9 @@ class GameState {
 
             }
             pw.println("===");
+            pw.println("Verbose: " + 
+                  Boolean.toString(GameState.instance().isVerboseMode()));
+
 
             pw.flush();
             pw.close();
@@ -360,6 +368,11 @@ class GameState {
                     Item item = this.dungeon.getItem(string);
                     npc.addToInventory(item);
                 }
+            }
+            String verboseString = scnr.nextLine().split(" ")[1];
+
+            if (verboseString.equals("false")){
+               this.setVerboseMode(false);
             }
 
 

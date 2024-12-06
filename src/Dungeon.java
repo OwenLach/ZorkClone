@@ -144,10 +144,10 @@ public class Dungeon {
     }
 
     public Room getRandomRoom() {
+        Random rand = GameState.instance().getRand();
         Enumeration<Room> values = rooms.elements();
         
         int size = rooms.size();
-        Random rand = new Random();
         int randomIndex = rand.nextInt(size);
 
         int currentIndex = 0;
