@@ -74,7 +74,7 @@ public class Room {
            NPC npc = GS.getNPCFromRoom(this);
            if (npc != null) {
                if (npc instanceof AttackNPC) {
-                   description += "\n" + npc.getName() + " attacks you!\n";
+                   description += "\n     ! !     " + npc.getName() + " attacks you!     ! !     \n";
                }
                else{
                    description += npc.getName() + " resides here.\n";
@@ -100,7 +100,7 @@ public class Room {
            NPC npc = GS.getNPCFromRoom(this);
            if (npc != null) {
                if (npc instanceof AttackNPC) {
-                   description += "\n" + npc.getName() + " attacks you!\n";
+                   description += "\n     ! !     " + npc.getName() + " attacks you!     ! !     \n";
                } else {
                    description += npc.getName() + " resides here.\n";
                }
@@ -133,7 +133,7 @@ public class Room {
             
         if (npc != null) {
             if (npc instanceof AttackNPC) {
-                description += "\n" + npc.getName() + " attacks you!\n";
+                description += "\n     ! !     " + npc.getName() + " attacks you!     ! !     \n";
             }
             else {
                 description += "\n" + npc.getName() + " resides here.\n";

@@ -6,23 +6,15 @@ times and type the command "speak", Sal will ignore you. Go "s" three more
 times and type the "speak" command 3 times. Q will say that he thinks they
 killed murr and that he didn't want to be a comedian twice.
 
+Attack NPC & Combat
+-------------------
+At the start of the game, type "health" to check your initial status. Then, make sure to type "take dagger" to take the dagger, the only weapon you can wield so far. Type "n" to go north & the game will notify you that there is an enemy NPC, Murr, in the room that is attacking you. Type "s", the game tells you that you can't leave while the enemy is pursuing you. If you type "take sword", Murr takes the opening to attack you. Typing "health" again, your HP will be significantly lower, but this action will not aggro another hit from Murr. You do not have enough health to type both without dying, but typing "speak" or "trade" lets you know that the enemy NPC has no interest in doing either with you. Finally, type "stab dagger" 3 times to use the dagger against an NPC in the room, in this case Murr, to attack & defeat them. Murr will either mention Guy Fieri, his eyebrows, or mock his punishments, allowing you to move again.
+
 Trade NPC
 ---------
 From the very start of the game, type "take dagger" to take the dagger. Then
 type "trade". Joe isn't a trade npc and the game lets you know you can't trade
-with him. Go "n", and type "take glass" to take the dragon glass. Go "s" three
-time. Type "trade" and your Sal's and your inventory will be displayed. Type
-"dagger" to select the dagger from your inventory and hit enter. Type "gun" to
-select that as the item you want and press enter. The dagger was worth at least
-the same amount of credits as the gun and the trade should be successful. Type
-"trade" again. Type "gun" to select it from your current inventory and hit
-enter. Type "senzuBean" to select that as the item you want from Sal's
-inventory. The gun isn't worth as much as the senzuBean and the trade will
-fail, also letting you know why it failed. Finally type "trade" one last time.
-Type in "glass,gun" to select the dragonglass, and gun from your inventory and
-hit enter. Then type "dagger,senzuBean" to select those items as the ones you
-want from Sal's inventory and hit enter. The trade should be successfull. Type "i" and the dagger
-and senzuBean should be in your inventory.
+with him. Go "n", and type "take glass" to take the dragon glass, receiving a hit from Murr. Type "stab dagger" 3 times to defeat Murr & allow yourself to leave. Go "s" three time. Type "trade" and your Sal's and your inventory will be displayed. Type "dagger" to select the dagger from your inventory and hit enter. Type "gun" to select that as the item you want and press enter. The dagger was worth at least the same amount of credits as the gun and the trade should be successful. Type "trade" again. Type "gun" to select it from your current inventory and hit enter. Type "senzuBean" to select that as the item you want from Sal's inventory. The gun isn't worth as much as the senzuBean and the trade will fail, also letting you know why it failed. Finally type "trade" one last time. Type in "glass,gun" to select the dragonglass, and gun from your inventory and hit enter. Then type "dagger,senzuBean" to select those items as the ones you want from Sal's inventory and hit enter. The trade should be successfull. Type "i" and the dagger and senzuBean should be in your inventory.
 
 Hunger
 ------
