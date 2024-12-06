@@ -362,8 +362,7 @@ class GameState {
 
             String[] scoreItems = scnr.nextLine().split(":");
             if (scoreItems.length != 1) {
-                System.out.println("no score items");
-                String scoreItemsStr = scnr.nextLine().split(":")[1];
+                String scoreItemsStr = scoreItems[1];
 
                 for (String itemName : scoreItemsStr.split(",")) {
                     Item item = this.dungeon.getItem(itemName);

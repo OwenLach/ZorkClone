@@ -1,4 +1,15 @@
 Sample Dungeon Walkthrough
 --------------------------
 
-Upon spawning into Impractical Westeros, you should first pick up the dagger by typing "take dagger" in order to defend yourself. Then, type "n" to move north to The Wall where you'll be attacked. Typing "stab dagger" 3 times will finish off the attacking Murr, allowing you to type "take sword" in peace. Typing "s" 6 times will leave you at King's Landing where Q hangs out at. Type "trade" to enter the trade menu with him & type "dagger,sword" to offer your inventory equal to 10 credits. Then type "soul" for the Soul of the Lords valued at the same 10 credits, & you should recieve the item. Lastly, you can optionally examine it & type "absorb soul" to consume the lord's soul, completing the game.
+Upon spawning into Impractical Westeros, you should first pick up the dagger by
+typing "take dagger" in order to defend yourself. Then, type "n" to move north
+to The Wall where you'll be attacked. Typing "stab dagger" 3 times will finish
+off the attacking Murr. Typing "s" 6 times will leave you at King's Landing
+where Q hangs out at. Type "take necklace" and then type "wear
+necklace" to wear the necklace and increase your score by 1. Go "e" 2 times,
+and then type "heat GreenEgg" to hatch a baby green dragon. Type "feed GreenDragon" to
+increase your score again by 1. Type "take BlackEgg" to take the black dragon
+egg. Go "w" two times and then type "trade" to enter the trade menu with Q. Type
+"dagger,necklace,BlackEgg" to offer your inventory which is worth 40 credits. 
+Then type "soul" for the Soul of the Lords valued at the same 40 credits, and you should recieve the item. 
+Lastly, you can optionally examine it by typing "examine soul". Type "absorb soul" to consume the lord's soul, completing the game.
